@@ -1,7 +1,8 @@
 var activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
 
   let users = [
-    {username: "willie", password: "wildcat", major: "Computer Science", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
+    {username: "willie", password: "wildcat", major: "Computer Science", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]},
+    {username: "morty", password: "wildcat", major: "Econonics", classes: ["Econ 201", "Econ 202", "Econ 281", "Econ 310-1", "Econ 310-2", "Econ 311"]}
   ];
 
   function loginFields() {
@@ -20,21 +21,22 @@ var activeUser = {username: "Guest", password: "", major: "Undecided", classes: 
           document.getElementById("logout").style.display = "flex";
           updateClasses();
           document.getElementById('id01').style.display = "none";
+          return;
         }
         else {
-          alert("Incorrect username or password.")
+          alert("Incorrect username or password.");
+          return;
         }
       }
-      else {
-        alert("Username not found. Create an account to continue.");
-      }
     }
+    alert("Username not found. Create an account to continue.");
   }
 
   function makeAccount() {
       var loginData = document.getElementById("userlogin");
       activeUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:'Undecided', classes:[]};
       users.push[activeUser];
+      document.getElementById("greeting").innerHTML = activeUser.username;
       document.getElementById("signup").style.display = "none";
       document.getElementById("login").style.display = "none";
       document.getElementById("logout").style.display = "flex";
