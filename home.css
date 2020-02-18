@@ -74,6 +74,10 @@ aside h3 {
     font-weight: lighter;
 }
 
+aside section{
+    display: none;
+}
+
 section.artist-card {
     margin: 1px 0px 0px;
     padding: 20px;

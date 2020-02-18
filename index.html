@@ -37,38 +37,35 @@
     <h1 id="greeting">
         Hello, Guest!
     </h1>
-    <h2>
+    <h2 id="major-header">
         Major X
     </h2>
-    <section class="artist-card">
+    <section class="artist-card" id="class1">
         Class 1
     </section>
-    <section class="artist-card">
+    <section class="artist-card" id="class2">
         Class 2
     </section>       
-    <section class="artist-card">
+    <section class="artist-card" id="class3">
         Class 3
     </section>
-    <section class="artist-card">
+    <section class="artist-card" id="class4">
         Class 4
     </section>
-    <section class="artist-card">
+    <section class="artist-card" id="class5">
         Class 5
     </section>
-    <section class="artist-card">
+    <section class="artist-card" id="class6">
         Class 6
     </section>
-    <section class="artist-card">
+    <section class="artist-card" id="class7">
         Class 7
     </section>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
 
 
-  <p id="greeting">Guest</p>
   <!-- Modal for login page -->
-  
-
   <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
     <form class="modal-content animate", method="POST", id="userlogin">
@@ -97,10 +94,10 @@
 </body>
 
 <script>
-  var activeUser = "Guest";
+  var activeUser = {username: "Guest", password: "", classes: []};
 
   let users = [
-    {username: "willie", password: "wildcat"}
+    {username: "willie", password: "wildcat", major: "Computer Science Major", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
   ];
 
   function loginFields() {
@@ -112,8 +109,9 @@
     for (user of users) {
       if (user.username == name) {
         if (user.password == pass) {
-          activeUser = name;
-          document.getElementById("greeting").innerHTML = activeUser;
+          activeUser = user;
+          document.getElementById("greeting").innerHTML = activeUser.username;
+          updateClasses();
           document.getElementById('id01').style.display = "none";
         }
         else {
@@ -124,10 +122,21 @@
         alert('username not found');
       }
     }
+  }
 
-    function makeAccount() {
+  function makeAccount() {
       var loginData = document.getElementById("userlogin");
       users.push[{username: loginData.elements[0].value, password: loginData.elements[1].value}];
+  }
+
+
+  function updateClasses() {
+    document.getElementById('major-header').innerHTML = activeUser.major;
+    let i = 1;
+    for (clss of activeUser.classes) {
+      document.getElementById('class'+i).innerHTML = clss;
+      document.getElementById('class'+i).style.display = 'block';
+      i++;
     }
   }
   </script>
