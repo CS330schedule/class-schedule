@@ -1,7 +1,7 @@
 var activeUser = {username: "Guest", password: "", classes: []};
 
   let users = [
-    {username: "willie", password: "wildcat", major: "Computer Science Major", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
+    {username: "willie", password: "wildcat", major: "Computer Science", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
   ];
 
   function loginFields() {
@@ -37,7 +37,7 @@ var activeUser = {username: "Guest", password: "", classes: []};
   function updateClasses() {
     document.getElementById('major-header').innerHTML = activeUser.major;
     for (clss of activeUser.classes) {
-      document.getElementById('sidebar').innerHTML += `
+      document.getElementById('class-container').innerHTML += `
         <section class="class-card">${clss}</section>`;
     }
   }
