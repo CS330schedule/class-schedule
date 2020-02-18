@@ -35,7 +35,7 @@ var activeUser = {username: "Guest", password: "", major: "Undecided", classes: 
   function makeAccount() {
       var loginData = document.getElementById("userlogin");
       activeUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:'Undecided', classes:[]};
-      users.push[activeUser];
+      users.push(activeUser);
       document.getElementById("greeting").innerHTML = activeUser.username;
       document.getElementById("signup").style.display = "none";
       document.getElementById("login").style.display = "none";
