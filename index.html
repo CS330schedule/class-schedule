@@ -17,10 +17,14 @@
 
 
 <header id="index-header">
-  <a href="#" class="header-button" id="login" onclick="document.getElementById('id01').style.display='block'">
+  <a href="#" class="header-button" id="login" onclick="document.getElementById('id01').style.display='block';
+                                                        document.getElementById('createaccount-button').style.display='none';
+                                                        document.getElementById('login-button').style.display='block';">
     <p>Log In</p>
   </a>
-  <a href="#" class="header-button" id="signup" onclick="document.getElementById('id01').style.display='block'">
+  <a href="#" class="header-button" id="signup" onclick="document.getElementById('id01').style.display='block';
+                                                         document.getElementById('createaccount-button').style.display='block';
+                                                         document.getElementById('login-button').style.display='none';">
     <p>Sign up</p>
   </a>
   <a href="#" class="header-button" id="logout" onclick="document.getElementById('id01').style.display='block'">
@@ -65,7 +69,7 @@
         <input type="password" placeholder="Enter Password" name="psw" required>
     
         <button type="button" id="login-button" onclick="loginFields()">Login</button>
-        <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
+        <button type="button" id="createaccount-button" onclick="makeAccount()">Create Account</button>
       </div>
     </form>
   </div>
