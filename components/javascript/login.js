@@ -57,6 +57,7 @@ var activeUser = {username: "Guest", password: "", major: "Undecided", classes: 
   }
   function logout() {
     activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
+    document.getElementById("greeting").innerHTML = activeUser.username;
     updateClasses();
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
