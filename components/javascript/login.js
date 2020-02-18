@@ -36,10 +36,8 @@ var activeUser = {username: "Guest", password: "", classes: []};
 
   function updateClasses() {
     document.getElementById('major-header').innerHTML = activeUser.major;
-    let i = 1;
     for (clss of activeUser.classes) {
-      document.getElementById('class'+i).innerHTML = clss;
-      document.getElementById('class'+i).style.display = 'block';
-      i++;
+      document.getElementById('sidebar').innerHTML += `
+        <section class="class-card">${clss}</section>`;
     }
   }

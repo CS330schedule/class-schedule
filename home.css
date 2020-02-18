@@ -74,7 +74,8 @@ aside h3 {
     font-weight: lighter;
 }
 
-section.artist-card {
+
+section.class-card {
     margin: 1px 0px 0px;
     padding: 20px;
     padding-left: 10px;
@@ -86,7 +87,7 @@ section.artist-card {
     height: auto;
 }
 
-section.artist-card:hover {    
+section.class-card:hover {    
     border-left-width: 10px;
     background-color: #eee;
     font-weight: bolder;
