@@ -15,7 +15,7 @@
 
 <body>
 
-
+<p id="greeting"></p>
 <!-- Modal for login page -->
 <button onclick="document.getElementById('id01').style.display='block'">Login</button>
 
@@ -44,6 +44,8 @@
 </div>
 
 <script>
+var activeUser = "Guest";
+
 let users = [
   {username: "willie", password: "wildcat"}
 ];
@@ -57,7 +59,8 @@ function tryLogin(name, pass) {
   for (user of users) {
     if (user.username == name) {
       if (user.password == pass) {
-        alert("welcome, " + name);
+        activeUser = name;
+        document.getElementById("greeting").innerHTML = activeUser;
       }
       else {
         alert("wrong password");
