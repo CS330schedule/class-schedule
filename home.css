@@ -46,11 +46,11 @@ body {
     text-decoration: none;
 
 }
-header #profile {
+header .header-button {
     align-content: center;
     justify-content: center;
 }
-header a:hover {
+#index-header a:hover {
     background-color: #5F3b95;
 }
 
@@ -72,10 +72,6 @@ aside h2{
 }
 aside h3 {
     font-weight: lighter;
-}
-
-aside section{
-    display: none;
 }
 
 section.artist-card {

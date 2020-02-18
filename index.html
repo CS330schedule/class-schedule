@@ -15,57 +15,54 @@
 
 
 <header id="index-header">
-  <a href="#" id="login" onclick="document.getElementById('id01').style.display='block';
-                                  document.getElementById('wrongpass').style.display = 'none';
-                                  document.getElementById('createaccount-button').style.display =  'none';
-                                  document.getElementById('login-button').style.display = 'block';">
+  <a href="#" class="header-button" id="login" onclick="document.getElementById('id01').style.display='block'">
     <p>Log In</p>
   </a>
-  <a href="#" id="singup" onclick="document.getElementById('id01').style.display='block';
-                                    document.getElementById('wrongpass').style.display = 'none';
-                                    document.getElementById('createaccount-button').style.display =  'block';
-                                    document.getElementById('login-button').style.display = 'none';">
+  <a href="#" class="header-button" id="signup" onclick="document.getElementById('id01').style.display='block'">
     <p>Sign up</p>
   </a>
-
+  <a href="#" class="header-button" id="logout" onclick="document.getElementById('id01').style.display='block'">
+    <p>Log Out</p>
+  </a>
 </header>
 
 
 <body>
 
   <aside id="sidebar">
-    <h1 id="greeting">
+    <h1>
         Hello, Guest!
     </h1>
-    <h2 id="major-header">
+    <h2>
         Major X
     </h2>
-    <section class="artist-card" id="class1">
+    <section class="artist-card">
         Class 1
     </section>
-    <section class="artist-card" id="class2">
+    <section class="artist-card">
         Class 2
     </section>       
-    <section class="artist-card" id="class3">
+    <section class="artist-card">
         Class 3
     </section>
-    <section class="artist-card" id="class4">
+    <section class="artist-card">
         Class 4
     </section>
-    <section class="artist-card" id="class5">
+    <section class="artist-card">
         Class 5
     </section>
-    <section class="artist-card" id="class6">
+    <section class="artist-card">
         Class 6
     </section>
-    <section class="artist-card" id="class7">
+    <section class="artist-card">
         Class 7
     </section>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
 
-
   <!-- Modal for login page -->
+  
+
   <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
     <form class="modal-content animate", method="POST", id="userlogin">
@@ -84,20 +81,19 @@
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
-        <p id="wrongpass">Incorrect Password</p>
     
         <button type="button" id="login-button" onclick="loginFields()">Login</button>
-        <button type="button" id="createaccount-button" onclick="makeAccount()">Create Account</button>
+        <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
       </div>
     </form>
   </div>
 </body>
 
 <script>
-  var activeUser = {username: "Guest", password: "", classes: []};
+  var activeUser = "Guest";
 
   let users = [
-    {username: "willie", password: "wildcat", major: "Computer Science Major", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
+    {username: "willie", password: "wildcat"}
   ];
 
   function loginFields() {
@@ -109,34 +105,17 @@
     for (user of users) {
       if (user.username == name) {
         if (user.password == pass) {
-          activeUser = user;
-          document.getElementById("greeting").innerHTML = activeUser.username;
-          updateClasses();
+          activeUser = name;
+          document.getElementById("greeting").innerHTML = activeUser;
           document.getElementById('id01').style.display = "none";
         }
         else {
-          document.getElementById('wrongpass').style.display = "block";
+          alert("wrong password");
         }
       }
       else {
         alert('username not found');
       }
-    }
-  }
-
-  function makeAccount() {
-      var loginData = document.getElementById("userlogin");
-      users.push[{username: loginData.elements[0].value, password: loginData.elements[1].value}];
-  }
-
-
-  function updateClasses() {
-    document.getElementById('major-header').innerHTML = activeUser.major;
-    let i = 1;
-    for (clss of activeUser.classes) {
-      document.getElementById('class'+i).innerHTML = clss;
-      document.getElementById('class'+i).style.display = 'block';
-      i++;
     }
   }
   </script>
