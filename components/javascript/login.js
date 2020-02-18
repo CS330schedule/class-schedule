@@ -15,22 +15,31 @@ var activeUser = {username: "Guest", password: "", major: "Undecided", classes: 
         if (user.password == pass) {
           activeUser = user;
           document.getElementById("greeting").innerHTML = activeUser.username;
+          document.getElementById("signup").style.display = "none";
+          document.getElementById("login").style.display = "none";
+          document.getElementById("logout").style.display = "flex";
           updateClasses();
           document.getElementById('id01').style.display = "none";
         }
         else {
-          document.getElementById('wrongpass').style.display = "block";
+          alert("Incorrect username or password.")
         }
       }
       else {
-        alert('username not found');
+        alert("Username not found. Create an account to continue.");
       }
     }
   }
 
   function makeAccount() {
       var loginData = document.getElementById("userlogin");
-      users.push[{username: loginData.elements[0].value, password: loginData.elements[1].value}];
+      activeUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:'Undecided', classes:[]};
+      users.push[activeUser];
+      document.getElementById("signup").style.display = "none";
+      document.getElementById("login").style.display = "none";
+      document.getElementById("logout").style.display = "flex";
+      updateClasses();
+      document.getElementById('id01').style.display = "none";
   }
 
 
@@ -49,4 +58,7 @@ var activeUser = {username: "Guest", password: "", major: "Undecided", classes: 
   function logout() {
     activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
     updateClasses();
+    document.getElementById("signup").style.display = "flex";
+    document.getElementById("login").style.display = "flex";
+    document.getElementById("logout").style.display = "none";
   }
