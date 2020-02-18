@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+/* aside, footer, nav, header, section, article {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+} */
+aside , header{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+       "left main";
+    height: 100vh;
+}
+header{
+    background-color: #4E2A84;
+    height: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+header h1 {
+    display: flex;
+    align-self: flex-start;
+}
+header a{
+    display:flex;
+    height: 50px;
+    width: 100px;
+    background-color: #3d1973;
+    color: white;
+    text-decoration: none;
+
+}
+header #profile {
+    align-content: center;
+    justify-content: center;
+}
+header a:hover {
+    background-color: #5F3b95;
+}
+
+aside {
+    background-color: white;
+    grid-area: left;
+    border-right: solid 1px black;
+}
+aside h1{
+    background-color: #4E2A84;
+    margin: 0px;
+    padding: 10px 10px;
+    border-right: solid 5px #4E2A84 !important; 
+    border-bottom: solid 1px black;
+    color: white;
+}
+aside h2{
+    padding-left: 10px;
+}
+aside h3 {
+    font-weight: lighter;
+}
+
+section.artist-card {
+    margin: 1px 0px 0px;
+    padding: 20px;
+    padding-left: 10px;
+    /* border: solid 1px black; */
+    /* background: yellow; */
+    border-left: solid 3px black;
+    object-position: 50% ;
+    width: 100%;
+    height: auto;
+}
+
+section.artist-card:hover {    
+    border-left-width: 10px;
+    background-color: #eee;
+    font-weight: bolder;
+}
