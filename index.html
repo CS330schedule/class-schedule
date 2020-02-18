@@ -17,7 +17,8 @@
 
 <p id="greeting"></p>
 <!-- Modal for login page -->
-<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+<button id="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
+<button id="createaccount" onclick="document.getElementById('id01').style.display='block'"">Create Account</button>
 
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
@@ -38,7 +39,8 @@
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
   
-      <button type="submit" id="login-button" onclick="loginFields()">Login</button>
+      <button type="button" id="login-button" onclick="loginFields()">Login</button>
+      <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
     </div>
   </form>
 </div>
@@ -61,6 +63,7 @@ function tryLogin(name, pass) {
       if (user.password == pass) {
         activeUser = name;
         document.getElementById("greeting").innerHTML = activeUser;
+        document.getElementById('id01').style.display = "none";
       }
       else {
         alert("wrong password");
@@ -71,6 +74,8 @@ function tryLogin(name, pass) {
     }
   }
 }
+
+
 
 </script>
 
