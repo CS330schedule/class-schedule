@@ -1,4 +1,4 @@
-var activeUser = {username: "Guest", password: "", classes: []};
+var activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
 
   let users = [
     {username: "willie", password: "wildcat", major: "Computer Science", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]}
@@ -36,8 +36,17 @@ var activeUser = {username: "Guest", password: "", classes: []};
 
   function updateClasses() {
     document.getElementById('major-header').innerHTML = activeUser.major;
-    for (clss of activeUser.classes) {
-      document.getElementById('class-container').innerHTML += `
-        <section class="class-card">${clss}</section>`;
+    if (activeUser.major == "Undecided"){
+      document.getElementById('class-container').innerHTML = ``;
     }
+    else{
+      for (clss of activeUser.classes) {
+        document.getElementById('class-container').innerHTML += `
+          <section class="class-card">${clss}</section>`;
+     }
+    } 
+  }
+  function logout() {
+    activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
+    updateClasses();
   }
