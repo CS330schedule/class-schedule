@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="css/extras.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="components/css/login.css">
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -25,7 +26,27 @@
     </a>
   </div>
 
-<button type="button" id="login">Login</button>
+<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+<!-- Modal for login page -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+  <form class="modal-content animate">
+    <div class="imgcontainer">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Northwestern_Wildcats_logo.svg/1200px-Northwestern_Wildcats_logo.svg.png" alt="Avatar" class="avatar" class="avatar">
+    </div>
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+  
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
 
   <!-- Navbar on small screens -->
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
@@ -144,6 +165,8 @@
     <p id="caption" class="w3-opacity w3-large"></p>
   </div>
 </div>
+
+
 
 <!-- Third Parallax Image with Portfolio Text -->
 <div class="bgimg-3 w3-display-container w3-opacity-min">
