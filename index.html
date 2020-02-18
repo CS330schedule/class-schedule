@@ -15,57 +15,54 @@
 
 
 <header id="index-header">
-  <a href="#" id="login" onclick="document.getElementById('id01').style.display='block';
-                                  document.getElementById('wrongpass').style.display = 'none';
-                                  document.getElementById('createaccount-button').style.display =  'none';
-                                  document.getElementById('login-button').style.display = 'block';">
+  <a href="#" class="header-button" id="login" onclick="document.getElementById('id01').style.display='block'">
     <p>Log In</p>
   </a>
-  <a href="#" id="singup" onclick="document.getElementById('id01').style.display='block';
-                                    document.getElementById('wrongpass').style.display = 'none';
-                                    document.getElementById('createaccount-button').style.display =  'block';
-                                    document.getElementById('login-button').style.display = 'none';">
+  <a href="#" class="header-button" id="signup" onclick="document.getElementById('id01').style.display='block'">
     <p>Sign up</p>
   </a>
-
+  <a href="#" class="header-button" id="logout" onclick="document.getElementById('id01').style.display='block'">
+    <p>Log Out</p>
+  </a>
 </header>
 
 
 <body>
 
   <aside id="sidebar">
-    <h1 id="greeting">
+    <h1>
         Hello, Guest!
     </h1>
-    <h2 id="major-header">
+    <h2>
         Major X
     </h2>
-    <section class="artist-card" id="class1">
+    <section class="artist-card">
         Class 1
     </section>
-    <section class="artist-card" id="class2">
+    <section class="artist-card">
         Class 2
     </section>       
-    <section class="artist-card" id="class3">
+    <section class="artist-card">
         Class 3
     </section>
-    <section class="artist-card" id="class4">
+    <section class="artist-card">
         Class 4
     </section>
-    <section class="artist-card" id="class5">
+    <section class="artist-card">
         Class 5
     </section>
-    <section class="artist-card" id="class6">
+    <section class="artist-card">
         Class 6
     </section>
-    <section class="artist-card" id="class7">
+    <section class="artist-card">
         Class 7
     </section>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
 
-
   <!-- Modal for login page -->
+  
+
   <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
     <form class="modal-content animate", method="POST", id="userlogin">
@@ -84,10 +81,9 @@
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
-        <p id="wrongpass">Incorrect Password</p>
     
         <button type="button" id="login-button" onclick="loginFields()">Login</button>
-        <button type="button" id="createaccount-button" onclick="makeAccount()">Create Account</button>
+        <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
       </div>
     </form>
   </div>
