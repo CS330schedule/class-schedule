@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <html>
-<title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/w3.css">
@@ -9,7 +8,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="components/css/login.css">
+
+<head>
+  <title>Course Planner</title>  
+  <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
+</head>
+
+
 <body>
+
 
 <!-- Modal for login page -->
 <button onclick="document.getElementById('id01').style.display='block'">Login</button>
@@ -17,26 +24,21 @@
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content animate">
-    <header class = "login-header">
+    <header id="login-header">
       <div class="imgcontainer">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Northwestern_Wildcats_logo.svg/1200px-Northwestern_Wildcats_logo.svg.png" alt="Avatar" class="avatar" class="avatar">
+        <img src="https://common.northwestern.edu/v8/icons/favicon-228.png" alt="Avatar" class="avatar" class="avatar">
       </div>
-      <h1>Course Planner</h1>
+      <h1 id="login-header-text">Course Planner</h1>
     </header>
     
-    <div class="container">
+    <div class="container" id="login-body">
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required>
   
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
   
-      <button type="submit">Login</button>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+      <button type="submit" id="login-button">Login</button>
     </div>
   </form>
 </div>
