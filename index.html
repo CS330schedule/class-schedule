@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="components/css/login.css">
+<link rel="stylesheet" href="home.css">
 
 <head>
   <title>Course Planner</title>  
@@ -13,71 +14,105 @@
 </head>
 
 
+<header id="index-header">
+  <button id="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
+  <button id="createaccount" onclick="document.getElementById('id01').style.display='block'"">Create Account</button>
+</header>
+
+
 <body>
 
-<p id="greeting">Guest</p>
-<!-- Modal for login page -->
-<button id="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
-<button id="createaccount" onclick="document.getElementById('id01').style.display='block'"">Create Account</button>
+  <aside id="sidebar">
+    <h1>
+        Hello, Guest!
+    </h1>
+    <h2>
+        Major X
+    </h2>
+    <section class="artist-card">
+        Class 1
+    </section>
+    <section class="artist-card">
+        Class 2
+    </section>       
+    <section class="artist-card">
+        Class 3
+    </section>
+    <section class="artist-card">
+        Class 4
+    </section>
+    <section class="artist-card">
+        Class 5
+    </section>
+    <section class="artist-card">
+        Class 6
+    </section>
+    <section class="artist-card">
+        Class 7
+    </section>
+  </aside>
+  <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
-  <form class="modal-content animate", method="POST", id="userlogin">
 
-    <header id="login-header">
-      <div class="imgcontainer">
-        <img src="https://common.northwestern.edu/v8/icons/favicon-228.png" alt="Avatar" class="avatar" class="avatar">
-      </div>
-      <h1 id="login-header-text">Course Planner</h1>
-    </header>
+  <p id="greeting">Guest</p>
+  <!-- Modal for login page -->
+  
 
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
+    <form class="modal-content animate", method="POST", id="userlogin">
+
+      <header id="login-header">
+        <div class="imgcontainer">
+          <img src="https://common.northwestern.edu/v8/icons/favicon-228.png" alt="Avatar" class="avatar" class="avatar">
+        </div>
+        <h1 id="login-header-text">Course Planner</h1>
+      </header>
+
+      
+      <div class="container" id="login-body">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
     
-    <div class="container" id="login-body">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-  
-      <button type="button" id="login-button" onclick="loginFields()">Login</button>
-      <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
-    </div>
-  </form>
-</div>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+    
+        <button type="button" id="login-button" onclick="loginFields()">Login</button>
+        <button type="button" id="createaccount-button" onclick="loginFields()">Create Account</button>
+      </div>
+    </form>
+  </div>
+</body>
 
 <script>
-var activeUser = "Guest";
+  var activeUser = "Guest";
 
-let users = [
-  {username: "willie", password: "wildcat"}
-];
+  let users = [
+    {username: "willie", password: "wildcat"}
+  ];
 
-function loginFields() {
-  var loginData = document.getElementById("userlogin");
-  tryLogin(loginData.elements[0].value, loginData.elements[1].value);
-}
+  function loginFields() {
+    var loginData = document.getElementById("userlogin");
+    tryLogin(loginData.elements[0].value, loginData.elements[1].value);
+  }
 
-function tryLogin(name, pass) {
-  for (user of users) {
-    if (user.username == name) {
-      if (user.password == pass) {
-        activeUser = name;
-        document.getElementById("greeting").innerHTML = activeUser;
-        document.getElementById('id01').style.display = "none";
+  function tryLogin(name, pass) {
+    for (user of users) {
+      if (user.username == name) {
+        if (user.password == pass) {
+          activeUser = name;
+          document.getElementById("greeting").innerHTML = activeUser;
+          document.getElementById('id01').style.display = "none";
+        }
+        else {
+          alert("wrong password");
+        }
       }
       else {
-        alert("wrong password");
+        alert('username not found');
       }
     }
-    else {
-      alert('username not found');
-    }
   }
-}
+  </script>
 
-
-
-</script>
-
-</body>
 </html>

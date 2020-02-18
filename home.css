@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     flex-direction: column;
 } */
-aside , header{
+aside , #index-header{
     font-family: 'Roboto', sans-serif;
     display: flex;
     flex-wrap: wrap;
@@ -25,7 +25,7 @@ body {
        "left main";
     height: 100vh;
 }
-header{
+#index-header{
     background-color: #4E2A84;
     height: 50px;
     display: flex;
@@ -33,11 +33,11 @@ header{
     flex-direction: row;
     justify-content: flex-end;
 }
-header h1 {
+#index-header h1 {
     display: flex;
     align-self: flex-start;
 }
-header a{
+#index-header a{
     display:flex;
     height: 50px;
     width: 100px;
