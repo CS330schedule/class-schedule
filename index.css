@@ -20,12 +20,23 @@ body {
     margin: 0px;
     display: grid;
     grid-template-columns: 250px auto;
-    grid-template-rows: auto;
+    grid-template-rows: 50px auto;
     grid-template-areas:
-       "left main";
+        "greeting header"
+        "left main";
     height: 100vh;
 }
+
+#greeting{
+    background-color: #4E2A84;
+    margin: 0px;
+    height: 50px;
+    padding: 10px 10px;
+    border-right: solid 5px #4E2A84; 
+    color: white;
+}
 #index-header{
+    grid-area: header;
     background-color: #4E2A84;
     height: 50px;
     display: flex;
@@ -62,14 +73,6 @@ aside {
     grid-area: left;
     border-right: solid 1px black;
 }
-aside h1{
-    background-color: #4E2A84;
-    margin: 0px;
-    padding: 10px 10px;
-    border-right: solid 5px #4E2A84 !important; 
-    border-bottom: solid 1px black;
-    color: white;
-}
 aside h2{
     padding-left: 10px;
 }
@@ -83,16 +86,14 @@ section.class-card {
     margin: 1px 0px 0px;
     padding: 20px;
     padding-left: 10px;
-    /* border: solid 1px black; */
-    /* background: yellow; */
-    border-left: solid 3px black;
+    border-left: solid 5px white;
     object-position: 50% ;
     width: 100%;
     height: auto;
 }
 
 section.class-card:hover {    
-    border-left-width: 10px;
+    border-left:solid 5px #4E2A84;
     background-color: #eee;
     font-weight: bolder;
 }
