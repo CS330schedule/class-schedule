@@ -85,8 +85,6 @@ function resetForm(resetCode) {
 }
 
 
-
-
 function updateClasses() {
   // Update displayed information when a user logs in or signs up
   document.getElementById('major-header').innerHTML = activeUser.major;
