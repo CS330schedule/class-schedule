@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="components/css/login.css">
 <link rel="stylesheet" href="index.css">
-<script src="jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="components/javascript/login.js"></script>
 
 <head>
@@ -48,11 +47,11 @@
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
 
-  <!-- Modal for login page -->
-  
 
+
+  <!-- Modal for login page -->
   <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Login Window">&times;</span>
+    <span onclick="document.getElementById('id01').style.display='none'; resetForm(0);" class="close" title="Close Login Window">&times;</span>
     <form class="modal-content animate", method="POST", id="userlogin">
 
       <header id="login-header">
@@ -62,7 +61,6 @@
         <h1 id="login-header-text">Course Planner</h1>
       </header>
 
-      
       <div class="container" id="login-body">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>
@@ -70,13 +68,12 @@
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required>
     
-        <button type="button" id="login-button" onclick="loginFields()">Login</button>
-        <button type="button" id="createaccount-button" onclick="makeAccount()">Create Account</button>
+        <button type="button" id="login-button" onclick="loginFields()">Log In</button>
+        <button type="button" id="createaccount-button" onclick="makeAccount()">Sign Up</button>
       </div>
     </form>
   </div>
+
 </body>
-
-
 
 </html>
