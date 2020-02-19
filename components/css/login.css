@@ -90,12 +90,19 @@ img.avatar {
     padding-right: 16px;
     padding-bottom: 16px;
 }
-
-/* The "Forgot password" text */
-span.psw {
-    float: right;
-    padding-top: 16px;
+#login-body p{
+    width: 100%;
+    text-align: center;
+    padding-top: 0px;
+    color: #606060;
+    font-size: 10pt;
 }
+#login-body p:hover{
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 
 /* Change styles for span on extra small screens */
 @media screen and (max-width: 300px) {

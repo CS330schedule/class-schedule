@@ -19,14 +19,10 @@
 </h1>
 
 <header id="index-header">
-  <a href="#" class="header-button" id="login" onclick="document.getElementById('id01').style.display='block';
-                                                        document.getElementById('createaccount-button').style.display='none';
-                                                        document.getElementById('login-button').style.display='block';">
+  <a href="#" class="header-button" id="login" onclick="displayLogin()">
     <p>Log In</p>
   </a>
-  <a href="#" class="header-button" id="signup" onclick="document.getElementById('id01').style.display='block';
-                                                         document.getElementById('createaccount-button').style.display='block';
-                                                         document.getElementById('login-button').style.display='none';">
+  <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
     <p>Sign up</p>
   </a>
   <a href="#" class="header-button" id="logout" onclick="logout()">
@@ -69,9 +65,13 @@
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required maxlength="30">
+        <label for="conf-psw" id="conf-psw-tag"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="conf-psw" required maxlength="30" id="conf-psw-field">
     
-        <button type="button" id="login-button" onclick="loginFields()">Log In</button>
+        <button type="button" id="login-button" onclick="readLoginFields()">Log In</button>
+        <p id="switch_to_signup" onclick="displaySignUp();">New to the website? Click here to sign up</p>
         <button type="button" id="createaccount-button" onclick="makeAccount()">Sign Up</button>
+        <p id="switch_to_login" onclick="displayLogin();">Already have an account? Click here to log in</p>
       </div>
     </form>
   </div>
