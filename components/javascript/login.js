@@ -50,6 +50,7 @@ function makeAccount() {
     if (existingUser.username == newUser.username){
       // Username already taken
       alert('There is already an account associated with this username. Please log in to the existing account or choose a different username.');
+      resetForm(0);
       return;
     } 
   }
