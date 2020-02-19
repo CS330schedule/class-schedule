@@ -29,7 +29,7 @@ body {
     background-color: #4E2A84;
     height: 50px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: row;
     justify-content: flex-end;
 }
