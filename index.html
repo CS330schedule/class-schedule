@@ -68,6 +68,17 @@
         <label for="conf-psw" id="conf-psw-tag"><b>Confirm Password</b></label>
         <input type="password" placeholder="Confirm Password" name="conf-psw" required maxlength="30" id="conf-psw-field">
     
+        <label for "major-selection" id="majors-selection-tag"><b>Major </b></label>
+        <select id="majors-selection">
+          <option value="default">Select a Major</option>
+          <option value="Undecided">Undecided</option>
+          <option value="Applied Mathematics">Applied Mathematics</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Economics">Economics</option>
+          <option value="Journalism">Journalism</option>
+          <optoin value="Neuroscience">Neuroscience</optoin>
+        </select>
+
         <button type="button" id="login-button" onclick="readLoginFields()">Log In</button>
         <p id="switch_to_signup" onclick="displaySignUp();">New to the website? Click here to sign up</p>
         <button type="button" id="createaccount-button" onclick="makeAccount()">Sign Up</button>

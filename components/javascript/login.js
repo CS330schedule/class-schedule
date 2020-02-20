@@ -11,8 +11,11 @@ let users = [
 
 ///// Onclick actions for the header buttons ///// 
 function displayLogin() {
+  resetForm(0);
   document.getElementById('conf-psw-tag').style.display='none';
   document.getElementById('conf-psw-field').style.display='none';
+  document.getElementById('majors-selection-tag').style.display='none';
+  document.getElementById('majors-selection').style.display='none';
   document.getElementById('login-button').style.display='block';
   document.getElementById('switch_to_signup').style.display='block';
   document.getElementById('createaccount-button').style.display='none';
@@ -21,8 +24,11 @@ function displayLogin() {
 }
 
 function displaySignUp() {
+  resetForm(0);
   document.getElementById('conf-psw-tag').style.display='block';
   document.getElementById('conf-psw-field').style.display='block';
+  document.getElementById('majors-selection-tag').style.display='block';
+  document.getElementById('majors-selection').style.display='block';
   document.getElementById('login-button').style.display='none';
   document.getElementById('switch_to_signup').style.display='none';
   document.getElementById('createaccount-button').style.display='block';
@@ -88,7 +94,13 @@ function tryLogin(name, pass) {
 ///// Handle making account ////
 function makeAccount() {
   var loginData = document.getElementById("userlogin");
-  newUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:'Undecided', classes:[]};
+  newUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:loginData.elements[3].value, classes:[]};
+
+  if ((newUser.username == '') || (newUser.password == '') || (loginData.elements[2].value == '') || (newUser.major == 'default')) {
+    // User has not filled out one of the fields
+    alert('Please fill out all of the fields to sign up')
+    return;
+  }
   for (existingUser of users) {
     // Iterate over all users to see if username taken
     if (existingUser.username == newUser.username){
@@ -105,7 +117,7 @@ function makeAccount() {
     return;
   }
   // Username not taken and passwords match so add account
-  users.push[newUser];
+  users.push(newUser);
   document.getElementById("greeting").innerHTML = newUser.username;
   activeUser = newUser;
   document.getElementById("signup").style.display = "none";
@@ -124,6 +136,7 @@ function resetForm(resetCode) {
     case 0:
       // Reset username and password fields
       logindata.elements[0].value = '';
+      logindata.elements[3].value = 'default';
     case 1:
       // Reset just the password fields
       logindata.elements[1].value = '';
