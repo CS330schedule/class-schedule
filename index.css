@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+/* aside, footer, nav, header, section, article {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+} */
+aside , #index-header{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+body {
+    overflow: hidden;
+    margin: 0px;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-template-rows: 50px auto;
+    grid-template-areas:
+        "greeting header"
+        "left main";
+    height: 100vh;
+}
+
+#greeting{
+    background-color: #4E2A84;
+    margin: 0px;
+    height: 50px;
+    padding: 10px 10px;
+    border-right: solid 5px #4E2A84; 
+    color: white;
+}
+#index-header{
+    grid-area: header;
+    background-color: #4E2A84;
+    height: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+#index-header h1 {
+    display: flex;
+    align-self: flex-start;
+}
+#index-header a{
+    display:flex;
+    height: 50px;
+    width: 100px;
+    background-color: #4E2A84;
+    color: white;
+    text-decoration: none;
+
+}
+header .header-button {
+    align-content: center;
+    justify-content: center;
+}
+#index-header a:hover {
+    background-color: #5F3b95;
+}
+#index-header #logout {
+    display: none;
+}
+
+aside {
+    background-color: white;
+    grid-area: left;
+    border-right: solid 1px black;
+}
+aside h2{
+    padding-left: 10px;
+}
+aside h3 {
+    font-weight: lighter;
+}
+
+
+
+section.class-card {
+    margin: 1px 0px 0px;
+    padding: 20px;
+    padding-left: 10px;
+    border-left: solid 5px white;
+    object-position: 50% ;
+    width: 100%;
+    height: auto;
+}
+
+section.class-card:hover {    
+    border-left:solid 5px #4E2A84;
+    background-color: #eee;
+    font-weight: bolder;
+}
