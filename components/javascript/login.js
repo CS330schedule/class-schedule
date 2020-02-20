@@ -105,7 +105,7 @@ function makeAccount() {
     return;
   }
   // Username not taken and passwords match so add account
-  users.push[newUser];
+  users.push(newUser);
   document.getElementById("greeting").innerHTML = newUser.username;
   activeUser = newUser;
   document.getElementById("signup").style.display = "none";
