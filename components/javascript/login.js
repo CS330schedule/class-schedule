@@ -43,7 +43,7 @@ function logout() {
   if (confirm("Are you sure you want to log out?")){
     // Reset active user to guest and reset the page
     activeUser = guest;
-    document.getElementById("greeting").innerHTML = activeUser.username;
+    //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
     updateClasses();
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
@@ -74,7 +74,7 @@ function tryLogin(name, pass) {
       } else {
         // Correct credentials ==> log in
         activeUser = user;
-        document.getElementById("greeting").innerHTML = activeUser.username;
+        //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
         document.getElementById("signup").style.display = "none";
         document.getElementById("login").style.display = "none";
         document.getElementById("logout").style.display = "flex";
@@ -120,7 +120,7 @@ function makeAccount() {
   }
   // Username not taken and passwords match so add account
   users.push(newUser);
-  document.getElementById("greeting").innerHTML = newUser.username;
+  //document.getElementById("greeting").innerHTML = newUser.username;   => Change to login greeting section
   activeUser = newUser;
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "none";

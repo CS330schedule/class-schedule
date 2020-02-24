@@ -3,18 +3,6 @@
 * {
     box-sizing: border-box;
 }
-/* aside, footer, nav, header, section, article {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-} */
-aside , #index-header{
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
 body {
     overflow: hidden;
     margin: 0px;
@@ -27,7 +15,14 @@ body {
     height: 100vh;
 }
 
-#greeting{
+aside, #index-header{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#title-section{
     background-color: #4E2A84;
     margin: 0px;
     height: 50px;
