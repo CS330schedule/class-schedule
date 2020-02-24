@@ -103,12 +103,12 @@ section.class-card:hover {
     flex-wrap: nowrap;
     flex-direction: row;
 }
-#calendar-section {
-    width: auto;
-    border-right: 2px dashed gray;
-    flex-grow: 1;
-}
 #search-section {
+    width: auto;
+    flex-grow: 1;
+    border-right: 2px dashed gray;
+}
+#calendar-section {
     width: auto;
     flex-grow: 1;
 }
