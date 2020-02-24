@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="components/css/login.css">
-<link rel="stylesheet" href="index.css">
-<script type="text/javascript" src="components/javascript/login.js"></script>
+
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="components/css/login.css">
+  <link rel="stylesheet" href="index.css">
+  
   <title>Course Planner</title>  
   <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
 </head>
 
-<h1 id="greeting">
-  Guest
-</h1>
 
-<header id="index-header">
-  <a href="#" class="header-button" id="login" onclick="displayLogin()">
-    <p>Log In</p>
-  </a>
-  <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
-    <p>Sign up</p>
-  </a>
-  <a href="#" class="header-button" id="logout" onclick="logout()">
-    <p>Log Out</p>
-  </a>
-</header>
 
 
 <body>
 
 
+  <!--Need to change to name and logo-->
+  <h1 id="greeting">
+    Guest
+  </h1>
+
+  <!-- Page header -->
+  <header id="index-header">
+    <a href="#" class="header-button" id="login" onclick="displayLogin()">
+      <p>Log In</p>
+    </a>
+    <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
+      <p>Sign up</p>
+    </a>
+    <a href="#" class="header-button" id="logout" onclick="logout()">
+      <p>Log Out</p>
+    </a>
+  </header>
+  <!-- End of page header -->
+
+
+  <!-- Class selection sidebar-->
   <aside id="sidebar">
-    
     <h2> Major: </h2>
     <h2 id='major-header'>
       Undecided
     </h2>
     <div id="class-container"></div>
-    
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
-
+  <!-- End of Class selection sidebar-->
 
 
   <!-- Modal for login page -->
@@ -86,7 +92,11 @@
       </div>
     </form>
   </div>
-
+  <!-- End of Modal for Login Page -->
+  
 </body>
+
+<!-- Load in Javascript files -->
+<script type="text/javascript" src="components/javascript/login.js"></script>
 
 </html>
