@@ -99,4 +99,16 @@ section.class-card:hover {
 #main {
     grid-area: main;
     text-align: center;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+#calendar-section {
+    width: auto;
+    border-right: 2px dashed gray;
+    flex-grow: 1;
+}
+#search-section {
+    width: auto;
+    flex-grow: 1;
 }
