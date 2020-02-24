@@ -80,8 +80,6 @@ aside h3 {
     font-weight: lighter;
 }
 
-
-
 section.class-card {
     margin: 1px 0px 0px;
     padding: 20px;
@@ -91,9 +89,14 @@ section.class-card {
     width: 100%;
     height: auto;
 }
-
 section.class-card:hover {    
     border-left:solid 5px #4E2A84;
     background-color: #eee;
     font-weight: bolder;
+}
+
+
+#main {
+    grid-area: main;
+    text-align: center;
 }
