@@ -23,6 +23,7 @@ function displayLogin() {
   document.getElementById('createaccount-button').style.display='none';
   document.getElementById('switch_to_login').style.display='none';
   document.getElementById('id01').style.display='block';
+  document.getElementById('username').focus();
 }
 
 function displaySignUp() {
@@ -36,9 +37,19 @@ function displaySignUp() {
   document.getElementById('createaccount-button').style.display='block';
   document.getElementById('switch_to_login').style.display='block';
   document.getElementById('id01').style.display='block';
+  document.getElementById('username').focus();
 }
 
-
+// Submit form on enter press
+document.onkeydown=function(){
+  if(window.event.keyCode=='13' && document.getElementById('id01').style.display == 'block'){
+    if (document.getElementById('createaccount-button').style.display == 'block'){
+      makeAccount();
+    } else {
+      readLoginFields();
+    }
+  }
+}
 
 function logout() {
   // Prompt user to confirm logout
