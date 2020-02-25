@@ -5,6 +5,7 @@ const getCourses = (paramsDict) => {
     for (var key in paramsDict) {
         endpoints += `&${key}=${paramsDict[key]}`
     }
+    console.log(endpoints);
     fetch(baseURL + endpoints, { mode: 'no-cors' })
         .then(response => response.json())
         .then(showCourses);

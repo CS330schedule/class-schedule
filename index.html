@@ -108,7 +108,10 @@
       <section id="search-results">
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
-        <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':'SPANISH', 'meeting_days':checksToDayString()})">TEST!</button>
+        <button type="button" id="test-button" onclick="getCourses({'term':4760, 
+                                                                'subject':getElementById('subjects').value,
+                                                                'meeting_days':checksToDayString()}
+                                                              )">TEST!</button>
       </section>
     </section>
     <section id="calendar-section">
