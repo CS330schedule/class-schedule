@@ -74,37 +74,36 @@
         <section id="search-inputs">
           <div id="subjects">
             <label for="subject-dropdown">Subject:</label>
-            <input list="subjects-list" id="subject-dropdown" name="subject-dropdown"/>
-            <datalist id="subjects-list">
-              <option value="AAL">African and Asian Languages</option>
-              <option value="ACCOUNT">Accounting</option>
-              <option value="ACCT">African Studies</option>
-              <option value="ANTHRO">Antrhopology</option>
-              <option value="CHEM_ENG">Chemical Engineering</option> 
-              <option vlaue="COMP_SCI">Computer Science</option>
-              <option value="CIV_ENV">Civil and Environmental Engineering</option>
-              <option value="ECON">Economics</option>
-              <option value="ENGLISH">English</option>
-              <option value="GEOG">Geography</option>
-              <option value="GREEK">Greek</option> 
-              <option value="JOUR">Journalism</option>
-              <option value="PHIL">Philosophy</option>
-            </datalist>
+            <select id="subject-dropdown">
+              <option value="AAL">AAL - African and Asian Languages</option>
+              <option value="ACCOUNT">ACCOUNT - Accounting</option>
+              <option value="ACCT">ACCT - African Studies</option>
+              <option value="ANTHRO">ANTHRO - Antrhopology</option>
+              <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
+              <option vlaue="COMP_SCI">COMP_SCI - Computer Science</option>
+              <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
+              <option value="ECON">ECON - Economics</option>
+              <option value="ENGLISH">ENGLISH - English</option>
+              <option value="GEOG">GEOG - Geography</option>
+              <option value="GREEK">GREEK - Greek</option> 
+              <option value="JOUR">JOUR - Journalism</option>
+              <option value="PHIL">PHIL - Philosophy</option>
+            </select>
           </div>
           <div id="days-of-week">
             <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
             <label for="dayFilter">Filter By Days</label><br>
             <div id="days-checkboxes">
-              <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
-              <label for="monday">Monday</label><br>
-              <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
-              <label for="tuesday">Tuesday</label><br>
-              <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
-              <label for="wednesday">Wednesday</label><br>
-              <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
-              <label for="thursday">Thursday</label><br>
-              <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
-              <label for="friday">Friday</label><br>
+              <input type="checkbox" id="monday" name="monday" value="Mo">
+              <label for="monday">Monday</label>
+              <input type="checkbox" id="tuesday" name="tuesday" value="Tu">
+              <label for="tuesday">Tuesday</label>
+              <input type="checkbox" id="wednesday" name="wednesday" value="We">
+              <label for="wednesday">Wednesday</label>
+              <input type="checkbox" id="thursday" name="thursday" value="Th">
+              <label for="thursday">Thursday</label>
+              <input type="checkbox" id="friday" name="friday" value="Fr">
+              <label for="friday">Friday</label>
             </div>
           </div>
         </section>
@@ -112,7 +111,7 @@
       <section id="search-results">
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
-        <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':'SPANISH', 'meeting_days':checksToDayString()})">TEST!</button>
+        <button type="button" id="test-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">TEST!</button>
         <div id='search-card'>
           <h1>Elementary Stuff</h1>
           <p id="subject-num">STUFF 123-0</p>

@@ -157,10 +157,18 @@ section.class-card:hover {
 }
 #subjects {
     display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#subject-dropdown{
+    width: auto;
 }
 #days-of-week {
     display: inline-block;
 }
 #days-checkboxes {
     display:none;
+}
+#days-checkboxes > label{
+    padding-right: 5px;
 }
