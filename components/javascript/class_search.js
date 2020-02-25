@@ -13,3 +13,16 @@ const getCourses = (paramsDict) => {
 const showCourses = (response) => {
     console.log(response);
 }
+
+const checksToDayString = () => {
+    const days = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+    let dayString = "";
+    for (var day of days) {
+        dayCheck = document.getElementById(day)
+        if (dayCheck.checked) {
+            dayString += dayCheck.value;
+        }
+    }
+    console.log(dayString);
+    return dayString;
+}
