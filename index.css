@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body {
-    overflow: hidden;
+    overflow: scroll;
     margin: 0px;
     display: grid;
     grid-template-columns: 250px auto;
@@ -50,7 +50,7 @@ aside, #index-header{
     background-color: #4E2A84;
     color: white;
     text-decoration: none;
-
+    line-height: 50px;
 }
 #index-header a.account-button{
     width: 270px;
@@ -62,7 +62,7 @@ header .header-button {
 #index-header a:hover {
     background-color: #5F3b95;
 }
-.dropdown {
+.account-dropdown {
     display: inline-block;
 }
 .dropdown-content {
