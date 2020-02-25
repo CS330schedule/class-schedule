@@ -43,7 +43,7 @@ aside, #index-header{
     display: flex;
     align-self: flex-start;
 }
-#index-header a{
+#index-header a.header-button{
     display:flex;
     height: 50px;
     width: 100px;
@@ -52,6 +52,9 @@ aside, #index-header{
     text-decoration: none;
 
 }
+#index-header a.account-button{
+    width: 270px;
+}
 header .header-button {
     align-content: center;
     justify-content: center;
@@ -59,6 +62,29 @@ header .header-button {
 #index-header a:hover {
     background-color: #5F3b95;
 }
+.dropdown {
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 10px;
+    background-color: #f0f0f0;
+    width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0 0, 0.2);
+    z-index: 1;
+}
+.dropdown-content a{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+.dropdown-content a:hover{
+    background-color: #ddd;
+}
+
 #index-header #logout {
     display: none;
 }

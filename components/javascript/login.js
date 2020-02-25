@@ -1,7 +1,7 @@
 const guest = {username: "guest", password: "", major: "Undecided", classes: []};
 
 
-// Default activeUser is a guest with undecided major on startup
+// Default activeUser is guest on startup
 var activeUser = guest;
 
 // Array for holding the users registered with the website
@@ -37,6 +37,11 @@ function displaySignUp() {
   document.getElementById('switch_to_login').style.display='block';
   document.getElementById('id01').style.display='block';
 }
+function displayAccDropDown() {
+  document.getElementById("dropdown-content-container").style.display = 'block';
+}
+
+
 
 function logout() {
   // Prompt user to confirm logout
