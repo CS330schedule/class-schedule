@@ -1,8 +1,17 @@
 #search-card{
     display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     margin: 1px 0px 0px;
     padding: 10px;
     border-left: solid 5px white;
     width: 100%;
     height: auto;
+}
+#search-card p{
+    margin: 0px;
+    flex-wrap: wrap;
+}
+#search-card:hover{
+    background-color: #eee;
 }
