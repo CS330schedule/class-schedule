@@ -94,7 +94,6 @@
             <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
             <label for="dayFilter">Filter By Days</label>
             <div id="days-checkboxes">
-<<<<<<< HEAD
               <input type="checkbox" id="monday" name="monday" value="Mo">
               <label for="monday">Monday</label><br>
               <input type="checkbox" id="tuesday" name="tuesday" value="Tu">
@@ -105,18 +104,6 @@
               <label for="thursday">Thursday</label><br>
               <input type="checkbox" id="friday" name="friday" value="Fr">
               <label for="friday">Friday</label><br>
-=======
-              <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
-              <label for="monday">Monday</label>
-              <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
-              <label for="tuesday">Tuesday</label>
-              <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
-              <label for="wednesday">Wednesday</label>
-              <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
-              <label for="thursday">Thursday</label>
-              <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
-              <label for="friday">Friday</label>
->>>>>>> 84e12355561b53722edbef8b479c6218a399ebff
             </div>
           </div>
         </section>
@@ -124,7 +111,7 @@
       <section id="search-results">
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
-        <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':'SPANISH', 'meeting_days':checksToDayString()})">TEST!</button>
+        <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">TEST!</button>
         <div id='search-card'>
           <h1>Elementary Stuff</h1>
           <p id="subject-num">STUFF 123-0</p>
