@@ -32,12 +32,17 @@ const toAMPM = (time) => {
     return hoursAsInt + mins + AMPM;
 }
 
-const parseCourses = (courses) => {
-
-}
-
-const showCourses = (response) => {
-    console.log(response);
+const showCourses = (courses) => {
+    for (course of courses) {
+        document.getElementById('search-results').innerHTML += `
+        <div id='search-card'>
+            <h1>${course.title}</h1>
+            <p>${course.subject} ${course.catalog_num}</p>
+            <p>${course.instructor}</p>
+            <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
+        </div>
+        `;
+    }
 }
 
 const checksToDayString = () => {

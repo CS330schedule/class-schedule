@@ -127,7 +127,6 @@ function makeAccount() {
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "none";
   document.getElementById("account-dropdown").style.display = "inline-block";
-  document.getElementById("dropdown-content-container").style.display = "none";
   updateClasses();
   document.getElementById('id01').style.display = "none";
 }
@@ -160,6 +159,7 @@ function resetForm(resetCode) {
 
 ///// Updates the classes displayed on the sidebar based on activeUser /////
 function updateClasses() {
+  document.getElementById('account').innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`;
   document.getElementById('major-header').innerHTML = activeUser.major;
   if (activeUser.major == "Undecided"){
     document.getElementById('class-container').innerHTML = ``;
