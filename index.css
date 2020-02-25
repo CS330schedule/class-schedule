@@ -116,7 +116,6 @@ section.class-card:hover {
     font-weight: bolder;
 }
 
-
 #main {
     grid-area: main;
     text-align: center;
@@ -128,8 +127,24 @@ section.class-card:hover {
     width: auto;
     flex-grow: 1;
     border-right: 2px dashed gray;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px auto;
+    grid-template-areas: 
+        "searchmenu"
+        "searchresults";
 }
 #calendar-section {
     width: auto;
     flex-grow: 1;
 }
+
+
+#search-menu {
+    grid-area: searchmenu;
+    border-bottom: 2px dashed blue;
+}
+#search-results {
+    grid-area: searchresults;
+}
+
