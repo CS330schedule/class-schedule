@@ -1,0 +1,8 @@
+#search-card{
+    display:flex;
+    margin: 1px 0px 0px;
+    padding: 10px;
+    border-left: solid 5px white;
+    width: 100%;
+    height: auto;
+}
