@@ -5,7 +5,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -76,33 +75,36 @@
         <h1>
           Search Classes
         </h1>
-        <form id="class-search" method="get">
-          <select multiple="multiple" class="ui fluid search dropdown" id="members_dropdown" multiple="" name="members">
-            <option value="AAL">AAL - African and Asian Languages</option>
-            <option value="ACCOUNT">ACCOUNT - Accounting</option>
-            <option value="ACCT">AFST - African Studies</option>
-            <option value="ANTHRO">ANTHRO - Antrhopology</option>
-            <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
-            <option vlaue="COMP_SCI">COMP_SCI - Computer Science</option>
-            <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
-            <option value="ECON">ECON - Economics</option>
-            <option value="ENGLISH">ENGLISH - English</option>
-            <option value="GEOG">GEOG - Geography</option>
-            <option value="GREEK">GREEK - Greek</option> 
-            <option value="JOUR">JOUR - Journalism</option>
-            <option value="PHIL">PHIL - Philosophy</option>
-          </select>
-          <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
-          <label for="monday">Monday</label><br>
-          <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
-          <label for="tuesday">Tuesday</label><br>
-          <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
-          <label for="wednesday">Wednesday</label><br>
-          <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
-          <label for="thursday">Thursday</label><br>
-          <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
-          <label for="friday">Friday</label><br>
-        </form>
+        <section id="search-inputs">
+          <input list="subjects" id="subject-dropdown" name="subject-dropdown"/>
+          <datalist id="subjects">
+            <option value="AAL">African and Asian Languages</option>
+            <option value="ACCOUNT">Accounting</option>
+            <option value="ACCT">African Studies</option>
+            <option value="ANTHRO">Antrhopology</option>
+            <option value="CHEM_ENG">Chemical Engineering</option> 
+            <option vlaue="COMP_SCI">Computer Science</option>
+            <option value="CIV_ENV">Civil and Environmental Engineering</option>
+            <option value="ECON">Economics</option>
+            <option value="ENGLISH">English</option>
+            <option value="GEOG">Geography</option>
+            <option value="GREEK">Greek</option> 
+            <option value="JOUR">Journalism</option>
+            <option value="PHIL">Philosophy</option>
+          </datalist>
+          <div id="days-of-week">
+            <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
+            <label for="monday">Monday</label><br>
+            <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
+            <label for="tuesday">Tuesday</label><br>
+            <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
+            <label for="wednesday">Wednesday</label><br>
+            <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
+            <label for="thursday">Thursday</label><br>
+            <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
+            <label for="friday">Friday</label><br>
+          </div>
+        </section>
       </section>
       <section id="search-results">
         Results of search
@@ -170,6 +172,7 @@
 <script type="text/javascript" src="components/javascript/login.js"></script>
 <script type="text/javascript" src="components/javascript/class_search.js"></script>
 
+<<<<<<< HEAD
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js'></script>
 <script>
@@ -195,3 +198,6 @@
     });
 </script>
 </html>
+=======
+</html>
+>>>>>>> 1f21cc6945b0f35b5bb9b40608e3d2e2ef35fddb
