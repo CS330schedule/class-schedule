@@ -111,11 +111,41 @@
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
         <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':'SPANISH', 'meeting_days':checksToDayString()})">TEST!</button>
         <div id='search-card'>
-          <h1>${course.title}</h1>
-          <p>${course.subject} ${course.catalog_num}</p>
-          <p>${course.instructor}</p>
-          <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
-      </div>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
+        <div id='search-card'>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
+        <div id='search-card'>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
+        <div id='search-card'>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
+        <div id='search-card'>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
+        <div id='search-card'>
+          <h1>Elementary Stuff</h1>
+          <p id="subject-num">STUFF 123-0</p>
+          <p id="instructor">Bob Down Jr.</p>
+          <p id="days-times">MoWeFr 12:00-12:50</p>
+        </div>
       </section>
     </section>
     <section id="calendar-section">
@@ -172,32 +202,4 @@
 <script type="text/javascript" src="components/javascript/login.js"></script>
 <script type="text/javascript" src="components/javascript/class_search.js"></script>
 
-<<<<<<< HEAD
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js'></script>
-<script>
-  $('.dropdown').dropdown({
-    label: {
-      duration: 0,
-    },
-    debug: true,
-    performance: true,
-  });
-
-  $('.ui.checkbox')
-    .checkbox({
-      onChecked() {
-        const options = $('#members_dropdown > option').toArray().map(
-          (obj) => obj.value
-        );
-        $('#members_dropdown').dropdown('set exactly', options);
-      },
-      onUnchecked() {
-        $('#members_dropdown').dropdown('clear');
-      },
-    });
-</script>
 </html>
-=======
-</html>
->>>>>>> 1f21cc6945b0f35b5bb9b40608e3d2e2ef35fddb

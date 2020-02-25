@@ -13,6 +13,7 @@ body {
         "greeting header"
         "left main";
     height: 100vh;
+    overflow: hidden;
 }
 
 aside, #index-header{
