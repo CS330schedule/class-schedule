@@ -38,19 +38,15 @@
     <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
       <p>Sign up</p>
     </a>
-    <div class="account-dropdown">
-      <a href="#" class="header-button account-button account_button" id="account" onclick="displayAccDropDown()">
+    <div id="account-dropdown">
+      <a href="#" class="header-button account-button account_button" id="account">
         <p>Welcome, account_username   &#9660</p>
       </a>
       <div id="dropdown-content-container" class="dropdown-content">
         <a href="#" onclick="logout()">Log Out</a>
-        <a href="#">Link 2</a>
       </div>
 
     </div>
-    <a href="#" class="header-button" id="logout" onclick="logout()">
-      <p>Log Out</p>
-    </a>
 
   </header>
   <!-- End of page header -->
@@ -76,33 +72,40 @@
           Search Classes
         </h1>
         <section id="search-inputs">
-          <input list="subjects" id="subject-dropdown" name="subject-dropdown"/>
-          <datalist id="subjects">
-            <option value="AAL">African and Asian Languages</option>
-            <option value="ACCOUNT">Accounting</option>
-            <option value="ACCT">African Studies</option>
-            <option value="ANTHRO">Antrhopology</option>
-            <option value="CHEM_ENG">Chemical Engineering</option> 
-            <option vlaue="COMP_SCI">Computer Science</option>
-            <option value="CIV_ENV">Civil and Environmental Engineering</option>
-            <option value="ECON">Economics</option>
-            <option value="ENGLISH">English</option>
-            <option value="GEOG">Geography</option>
-            <option value="GREEK">Greek</option> 
-            <option value="JOUR">Journalism</option>
-            <option value="PHIL">Philosophy</option>
-          </datalist>
+          <div id="subjects">
+            <label for="subject-dropdown">Subject:</label>
+            <input list="subjects-list" id="subject-dropdown" name="subject-dropdown"/>
+            <datalist id="subjects-list">
+              <option value="AAL">African and Asian Languages</option>
+              <option value="ACCOUNT">Accounting</option>
+              <option value="ACCT">African Studies</option>
+              <option value="ANTHRO">Antrhopology</option>
+              <option value="CHEM_ENG">Chemical Engineering</option> 
+              <option vlaue="COMP_SCI">Computer Science</option>
+              <option value="CIV_ENV">Civil and Environmental Engineering</option>
+              <option value="ECON">Economics</option>
+              <option value="ENGLISH">English</option>
+              <option value="GEOG">Geography</option>
+              <option value="GREEK">Greek</option> 
+              <option value="JOUR">Journalism</option>
+              <option value="PHIL">Philosophy</option>
+            </datalist>
+          </div>
           <div id="days-of-week">
-            <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
-            <label for="monday">Monday</label><br>
-            <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
-            <label for="tuesday">Tuesday</label><br>
-            <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
-            <label for="wednesday">Wednesday</label><br>
-            <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
-            <label for="thursday">Thursday</label><br>
-            <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
-            <label for="friday">Friday</label><br>
+            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
+            <label for="dayFilter">Filter By Days</label><br>
+            <div id="days-checkboxes">
+              <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
+              <label for="monday">Monday</label><br>
+              <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
+              <label for="tuesday">Tuesday</label><br>
+              <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
+              <label for="wednesday">Wednesday</label><br>
+              <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
+              <label for="thursday">Thursday</label><br>
+              <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
+              <label for="friday">Friday</label><br>
+            </div>
           </div>
         </section>
       </section>
@@ -146,6 +149,10 @@
           <p id="instructor">Bob Down Jr.</p>
           <p id="days-times">MoWeFr 12:00-12:50</p>
         </div>
+        <button type="button" id="test-button" onclick="getCourses({'term':4760, 
+                                                                'subject':getElementById('subjects-list').value,
+                                                                'meeting_days':checksToDayString()}
+                                                              )">TEST!</button>
       </section>
     </section>
     <section id="calendar-section">
@@ -168,7 +175,7 @@
 
       <div class="container" id="login-body">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required maxlength="30">
+        <input type="text" placeholder="Enter Username" name="uname" required maxlength="20">
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required maxlength="30">
