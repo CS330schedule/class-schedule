@@ -52,7 +52,9 @@ aside, #index-header{
     text-decoration: none;
 }
 #index-header a.account-button{
-    width: 270px;
+    width:auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 header .header-button {
     align-content: center;
@@ -67,7 +69,6 @@ header .header-button {
 #dropdown-content-container {
     display: none;
     position: absolute;
-    margin-top: -10px;
     right: 10px;
     background-color: #f0f0f0;
     width: 120px;
@@ -146,7 +147,7 @@ section.class-card:hover {
     border-bottom: 2px dashed blue;
 }
 #search-results {
-    grid-area: searchresults;
+    grid-area:  searchresults;
 }
 
 #search-inputs {
