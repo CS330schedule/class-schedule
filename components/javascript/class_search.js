@@ -21,6 +21,7 @@ const showCourses = (courses) => {
         </div>
         `;
     }
+}
 
 const checksToDayString = () => {
     const days = ["monday", "tuesday", "wednesday", "thursday", "friday"]
