@@ -95,6 +95,8 @@
             </datalist>
           </div>
           <div id="days-of-week">
+            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter">
+            <label for="dayFilter">INCLUDE DAY FILTER</label><br>
             <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
             <label for="monday">Monday</label><br>
             <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
@@ -112,7 +114,7 @@
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
         <button type="button" id="test-button" onclick="getCourses({'term':4760, 
-                                                                'subject':getElementById('subjects').value,
+                                                                'subject':getElementById('subjects-list').value,
                                                                 'meeting_days':checksToDayString()}
                                                               )">TEST!</button>
       </section>

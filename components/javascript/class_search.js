@@ -3,7 +3,10 @@ const baseURL = "http://api.asg.northwestern.edu/courses/?key=eQSCJbgt58PVr9KC"
 const getCourses = (paramsDict) => {
     let endpoints = "";
     for (var key in paramsDict) {
-        endpoints += `&${key}=${paramsDict[key]}`
+        if (key != 'meeting_days' || document.getElementById('dayFilter').checked)
+        {
+            endpoints += `&${key}=${paramsDict[key]}`
+        }
     }
     console.log(endpoints);
     fetch(baseURL + endpoints, { mode: 'no-cors' })
