@@ -132,7 +132,7 @@ section.class-card:hover {
     border-right: 2px dashed gray;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 200px auto;
+    grid-template-rows: .3fr .7fr;
     grid-template-areas: 
         "searchmenu"
         "searchresults";
