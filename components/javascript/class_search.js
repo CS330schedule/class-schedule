@@ -14,6 +14,28 @@ const getCourses = (paramsDict) => {
         .then(showCourses);
 }
 
+const toAMPM = (time) => {
+    const hour = time.substring(0, 2);
+    const mins = time.substring(2);
+    let hourAsInt = parseInt(hour);
+    let AMPM = "";
+    if (hourAsInt < 12) {
+        AMPM = "AM";
+        if (hoursAsInt == 0) {
+            hoursAsInt = 12;
+        }
+    }
+    else {
+        AMPM = "PM";
+        hoursAsInt -= 12;
+    }
+    return hoursAsInt + mins + AMPM;
+}
+
+const parseCourses = (courses) => {
+
+}
+
 const showCourses = (response) => {
     console.log(response);
 }

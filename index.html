@@ -112,7 +112,7 @@
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
         <button type="button" id="test-button" onclick="getCourses({'term':4760, 
-                                                                'subject':getElementById('subjects-list').value,
+                                                                'subject':'SPANISH',
                                                                 'meeting_days':checksToDayString()}
                                                               )">TEST!</button>
       </section>
@@ -144,7 +144,7 @@
         <label for="conf-psw" id="conf-psw-tag"><b>Confirm Password</b></label>
         <input type="password" placeholder="Confirm Password" name="conf-psw" required maxlength="30" id="conf-psw-field">
     
-        <label for "major-selection" id="majors-selection-tag"><b>Major </b></label>
+        <label for="major-selection" id="majors-selection-tag"><b>Major </b></label>
         <select id="majors-selection">
           <option value="default">Select a Major</option>
           <option value="Undecided">Undecided</option>
