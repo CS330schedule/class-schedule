@@ -107,11 +107,13 @@
             </div>
           </div>
         </section>
+          
+      <button type="button" id="test-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">Search</button>
+      
       </section>
       <section id="search-results">
         Results of search
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
-        <button type="button" id="test-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">TEST!</button>
         <div id='search-card'>
           <h1>Elementary Stuff</h1>
           <p id="subject-num">STUFF 123-0</p>
@@ -148,10 +150,6 @@
           <p id="instructor">Bob Down Jr.</p>
           <p id="days-times">MoWeFr 12:00-12:50</p>
         </div>
-        <button type="button" id="test-button" onclick="getCourses({'term':4760, 
-                                                                'subject':'SPANISH',
-                                                                'meeting_days':checksToDayString()}
-                                                              )">TEST!</button>
       </section>
     </section>
     <section id="calendar-section">
