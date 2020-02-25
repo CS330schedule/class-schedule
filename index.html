@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="components/css/login.css">
   <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="components/css/search.css">
   
   <!-- Files for Symantic UI -->
   
@@ -106,23 +106,14 @@
       </section>
       <section id="search-results">
         Results of search
-<<<<<<< HEAD
-        <div id='search-card'>
-          <h1>asdf</h1>
-          <p>asdf asdf</p>
-          <p>asdf</p>
-          <p>asdf asdf-asdf</p>
-        </div>
-        <div id='search-card'>
-          <h1>asdf</h1>
-          <p>asdf asdf</p>
-          <p>asdf</p>
-          <p>asdf asdf-asdf</p>
-        </div>
-=======
         <button type="button" id="test-days-button" onclick="checksToDayString()">TEST DAYS!</button>
         <button type="button" id="test-button" onclick="getCourses({'term':4530, 'subject':'SPANISH', 'meeting_days':checksToDayString()})">TEST!</button>
->>>>>>> ed92bcb4adfc8fa08bea005ddace4a64039fc3bd
+        <div id='search-card'>
+          <h1>${course.title}</h1>
+          <p>${course.subject} ${course.catalog_num}</p>
+          <p>${course.instructor}</p>
+          <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
+      </div>
       </section>
     </section>
     <section id="calendar-section">
