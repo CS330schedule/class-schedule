@@ -95,18 +95,20 @@
             </datalist>
           </div>
           <div id="days-of-week">
-            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter">
-            <label for="dayFilter">INCLUDE DAY FILTER</label><br>
-            <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
-            <label for="monday">Monday</label><br>
-            <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
-            <label for="tuesday">Tuesday</label><br>
-            <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
-            <label for="wednesday">Wednesday</label><br>
-            <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
-            <label for="thursday">Thursday</label><br>
-            <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
-            <label for="friday">Friday</label><br>
+            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
+            <label for="dayFilter">Filter By Days</label><br>
+            <div id="days-checkboxes">
+              <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
+              <label for="monday">Monday</label><br>
+              <input type="checkbox" id="tuesday" name="tuesday" value="Tu", checked=true>
+              <label for="tuesday">Tuesday</label><br>
+              <input type="checkbox" id="wednesday" name="wednesday" value="We", checked=true>
+              <label for="wednesday">Wednesday</label><br>
+              <input type="checkbox" id="thursday" name="thursday" value="Th", checked=true>
+              <label for="thursday">Thursday</label><br>
+              <input type="checkbox" id="friday" name="friday" value="Fr", checked=true>
+              <label for="friday">Friday</label><br>
+            </div>
           </div>
         </section>
       </section>

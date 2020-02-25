@@ -30,3 +30,13 @@ const checksToDayString = () => {
     console.log(dayString);
     return dayString;
 }
+
+const showDayFilter = () => {
+    var checkboxes = document.getElementById('days-checkboxes');
+    if (document.getElementById('dayFilter').checked) {
+        checkboxes.style.display = "block";
+    }
+    else {
+        checkboxes.style.display = "none";
+    }
+}
