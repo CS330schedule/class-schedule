@@ -14,8 +14,35 @@ const getCourses = (paramsDict) => {
         .then(showCourses);
 }
 
-const showCourses = (response) => {
-    console.log(response);
+const toAMPM = (time) => {
+    const hour = time.substring(0, 2);
+    const mins = time.substring(2);
+    let hourAsInt = parseInt(hour);
+    let AMPM = "";
+    if (hourAsInt < 12) {
+        AMPM = "AM";
+        if (hoursAsInt == 0) {
+            hoursAsInt = 12;
+        }
+    }
+    else {
+        AMPM = "PM";
+        hoursAsInt -= 12;
+    }
+    return hoursAsInt + mins + AMPM;
+}
+
+const showCourses = (courses) => {
+    for (course of courses) {
+        document.getElementById('search-results').innerHTML += `
+        <div id='search-card'>
+            <h1>${course.title}</h1>
+            <p>${course.subject} ${course.catalog_num}</p>
+            <p>${course.instructor}</p>
+            <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
+        </div>
+        `;
+    }
 }
 
 const checksToDayString = () => {
