@@ -75,22 +75,25 @@
           Search Classes
         </h1>
         <section id="search-inputs">
-          <input list="subjects" id="subject-dropdown" name="subject-dropdown"/>
-          <datalist id="subjects">
-            <option value="AAL">African and Asian Languages</option>
-            <option value="ACCOUNT">Accounting</option>
-            <option value="ACCT">African Studies</option>
-            <option value="ANTHRO">Antrhopology</option>
-            <option value="CHEM_ENG">Chemical Engineering</option> 
-            <option vlaue="COMP_SCI">Computer Science</option>
-            <option value="CIV_ENV">Civil and Environmental Engineering</option>
-            <option value="ECON">Economics</option>
-            <option value="ENGLISH">English</option>
-            <option value="GEOG">Geography</option>
-            <option value="GREEK">Greek</option> 
-            <option value="JOUR">Journalism</option>
-            <option value="PHIL">Philosophy</option>
-          </datalist>
+          <div id="subjects">
+            <label for="subject-dropdown">Subject:</label>
+            <input list="subjects-list" id="subject-dropdown" name="subject-dropdown"/>
+            <datalist id="subjects-list">
+              <option value="AAL">African and Asian Languages</option>
+              <option value="ACCOUNT">Accounting</option>
+              <option value="ACCT">African Studies</option>
+              <option value="ANTHRO">Antrhopology</option>
+              <option value="CHEM_ENG">Chemical Engineering</option> 
+              <option vlaue="COMP_SCI">Computer Science</option>
+              <option value="CIV_ENV">Civil and Environmental Engineering</option>
+              <option value="ECON">Economics</option>
+              <option value="ENGLISH">English</option>
+              <option value="GEOG">Geography</option>
+              <option value="GREEK">Greek</option> 
+              <option value="JOUR">Journalism</option>
+              <option value="PHIL">Philosophy</option>
+            </datalist>
+          </div>
           <div id="days-of-week">
             <input type="checkbox" id="monday" name="monday" value="Mo", checked=true>
             <label for="monday">Monday</label><br>
