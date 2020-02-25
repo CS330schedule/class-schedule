@@ -4,6 +4,7 @@
     overflow-y: scroll;
 }
 #search-card{
+    /*
     display:grid;
     grid-template-rows: 2fr 1fr 1fr 1fr;
     grid-template-columns: auto;
@@ -17,7 +18,14 @@
     padding: 10px;
     border-left: solid 5px white;
     width: 100%;
-    height: auto;
+    height: auto;*/
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: flex-start;
+    margin: 1px 0px 0px;
+    padding: 10px;
 }
 #search-card h1{
     grid-area: head;
