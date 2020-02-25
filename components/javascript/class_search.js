@@ -17,9 +17,9 @@ const getCourses = (paramsDict) => {
 const toAMPM = (time) => {
     const hour = time.substring(0, 2);
     const mins = time.substring(2);
-    let hourAsInt = parseInt(hour);
+    let hoursAsInt = parseInt(hour);
     let AMPM = "";
-    if (hourAsInt < 12) {
+    if (hoursAsInt < 12) {
         AMPM = "AM";
         if (hoursAsInt == 0) {
             hoursAsInt = 12;
@@ -27,19 +27,22 @@ const toAMPM = (time) => {
     }
     else {
         AMPM = "PM";
-        hoursAsInt -= 12;
+        if (hoursAsInt != 12) {
+            hoursAsInt -= 12;
+        }
     }
     return hoursAsInt + mins + AMPM;
 }
 
 const showCourses = (courses) => {
+    document.getElementById('search-results').innerHTML = ``;
     for (course of courses) {
         document.getElementById('search-results').innerHTML += `
         <div id='search-card'>
             <h1>${course.title}</h1>
             <p>${course.subject} ${course.catalog_num}</p>
             <p>${course.instructor}</p>
-            <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
+            <p>${course.meeting_days}  ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
         </div>
         `;
     }
