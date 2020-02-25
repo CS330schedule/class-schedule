@@ -158,5 +158,7 @@ section.class-card:hover {
 }
 #days-of-week {
     display: inline-block;
-
+}
+#days-checkboxes {
+    display:none;
 }
