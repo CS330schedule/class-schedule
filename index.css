@@ -61,17 +61,21 @@ header .header-button {
 #index-header a:hover {
     background-color: #5F3b95;
 }
-.account-dropdown {
-    display: inline-block;
+#account-dropdown {
+    display: none;
 }
-.dropdown-content {
+#dropdown-content-container {
     display: none;
     position: absolute;
+    margin-top: -10px;
     right: 10px;
     background-color: #f0f0f0;
     width: 120px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
     z-index: 1;
+}
+#account-dropdown:hover #dropdown-content-container{
+    display: block;
 }
 .dropdown-content a{
     color: black;
@@ -79,14 +83,12 @@ header .header-button {
     text-decoration: none;
     text-align: center;
     display: block;
+    background-color:#eee;
 }
-.dropdown-content a:hover{
-    background-color: #ddd;
+#dropdown-content-container > a:hover{
+    background-color: #999;
 }
 
-#index-header #logout {
-    display: none;
-}
 
 aside {
     background-color: white;
@@ -151,7 +153,7 @@ section.class-card:hover {
     display: flex;
     flex-direction: column;
 }
-#subject {
+#subjects {
     display: inline-block;
 }
 #days-of-week {

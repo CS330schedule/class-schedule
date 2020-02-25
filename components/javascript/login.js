@@ -37,9 +37,6 @@ function displaySignUp() {
   document.getElementById('switch_to_login').style.display='block';
   document.getElementById('id01').style.display='block';
 }
-function displayAccDropDown() {
-  document.getElementById("dropdown-content-container").style.display = 'block';
-}
 
 
 
@@ -52,7 +49,7 @@ function logout() {
     updateClasses();
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
-    document.getElementById("logout").style.display = "none";
+    document.getElementById("account-dropdown").style.display="none";
   }
   return;
 }
@@ -82,7 +79,7 @@ function tryLogin(name, pass) {
         //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
         document.getElementById("signup").style.display = "none";
         document.getElementById("login").style.display = "none";
-        document.getElementById("logout").style.display = "flex";
+        document.getElementById("account-dropdown").style.display = "inline-block";
         updateClasses();
         document.getElementById('id01').style.display = "none";
         resetForm(0);
@@ -129,7 +126,8 @@ function makeAccount() {
   activeUser = newUser;
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "none";
-  document.getElementById("logout").style.display = "flex";
+  document.getElementById("account-dropdown").style.display = "inline-block";
+  document.getElementById("dropdown-content-container").style.display = "none";
   updateClasses();
   document.getElementById('id01').style.display = "none";
 }
