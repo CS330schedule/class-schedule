@@ -5,6 +5,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,8 +13,8 @@
   <link rel="stylesheet" href="index.css">
   
   <!-- Files for Symantic UI -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
   
+
   <title>Course Planner</title>  
   <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
 </head>
@@ -37,7 +38,7 @@
     <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
       <p>Sign up</p>
     </a>
-    <div class="dropdown">
+    <div class="account-dropdown">
       <a href="#" class="header-button account-button account_button" id="account" onclick="displayAccDropDown()">
         <p>Welcome, account_username   &#9660</p>
       </a>
@@ -76,14 +77,25 @@
         </h1>
         <form id="class-search" method="get">
           <select multiple="multiple" class="ui fluid search dropdown" id="members_dropdown" multiple="" name="members">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
+            <option value="AAL">AAL - African and Asian Languages</option>
+            <option value="ACCOUNT">ACCOUNT - Accounting</option>
+            <option value="ACCT">AFST - African Studies</option>
+            <option value="ANTHRO">ANTHRO - Antrhopology</option>
+            <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
+            <option vlaue="COMP_SCI">COMP_SCI - Computer Science</option>
+            <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
+            <option value="ECON">ECON - Economics</option>
+            <option value="ENGLISH">ENGLISH - English</option>
+            <option value="GEOG">GEOG - Geography</option>
+            <option value="GREEK">GREEK - Greek</option> 
+            <option value="JOUR">JOUR - Journalism</option>
+            <option value="PHIL">PHIL - Philosophy</option>
+          </select>
         </form>
       </section>
       <section id="search-results">
         Results of search
+        <button type="button" id="test-button" onclick="getCourses({term:4530, subject:'SPANISH'})">TEST!</button>
       </section>
     </section>
     <section id="calendar-section">
@@ -124,8 +136,6 @@
           <optoin value="Neuroscience">Neuroscience</optoin>
         </select>
 
-        <button type="button" id="test-button" onclick="getCourses({term:4530, subject:'SPANISH'})">TEST!</button>
-
         <button type="button" id="login-button" onclick="readLoginFields()">Log In</button>
         <p id="switch_to_signup" onclick="displaySignUp();">New to the website? Click here to sign up</p>
         <button type="button" id="createaccount-button" onclick="makeAccount()">Sign Up</button>
@@ -141,12 +151,8 @@
 <script type="text/javascript" src="components/javascript/login.js"></script>
 <script type="text/javascript" src="components/javascript/class_search.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.css"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.js'></script>
 <script>
   $('.dropdown').dropdown({
     label: {
@@ -154,7 +160,8 @@
     },
     debug: true,
     performance: true,
-  }); 
+  });
+
   $('.ui.checkbox')
     .checkbox({
       onChecked() {
