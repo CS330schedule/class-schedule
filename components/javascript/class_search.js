@@ -64,7 +64,7 @@ const checksToDayString = () => {
 const showDayFilter = () => {
     var checkboxes = document.getElementById('days-checkboxes');
     if (document.getElementById('dayFilter').checked) {
-        checkboxes.style.display = "block";
+        checkboxes.style.display = "inline-block";
     }
     else {
         checkboxes.style.display = "none";

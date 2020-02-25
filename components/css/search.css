@@ -1,7 +1,6 @@
 #search-results {
     display: flex;
     flex-direction: column;
-    height: 64%;
     overflow-y: scroll;
 }
 #search-card{
