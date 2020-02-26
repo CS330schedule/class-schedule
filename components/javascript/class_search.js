@@ -42,7 +42,7 @@ const showCourses = (courses) => {
             <h1>${course.subject} ${course.catalog_num}</h1>
             <p>${course.title}</p>
             <p>${course.instructor}</p>
-            <p>${course.meeting_days}  ${course.start_time}-${course.end_time}</p>
+            <p>${course.meeting_days}  ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
         </div>
         `;
     }
