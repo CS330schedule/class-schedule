@@ -40,17 +40,6 @@ function displaySignUp() {
   document.getElementById('username').focus();
 }
 
-// Submit form on enter press
-document.onkeydown=function(){
-  if(window.event.keyCode=='13' && document.getElementById('id01').style.display == 'block'){
-    if (document.getElementById('createaccount-button').style.display == 'block'){
-      makeAccount();
-    } else {
-      readLoginFields();
-    }
-  }
-}
-
 function logout() {
   // Prompt user to confirm logout
   if (confirm("Are you sure you want to log out?")){
@@ -65,6 +54,7 @@ function logout() {
   return;
 }
 ////////////////////////////////
+
 
 
 ///// Handles login process /////
@@ -140,6 +130,19 @@ function makeAccount() {
   document.getElementById("account-dropdown").style.display = "inline-block";
   updateClasses();
   document.getElementById('id01').style.display = "none";
+}
+////////////////////////////////
+
+
+///// Submit login/signup form on enter press //////
+document.onkeydown=function(){
+  if(window.event.keyCode=='13' && document.getElementById('id01').style.display == 'block'){
+    if (document.getElementById('createaccount-button').style.display == 'block'){
+      makeAccount();
+    } else {
+      readLoginFields();
+    }
+  }
 }
 ////////////////////////////////
 

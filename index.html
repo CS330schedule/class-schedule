@@ -10,10 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="components/css/login.css">
   <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="components/css/search.css">
-  
-  <!-- Files for Symantic UI -->
-  
+  <link rel="stylesheet" href="components/css/search.css">  
 
   <title>Course Planner</title>  
   <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
@@ -22,7 +19,7 @@
 
 
 
-<body>
+<body onload="loadSubjects()">
 
 
   <!--Need to change to name and logo-->
@@ -75,6 +72,7 @@
           <div id="subjects">
             <label for="subject-dropdown">Subject:</label>
             <select id="subject-dropdown">
+              <option value="default">Select a subject</option>
               <option value="AAL">AAL - African and Asian Languages</option>
               <option value="ACCOUNT">ACCOUNT - Accounting</option>
               <option value="ACCT">ACCT - African Studies</option>
