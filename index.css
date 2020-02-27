@@ -28,7 +28,6 @@ aside, #index-header{
     margin: 0px;
     height: 50px;
     padding: 10px 10px;
-    border-right: solid 5px #4E2A84; 
     color: white;
 }
 #index-header{
@@ -126,49 +125,7 @@ section.class-card:hover {
     flex-wrap: nowrap;
     flex-direction: row;
 }
-#search-section {
-    width: auto;
-    flex-grow: 1;
-    border-right: 2px dashed gray;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .7fr;
-    grid-template-areas: 
-        "searchmenu"
-        "searchresults";
-}
 #calendar-section {
-    width: auto;
-    flex-grow: 1;
+    flex: 1;
 }
 
-
-#search-menu {
-    grid-area: searchmenu;
-    border-bottom: 2px dashed gray;
-}
-#search-results {
-    grid-area:  searchresults;
-}
-
-#search-inputs {
-    display: flex;
-    flex-direction: column;
-}
-#subjects {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-}
-#subject-dropdown{
-    width: auto;
-}
-#days-of-week {
-    display: inline-block;
-}
-#days-checkboxes {
-    display:none;
-}
-#days-checkboxes > label{
-    padding-right: 5px;
-}

@@ -65,7 +65,7 @@
     <!-- Section for searching classes -->
     <section id="search-section">
       <section id="search-menu">
-        <h1>
+        <h1 id="search-title">
           Search Classes
         </h1>
         <section id="search-inputs">
@@ -73,11 +73,10 @@
             <label for="subject-dropdown">Subject:</label>
             <select id="subject-dropdown">
               <option value="default">Select a subject</option>
-              <option value="AAL">AAL - African and Asian Languages</option>
               <option value="ACCT">ACCT - Accounting</option>
               <option value="ANTHRO">ANTHRO - Antrhopology</option>
               <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
-              <option vlaue="COMP_SCI">COMP_SCI - Computer Science</option>
+              <option value="COMP_SCI">COMP_SCI - Computer Science</option>
               <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
               <option value="ECON">ECON - Economics</option>
               <option value="ENGLISH">ENGLISH - English</option>
@@ -108,9 +107,12 @@
       <button type="button" id="test-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">Search</button>
       
       </section>
-      <section id="search-results">
-        Results of search
-      </section>
+      <container id="search-results-container">
+        <h1>Search Results</h1>
+        <section id="search-results">
+          Results of search
+        </section>
+      </container>
     </section>
     <section id="calendar-section">
       Calendar Section

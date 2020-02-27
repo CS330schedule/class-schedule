@@ -1,24 +1,71 @@
+
+#search-section {
+    flex: 1;
+    border-right: 2px dashed gray;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: .3fr .7fr;
+    grid-template-areas: 
+        "searchmenu"
+        "searchresults-container";
+}
+#search-title {
+    color: #4E2A84;
+    font-size: 25px;
+    margin: 0px;
+    margin-top: 5px;
+}
+
+#search-menu {
+    grid-area: searchmenu;
+}
+#search-inputs {
+    display: flex;
+    flex-direction: column;
+}
+#subjects {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#subject-dropdown{
+    width: auto;
+}
+#days-of-week {
+    display: inline-block;
+}
+#days-checkboxes {
+    display:none;
+}
+#days-checkboxes > label{
+    padding-right: 5px;
+}
+
+
+
+#search-results-container {
+    grid-area: searchresults-container;
+    margin: 0px 5px 5px 5px;
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: column;
+    overflow:hidden;
+    
+}
+#search-results-container > h1 {
+    height: 30px;
+    line-height: 30px;
+    margin: 0px;
+    background-color: rgb(0, 0, 0, .2);
+}
 #search-results {
+    height: 100%;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
 }
+
 #search-card{
-    /*
-    display:grid;
-    grid-template-rows: 2fr 1fr 1fr 1fr;
-    grid-template-columns: auto;
-    grid-template-areas:
-        "head"
-        "subj"
-        "inst"
-        "date";
-    justify-items: start;
-    margin: 1px 0px 0px;
-    padding: 10px;
-    border-left: solid 5px white;
-    width: 100%;
-    height: auto;*/
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -30,13 +77,14 @@
 }
 #search-card h1{
     grid-area: head;
-    font-size: 23px;
+    font-size: 20px;
     margin: 0px 0px 2px;
     color: #4E2A84;
 }
 #search-card p{
+    text-align: left;
     margin: 0px;
-    flex-wrap: wrap;
+    font-size: 15px;
 }
 p #subject-num{ grid-area: subj; }
 p #instructor{ grid-area: inst; }

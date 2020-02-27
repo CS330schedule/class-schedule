@@ -60,15 +60,30 @@ const toAMPM = (time) => {
 
 const showCourses = (courses) => {
     document.getElementById('search-results').innerHTML = ``;
+    if (courses.length == 0) {
+        document.getElementById('search-results').innerHTML = '<p>No courses found</p>'
+    }
     for (course of courses) {
-        document.getElementById('search-results').innerHTML += `
-        <div id='search-card'>
-            <h1>${course.subject} ${course.catalog_num}</h1>
-            <p>${course.title}</p>
-            <p>${course.instructor}</p>
-            <p>${course.meeting_days}  ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
-        </div>
-        `;
+        if ((course.meeting_days == null) || (course.start_time == null) || (course.end_time == null)){
+            // Handle case where meeting times not set
+            document.getElementById('search-results').innerHTML += `
+            <div id='search-card'>
+                <h1>${course.subject} ${course.catalog_num}</h1>
+                <p>${course.title}</p>
+                <p>${course.instructor}</p>
+                <p>- Meeting times not provided -</p>
+            </div>
+            `;
+        } else {
+            document.getElementById('search-results').innerHTML += `
+            <div id='search-card'>
+                <h1>${course.subject} ${course.catalog_num}</h1>
+                <p>${course.title}</p>
+                <p>${course.instructor}</p>
+                <p>${course.meeting_days}  ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
+            </div>
+            `;
+        }
     }
 }
 
