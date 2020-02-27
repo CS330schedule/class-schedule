@@ -20,17 +20,19 @@
     width: 100%;
     height: auto;*/
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
     justify-items: flex-start;
     align-items: flex-start;
-    margin: 1px 0px 0px;
+    margin: 4px 4px 0px 4px;
+    border: 1px solid gray;
     padding: 10px;
 }
 #search-card h1{
     grid-area: head;
-    font-size: 2em;
+    font-size: 23px;
     margin: 0px 0px 2px;
+    color: #4E2A84;
 }
 #search-card p{
     margin: 0px;

@@ -145,7 +145,7 @@ section.class-card:hover {
 
 #search-menu {
     grid-area: searchmenu;
-    border-bottom: 2px dashed blue;
+    border-bottom: 2px dashed gray;
 }
 #search-results {
     grid-area:  searchresults;
