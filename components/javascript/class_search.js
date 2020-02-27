@@ -4,7 +4,6 @@ const currentTerm = 4760;  // Fall 2019 is most recent data in API
 
 // Can't use because this loads in 200+ subjects, many of which don't have any classes this quarter despite quarter selector
 ///// Dynamically load in subjects for the quarter /////
-
 const loadSubjects = () => {
     /*
     fetch("http://api.asg.northwestern.edu/subjects/?key=eQSCJbgt58PVr9KC&term="+currentTerm)
@@ -61,7 +60,7 @@ const toAMPM = (time) => {
 const showCourses = (courses) => {
     document.getElementById('search-results').innerHTML = ``;
     if (courses.length == 0) {
-        document.getElementById('search-results').innerHTML = '<p>No courses found</p>'
+        document.getElementById('search-results').innerHTML = '<p>No courses found that match your search criteria</p>'
     }
     for (course of courses) {
         if ((course.meeting_days == null) || (course.start_time == null) || (course.end_time == null)){
