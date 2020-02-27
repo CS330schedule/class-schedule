@@ -33,7 +33,8 @@
 }
 #days-of-week {
     display: inline-block;
-    height: 40px;
+    height: 50px;
+    vertical-align: middle;
 }
 #days-checkboxes {
     display:none;
@@ -67,6 +68,7 @@
 }
 #search-card{
     display: flex;
+    display: -webkit-flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-items: flex-start;
