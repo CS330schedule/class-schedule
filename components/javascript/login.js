@@ -1,6 +1,8 @@
+const guest = {username: "guest", password: "", major: "Undecided", classes: []};
 
-// Default activeUser is a guest with undecided major on startup
-var activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
+
+// Default activeUser is guest on startup
+var activeUser = guest;
 
 // Array for holding the users registered with the website
 let users = [
@@ -21,6 +23,7 @@ function displayLogin() {
   document.getElementById('createaccount-button').style.display='none';
   document.getElementById('switch_to_login').style.display='none';
   document.getElementById('id01').style.display='block';
+  document.getElementById('username').focus();
 }
 
 function displaySignUp() {
@@ -34,22 +37,24 @@ function displaySignUp() {
   document.getElementById('createaccount-button').style.display='block';
   document.getElementById('switch_to_login').style.display='block';
   document.getElementById('id01').style.display='block';
+  document.getElementById('username').focus();
 }
 
 function logout() {
   // Prompt user to confirm logout
   if (confirm("Are you sure you want to log out?")){
     // Reset active user to guest and reset the page
-    activeUser = {username: "Guest", password: "", major: "Undecided", classes: []};
-    document.getElementById("greeting").innerHTML = activeUser.username;
+    activeUser = guest;
+    //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
     updateClasses();
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
-    document.getElementById("logout").style.display = "none";
+    document.getElementById("account-dropdown").style.display="none";
   }
   return;
 }
-/////
+////////////////////////////////
+
 
 
 ///// Handles login process /////
@@ -70,12 +75,12 @@ function tryLogin(name, pass) {
         resetForm(1);
         return; 
       } else {
-        // Correct credentials, log in
+        // Correct credentials ==> log in
         activeUser = user;
-        document.getElementById("greeting").innerHTML = activeUser.username;
+        //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
         document.getElementById("signup").style.display = "none";
         document.getElementById("login").style.display = "none";
-        document.getElementById("logout").style.display = "flex";
+        document.getElementById("account-dropdown").style.display = "inline-block";
         updateClasses();
         document.getElementById('id01').style.display = "none";
         resetForm(0);
@@ -88,7 +93,7 @@ function tryLogin(name, pass) {
   resetForm(1);
   return;
 }
-/////
+////////////////////////////////
 
 
 ///// Handle making account ////
@@ -113,20 +118,33 @@ function makeAccount() {
   if (newUser.password != loginData.elements[2].value) {
     // This phrasing is abiguous and will be changed later
     alert('Passwords must match to create an account');
-    resetForm(1);
+    resetForm(2);
     return;
   }
   // Username not taken and passwords match so add account
   users.push(newUser);
-  document.getElementById("greeting").innerHTML = newUser.username;
+  //document.getElementById("greeting").innerHTML = newUser.username;   => Change to login greeting section
   activeUser = newUser;
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "none";
-  document.getElementById("logout").style.display = "flex";
+  document.getElementById("account-dropdown").style.display = "inline-block";
   updateClasses();
   document.getElementById('id01').style.display = "none";
 }
-/////
+////////////////////////////////
+
+
+///// Submit login/signup form on enter press //////
+document.onkeydown=function(){
+  if(window.event.keyCode=='13' && document.getElementById('id01').style.display == 'block'){
+    if (document.getElementById('createaccount-button').style.display == 'block'){
+      makeAccount();
+    } else {
+      readLoginFields();
+    }
+  }
+}
+////////////////////////////////
 
 
 ///// Clears out the login form based on resetCode set by programmer /////
@@ -134,25 +152,28 @@ function resetForm(resetCode) {
   var logindata = document.getElementById("userlogin");
   switch (resetCode){
     case 0:
-      // Reset username and password fields
+      // Reset all fields (usernmae, passwords, and major)
       logindata.elements[0].value = '';
       logindata.elements[3].value = 'default';
     case 1:
-      // Reset just the password fields
+      // Reset "password" and "confirm password" fields
       logindata.elements[1].value = '';
+    case 2:
+      // Reset just "confirm password" field
       logindata.elements[2].value = '';
       return;
     default:
-      // log invalid resetCode input and return
-      console.log('#resetForm: Invalid resetCode: ' + resetCode);
-      return;
+    // log invalid resetCode input and return
+    console.log('#resetForm: Invalid resetCode ' + resetCode);
+    return;
   }
 }
-/////
+////////////////////////////////
 
 
 ///// Updates the classes displayed on the sidebar based on activeUser /////
 function updateClasses() {
+  document.getElementById('account').innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`;
   document.getElementById('major-header').innerHTML = activeUser.major;
   if (activeUser.major == "Undecided"){
     document.getElementById('class-container').innerHTML = ``;
@@ -164,4 +185,4 @@ function updateClasses() {
     }
   } 
 }
-/////
+////////////////////////////////

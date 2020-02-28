@@ -1,51 +1,122 @@
 <!DOCTYPE html>
 
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="components/css/login.css">
-<link rel="stylesheet" href="index.css">
-<script type="text/javascript" src="components/javascript/login.js"></script>
+
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="components/css/login.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="components/css/search.css">  
+
   <title>Course Planner</title>  
   <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
 </head>
 
-<h1 id="greeting">
-  Guest
-</h1>
-
-<header id="index-header">
-  <a href="#" class="header-button" id="login" onclick="displayLogin()">
-    <p>Log In</p>
-  </a>
-  <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
-    <p>Sign up</p>
-  </a>
-  <a href="#" class="header-button" id="logout" onclick="logout()">
-    <p>Log Out</p>
-  </a>
-</header>
 
 
-<body>
+
+<body onload="loadSubjects()">
 
 
+  <!--Need to change to name and logo-->
+  <h1 id="title-section">
+    Working Title
+  </h1>
+
+  <!-- Page header -->
+  <header id="index-header">
+    <a href="#" class="header-button" id="login" onclick="displayLogin()">
+      <p>Log In</p>
+    </a>
+    <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
+      <p>Sign up</p>
+    </a>
+    <div id="account-dropdown">
+      <a href="#" class="header-button account-button account_button" id="account">
+        <p>Welcome, account_username   &#9660</p>
+      </a>
+      <div id="dropdown-content-container" class="dropdown-content">
+        <a href="#" onclick="logout()">Log Out</a>
+      </div>
+
+    </div>
+
+  </header>
+  <!-- End of page header -->
+
+
+  <!-- Class selection sidebar-->
   <aside id="sidebar">
-    
     <h2> Major: </h2>
     <h2 id='major-header'>
       Undecided
     </h2>
     <div id="class-container"></div>
-    
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
+  <!-- End of Class selection sidebar-->
 
-
+  <!-- Main page content section -->
+  <section id="main">
+    <!-- Section for searching classes -->
+    <section id="search-section">
+      <section id="search-menu">
+        <h1 id="search-title">
+          Search Classes
+        </h1>
+        <section id="search-inputs">
+          <div id="subjects">
+            <label for="subject-dropdown">Subject:</label>
+            <select id="subject-dropdown">
+              <option value="default">Select a subject</option>
+              <option value="ACCT">ACCT - Accounting</option>
+              <option value="ANTHRO">ANTHRO - Antrhopology</option>
+              <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
+              <option value="COMP_SCI">COMP_SCI - Computer Science</option>
+              <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
+              <option value="ECON">ECON - Economics</option>
+              <option value="ENGLISH">ENGLISH - English</option>
+              <option value="GEOG">GEOG - Geography</option>
+              <option value="GREEK">GREEK - Greek</option> 
+              <option value="JOUR">JOUR - Journalism</option>
+              <option value="PHIL">PHIL - Philosophy</option>
+            </select>
+          </div>
+          <div id="days-of-week">
+            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
+            <label for="dayFilter">Filter By Days</label><br>
+            <div id="days-checkboxes">
+              <input type="checkbox" id="monday" name="monday" value="Mo">
+              <label for="monday">Monday</label>
+              <input type="checkbox" id="tuesday" name="tuesday" value="Tu">
+              <label for="tuesday">Tuesday</label>
+              <input type="checkbox" id="wednesday" name="wednesday" value="We">
+              <label for="wednesday">Wednesday</label>
+              <input type="checkbox" id="thursday" name="thursday" value="Th">
+              <label for="thursday">Thursday</label>
+              <input type="checkbox" id="friday" name="friday" value="Fr">
+              <label for="friday">Friday</label>
+            </div>
+          </div>
+        </section>
+          
+      <a href="#" type="button" id="search-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">Search</a>
+      
+      </section>
+      <container id="search-results-container">
+        <h1>Search Results</h1>
+        <section id="search-results"></section>
+      </container>
+    </section>
+    <section id="calendar-section">
+      Calendar Section
+    </section>
+  </section>
+  <!-- End of main page content section-->
 
   <!-- Modal for login page -->
   <div id="id01" class="modal">
@@ -61,14 +132,14 @@
 
       <div class="container" id="login-body">
         <label for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required maxlength="30">
+        <input type="text" placeholder="Enter Username" name="uname" required maxlength="20" id="username">
     
         <label for="psw"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="psw" required maxlength="30">
         <label for="conf-psw" id="conf-psw-tag"><b>Confirm Password</b></label>
         <input type="password" placeholder="Confirm Password" name="conf-psw" required maxlength="30" id="conf-psw-field">
     
-        <label for "major-selection" id="majors-selection-tag"><b>Major </b></label>
+        <label for="major-selection" id="majors-selection-tag"><b>Major </b></label>
         <select id="majors-selection">
           <option value="default">Select a Major</option>
           <option value="Undecided">Undecided</option>
@@ -79,6 +150,7 @@
           <optoin value="Neuroscience">Neuroscience</optoin>
         </select>
 
+        
         <button type="button" id="login-button" onclick="readLoginFields()">Log In</button>
         <p id="switch_to_signup" onclick="displaySignUp();">New to the website? Click here to sign up</p>
         <button type="button" id="createaccount-button" onclick="makeAccount()">Sign Up</button>
@@ -86,7 +158,12 @@
       </div>
     </form>
   </div>
-
+  <!-- End of Modal for Login Page -->
+  
 </body>
+
+<!-- Load in Javascript files -->
+<script type="text/javascript" src="components/javascript/login.js"></script>
+<script type="text/javascript" src="components/javascript/class_search.js"></script>
 
 </html>
