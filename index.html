@@ -21,8 +21,6 @@
 
 <body onload="loadSubjects()">
 
-
-  <!--Need to change to name and logo-->
   <h1 id="title-section">
     Working Title
   </h1>
@@ -62,6 +60,7 @@
 
   <!-- Main page content section -->
   <section id="main">
+
     <!-- Section for searching classes -->
     <section id="search-section">
       <section id="search-menu">
@@ -73,17 +72,7 @@
             <label for="subject-dropdown">Subject:</label>
             <select id="subject-dropdown">
               <option value="default">Select a subject</option>
-              <option value="ACCT">ACCT - Accounting</option>
-              <option value="ANTHRO">ANTHRO - Antrhopology</option>
-              <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
-              <option value="COMP_SCI">COMP_SCI - Computer Science</option>
-              <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
-              <option value="ECON">ECON - Economics</option>
-              <option value="ENGLISH">ENGLISH - English</option>
-              <option value="GEOG">GEOG - Geography</option>
-              <option value="GREEK">GREEK - Greek</option> 
-              <option value="JOUR">JOUR - Journalism</option>
-              <option value="PHIL">PHIL - Philosophy</option>
+              <!--Subjec options dynamically loaded in now-->
             </select>
           </div>
           <div id="days-of-week">
@@ -115,13 +104,15 @@
     <section id="calendar-section">
       Calendar Section
     </section>
+
   </section>
   <!-- End of main page content section-->
+
 
   <!-- Modal for login page -->
   <div id="id01" class="modal">
     <form class="modal-content animate", method="POST", id="userlogin">
-      <span onclick="document.getElementById('id01').style.display='none'; resetForm(0);" class="close" title="Close Login Window">&times;</span>
+      <span id="login-modal-close" onclick="document.getElementById('id01').style.display='none'; resetForm(0);" class="close" title="Close Login Window">&times;</span>
 
       <header id="login-header">
         <div class="imgcontainer">
@@ -159,6 +150,22 @@
     </form>
   </div>
   <!-- End of Modal for Login Page -->
+
+
+
+  <!-- Modal for Search Result -->
+  <div id="search-details-modal" class="modal">
+    <div class="modal-content animate", id="search-details-container">
+      <span id="search-details-modal-close"onclick="document.getElementById('search-details-modal').style.display='none'; " class="close" title="Close search result window">&times;</span>
+      <div id="search-details-content">
+        SEARCH RESULT DETAILS MODAL
+      </div>
+      <div id="search-details-footer">
+        FOOTER OF THE DETAILS MODAL
+      </div>
+    </div>
+  </div>
+  <!-- End of Modal for Search Result -->
   
 </body>
 
