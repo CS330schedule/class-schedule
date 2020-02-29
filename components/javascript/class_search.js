@@ -2,25 +2,24 @@ const baseURL = "http://api.asg.northwestern.edu/courses/?key=eQSCJbgt58PVr9KC"
 const currentTerm = 4760;  // Fall 2019 is most recent data in API
 
 
-// Can't use because this loads in 200+ subjects, many of which don't have any classes this quarter despite quarter selector
 ///// Dynamically load in subjects for the quarter /////
 const loadSubjects = () => {
-    /*
+    
     fetch("http://api.asg.northwestern.edu/subjects/?key=eQSCJbgt58PVr9KC&term="+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
-    */
+    
 }
-/*
+
 const populateSubjects = (dataFromServer) => {
     console.log(dataFromServer);
     subjectDropdown = document.getElementById('subject-dropdown');
-    for (subject in dataFromServer) {
+    for (subject of dataFromServer) {
         let optionTemplate = `<option value=${subject.symbol}>${subject.symbol} - ${subject.name}</option>`;
         subjectDropdown.innerHTML += optionTemplate;
     }
 }
-*/
+
 ///////////////////////////
 
 const getCourses = (paramsDict) => {
