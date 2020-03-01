@@ -1,4 +1,8 @@
+
+
+
 // URLs for use in fetches
+const corsAnywhereURL = "https://cors-anywhere.herokuapp.com/"
 const baseSubjectURL = "http://api.asg.northwestern.edu/subjects/?key=eQSCJbgt58PVr9KC&term=";
 const baseCourseURL = "http://api.asg.northwestern.edu/courses/?key=eQSCJbgt58PVr9KC";
 const baseDetailsURL = "http://api.asg.northwestern.edu/courses/details/?key=eQSCJbgt58PVr9KC&id="
@@ -10,7 +14,8 @@ let currentSearchData = [];
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
-    fetch(baseSubjectURL+currentTerm)
+    
+    fetch(corsAnywhereURL + baseSubjectURL+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
 }
@@ -79,7 +84,7 @@ const getCourses = () => {
         }
     }
     console.log(endpoints);
-    fetch(baseCourseURL + endpoints, { mode: 'no-cors' })
+    fetch(corsAnywhereURL + baseCourseURL+endpoints)
         .then(response => response.json())
         .then(showCourses)
         .then(attachSearchReultsClickHandler);
@@ -156,7 +161,7 @@ const attachSearchReultsClickHandler = () => {
 ///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
 const getSearchDetails = (course_id) => {
-    fetch(baseDetailsURL + course_id, { mode: 'no-cors' })
+    fetch(corsAnywhereURL + baseDetailsURL+course_id)
         .then(response => response.json())
         .then(displaySearchDetails);
 }
