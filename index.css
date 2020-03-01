@@ -16,6 +16,15 @@ body {
     overflow: hidden;
 }
 
+/* Remove the major information for small screens */
+@media screen and (max-width: 1000px) {
+    body {
+        grid-template-areas:
+            "greeting header"
+            "main main";
+    }
+}
+
 aside, #index-header{
     font-family: 'Roboto', sans-serif;
     display: flex;
