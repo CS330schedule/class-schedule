@@ -1,0 +1,26 @@
+#calendar-section {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+.cal-DOW {
+    width: 20%;
+    border-left: 2px solid rgb(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+}
+#cal-Times {
+    width: 50px;
+    border-left: none;
+}
+
+.cal-DOW > container {
+    height: 7.14%;
+    border-bottom: 1px solid rgb(0, 0, 0, .2);
+}
+container.cal-DOW-title {
+    line-height: 30px;
+    height: 30px;
+}
