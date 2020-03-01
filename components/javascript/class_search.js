@@ -34,27 +34,47 @@ const showDayFilter = () => {
         checkboxes.style.display = "none";
     }
 }
-const checksToDayString = () => {
-    const days = ["monday", "tuesday", "wednesday", "thursday", "friday"]
+const dayOfWeekString = () => {
     let dayString = "";
-    for (var day of days) {
-        dayCheck = document.getElementById(day)
-        if (dayCheck.checked) {
-            dayString += dayCheck.value;
+    for (day of document.getElementsByClassName('dayOfWeek')) {
+        if (day.classList.contains('DOW-selected')) {
+            dayString += day.id.substring(0,2);
         }
     }
-    console.log(dayString);
     return dayString;
 }
+// Displays the day of the week filter
+displayDaysOfWeek = (displayString) => {
+    if (displayString == 'show') {
+        for (day of document.getElementsByClassName('daysOfWeek')) {
+            day.classList.remove('DOW-selected');
+        }
+        document.getElementById('daysOfWeek-activate').style.display='none';
+        document.getElementById('daysOfWeek-activate').classList.toggle('DOW-active');
+        document.getElementById('daysOfWeek-selector-container').style.display='flex';
+    } else {
+        document.getElementById('daysOfWeek-selector-container').style.display='none';
+        document.getElementById('daysOfWeek-activate').classList.toggle('DOW-active');
+        document.getElementById('daysOfWeek-activate').style.display='block';
+    }
+}
+// Changes class of the day of week selector when clicked based on class
+daysOfWeekClick = (dayString) => {
+    let day = document.getElementById(dayString);
+    day.classList.toggle('DOW-selected');
+}
+// 
+
 ///////////////////////////
 
 
 ///// Load in courses based on search criteria /////
-const getCourses = (paramsDict) => {
+const getCourses = () => {
+    let paramsDict = {'term':currentTerm, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':dayOfWeekString()};
     let endpoints = "";
     for (var key in paramsDict) {
-        if (key != 'meeting_days' || document.getElementById('dayFilter').checked)
-        {
+        // Check if key is meeting_days, in which case we only want to add if the DOW filter is active
+        if (key != 'meeting_days' || document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
             endpoints += `&${key}=${paramsDict[key]}`
         }
     }
@@ -130,11 +150,10 @@ const attachSearchReultsClickHandler = () => {
         r.onclick = function(){getSearchDetails(course_id);}
     }
 }
-
 ///////////////////////////
 
 
-///// Handles displaying the search detials modal when click on search result /////
+///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
 const getSearchDetails = (course_id) => {
     fetch(baseDetailsURL + course_id, { mode: 'no-cors' })
@@ -142,7 +161,7 @@ const getSearchDetails = (course_id) => {
         .then(displaySearchDetails);
 }
 
-// Display the search details in the modal
+// Populate and display the search details modal
 const displaySearchDetails = (dataFromServer) => {
     console.log(dataFromServer);
     let details = dataFromServer[0];
@@ -179,8 +198,11 @@ const displaySearchDetails = (dataFromServer) => {
     }
 
     console.log(details_content_template);
+    // Insert information into the search-details-content section
     document.getElementById('search-details-content').innerHTML = details_content_template;
+    // Attach onclick event to add class to calendar
     document.getElementById('search-details-add-class').onclick = function() {addCourse(details.id)};
+    // Display the modal
     document.getElementById('search-details-modal').style.display='block';
 }
 

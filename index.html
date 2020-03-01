@@ -67,33 +67,28 @@
         <h1 id="search-title">
           Search Classes
         </h1>
-        <section id="search-inputs">
-          <div id="subjects">
-            <label for="subject-dropdown">Subject:</label>
-            <select id="subject-dropdown">
-              <option value="default">Select a subject</option>
-              <!--Subjec options dynamically loaded in now-->
-            </select>
-          </div>
-          <div id="days-of-week">
-            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
-            <label for="dayFilter">Filter By Days</label><br>
-            <div id="days-checkboxes">
-              <input type="checkbox" id="monday" name="monday" value="Mo">
-              <label for="monday">Monday</label>
-              <input type="checkbox" id="tuesday" name="tuesday" value="Tu">
-              <label for="tuesday">Tuesday</label>
-              <input type="checkbox" id="wednesday" name="wednesday" value="We">
-              <label for="wednesday">Wednesday</label>
-              <input type="checkbox" id="thursday" name="thursday" value="Th">
-              <label for="thursday">Thursday</label>
-              <input type="checkbox" id="friday" name="friday" value="Fr">
-              <label for="friday">Friday</label>
-            </div>
-          </div>
+        <div id="subjects">
+          <label for="subject-dropdown">Subject:</label>
+          <select id="subject-dropdown">
+            <option value="default">Select a subject</option>
+            <!--Subjec options dynamically loaded in now-->
+          </select>
+        </div>
+        <section id="daysOfWeek-section">
+          <a href="#" id="daysOfWeek-activate" onclick="displayDaysOfWeek('show');">Filter by Days</a>
+          <container id="daysOfWeek-selector-container">
+            <a href="#" id="daysOfWeek-selector-header" onclick="displayDaysOfWeek('hide')">Stop Filtering by Days</a>
+            <container id="daysOfWeek-options-container">
+              <a href="#" id="Monday" class="dayOfWeek" onclick="daysOfWeekClick('Monday');">Monday</a>
+              <a href="#" id="Tuesday" class="dayOfWeek" onclick="daysOfWeekClick('Tuesday');">Tuesday</a>
+              <a href="#" id="Wednesday" class="dayOfWeek" onclick="daysOfWeekClick('Wednesday');">Wednesday</a>
+              <a href="#" id="Thursday" class="dayOfWeek" onclick="daysOfWeekClick('Thursday');">Thursday</a>
+              <a href="#" id="Friday" class="dayOfWeek" onclick="daysOfWeekClick('Friday');">Friday</a>
+            </container>
+          </container>
         </section>
-          
-      <a href="#" type="button" id="search-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">Search</a>
+        
+        <a href="#" type="button" id="search-button" onclick="getCourses()">Search</a>
       
       </section>
       <container id="search-results-container">

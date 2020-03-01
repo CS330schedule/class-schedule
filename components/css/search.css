@@ -2,13 +2,12 @@
 #search-section {
     flex: 1;
     border-right: 2px dashed gray;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .7fr;
-    grid-template-areas: 
-        "searchmenu"
-        "searchresults-container";
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
+
 /* Formatting for search header and menu */
 #search-title {
     color: #4E2A84;
@@ -18,6 +17,11 @@
 }
 #search-menu {
     grid-area: searchmenu;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 #search-inputs {
     display: flex;
@@ -33,39 +37,95 @@
     min-width: 420px;
     width: auto;
 }
-#days-of-week {
-    display: inline-block;
-    height: 55px;
-    vertical-align: middle;
+
+/* Formatting for days of week section */
+#daysOfWeek-section {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-#days-checkboxes {
-    display:none;
+#daysOfWeek-activate {
+    display: block;
+    height: 30px;
+    width: 200px;
+    line-height: 30px;
+    text-decoration: none;
+    border: 2px solid #4E2A84;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0, .1);
+    color: black;
 }
-#days-checkboxes > label{
-    padding-right: 5px;
+#daysOfWeek-selector-container {
+    height: 65px;
+    width: 480px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #4E2A84;
 }
+#daysOfWeek-selector-header {
+    width: 100%;
+    background-color: #4E2A84;
+    text-decoration: none;
+    color: white;
+}
+#daysOfWeek-options-container {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    border-radius: 0 0 5px 5px;
+}
+a.dayOfWeek{
+    padding: 0 10px 0 10px;
+    margin: 5px;
+    border-radius: 5px;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    background-color: lightgray;
+    color: black;
+}
+a.DOW-selected {
+    background-color:#90EE90;
+}
+/* End of days of week formatting */
+
+/* Search button formatting */
 #search-button {
+    width: fit-content;
     background-color: #4E2A84;
     color: white;
     text-decoration: none;
     padding: 5px 100px;
+    margin: 10px 0 10px 0;
+
     border-radius: 5px;
 }
 #search-button:hover {
     opacity: 0.8;
 }
+/* End of search button formatting */
+
 
 
 /* Formating for search results */
 #search-results-container {
     grid-area: searchresults-container;
+    flex-grow: 1;
     margin: 0px 5px 5px 5px;
     border: 2px solid gray;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     overflow:hidden;
-    
 }
 #search-results-container > h1 {
     height: 30px;
