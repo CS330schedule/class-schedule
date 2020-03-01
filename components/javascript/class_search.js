@@ -75,12 +75,14 @@ daysOfWeekClick = (dayString) => {
 
 ///// Load in courses based on search criteria /////
 const getCourses = () => {
-    let paramsDict = {'term':currentTerm, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':dayOfWeekString()};
+    let searchParams = {'term':currentTerm, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':dayOfWeekString()};
     let endpoints = "";
-    for (var key in paramsDict) {
+    // Handle case where user hasn't selected a subject
+    if (searchParams.subject == 'default') {alert('Please select a subject to search'); return;}
+    for (var key in searchParams) {
         // Check if key is meeting_days, in which case we only want to add if the DOW filter is active
         if (key != 'meeting_days' || document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
-            endpoints += `&${key}=${paramsDict[key]}`
+            endpoints += `&${key}=${searchParams[key]}`
         }
     }
     console.log(endpoints);
