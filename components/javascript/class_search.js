@@ -102,26 +102,23 @@ const showCourses = (dataFromServer) => {
         document.getElementById('search-results').innerHTML = '<p>No courses found that match your search criteria</p>'
     }
     for (course of currentSearchData) {
+        let course_card_template = `
+        <div id="${course.id}" class='search-card'>
+            <h1>${course.subject} ${course.catalog_num}</h1>
+            <p>${course.title}</p>
+            <p>${course.instructor}</p>`;
+
+        // Handles cases where start time not set 
+        // !IMPORTANT: Tab alignment necessary to ensure template tags line up properly
         if ((course.meeting_days == null) || (course.start_time == null) || (course.end_time == null)){
-            // Handle case where meeting times not set
-            document.getElementById('search-results').innerHTML += `
-            <div id="${course.id}" class='search-card'>
-                <h1>${course.subject} ${course.catalog_num}</h1>
-                <p>${course.title}</p>
-                <p>${course.instructor}</p>
-                <p>- Meeting times not provided -</p>
-            </div>
-            `;
+            course_card_template += `<p>Meeting Times TBA</p>
+        </div>`;
         } else {
-            document.getElementById('search-results').innerHTML += `
-            <div id='${course.id}' class='search-card'>
-                <h1>${course.subject} ${course.catalog_num}</h1>
-                <p>${course.title}</p>
-                <p>${course.instructor}</p>
-                <p>${course.meeting_days}  ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
-            </div>
-            `;
+            course_card_template += `<p>${course.meeting_days} &ensp; ${toAMPM(course.start_time)}-${toAMPM(course.end_time)}</p>
+        </div>`;
         }
+
+        document.getElementById('search-results').innerHTML += course_card_template;
     }
 }
 // Attach the onclick action for each of the search result cards
@@ -149,13 +146,41 @@ const getSearchDetails = (course_id) => {
 const displaySearchDetails = (dataFromServer) => {
     console.log(dataFromServer);
     let details = dataFromServer[0];
-    document.getElementById('search-details-content').innerHTML=`
-        <h1>${details.title}</h1>
-        <p>${details.subject} ${details.catalog_num} - Section ${details.section}</p>
-        <p>${details.instructor.name}</p>
-        <p>${details.meeting_days}  ${toAMPM(details.start_time)}-${toAMPM(details.end_time)}</p>
-        <p>${details.room.building_name} ${details.room.name}<p> 
-    `;
+    document.getElementById('search-details-title').innerHTML = `${details.subject} ${details.catalog_num}`;
+    details_content_template = `<h1>${details.title}</h1>
+        <p>${details.subject} ${details.catalog_num} - Section ${details.section} <br> ${details.instructor.name}</p>`;
+
+    // Handle case of no meeting times given
+    if ((details.meeting_days == null) || (details.start_time == null) || (details.end_time == null)){
+        details_content_template += `<p>Meeting Times TBA<br>`;
+    }else{
+        details_content_template += `<p>${details.meeting_days} &ensp; ${toAMPM(details.start_time)}-${toAMPM(details.end_time)}<br>`;
+    }
+    
+    // Handle case of no meeting location given
+    if ((details.room == null) || (details.room.building_name == "TBA")) {
+        details_content_template += `Meeting Location TBA</p>`;
+    }else{
+        details_content_template += `${details.room.building_name} ${details.room.name}</p>`;
+    }
+
+    // Add in other course details if they're available
+    if (details.attributes != null) {
+        // Need to trim because the attributes have two extra \n\n at the end for some reason
+        details_content_template += `<p>${details.attributes.trim()}</p>`;
+    }
+    if (details.overview != null) {
+        details_content_template += `<h2>Overview of class</h2>
+        <p>${details.overview}</p>`;
+    }
+    for (cd of details.course_descriptions) {
+        details_content_template += `<h2>${cd.name}</h2>
+        <p>${cd.desc}</p>`;
+    }
+
+    console.log(details_content_template);
+    document.getElementById('search-details-content').innerHTML = details_content_template;
+    document.getElementById('search-details-add-class').onclick = function() {addCourse(details.id)};
     document.getElementById('search-details-modal').style.display='block';
 }
 
@@ -166,3 +191,10 @@ window.onclick = function(event) {
     }
 }
 ///////////////////////////
+
+
+
+const addCourse = (courseID) => {
+    console.log('Add course with ID: ' + courseID);
+    document.getElementById('search-details-modal').style.display='none';
+}
