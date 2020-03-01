@@ -174,7 +174,7 @@ p #days-times{ grid-area: date; }
 /* Formatting for search details modal */
 #search-details-container {
     background-color: #fefefe;
-    margin: 100px 0 0 275px; /* 200px from the top left corner of screen */
+    margin: 100px 0 0 300px; /* 100x px from top, 300px from right*/
     width: 500px;
     height: auto;
     display: flex;
@@ -182,6 +182,11 @@ p #days-times{ grid-area: date; }
     flex-direction: column;
     border-radius: 5px;
     background-color: #4e2a84
+}
+@media screen and (max-width: 1000px) {
+    #search-details-container {
+        margin: 100px 0 0 50px;
+    }
 }
 #search-details-title {
     color: white;

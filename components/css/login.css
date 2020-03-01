@@ -28,6 +28,7 @@ input[type=text], input[type=password], select {
     border: none;
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     border-radius: 5px;
 }
 /* Add a hover effect for buttons */
@@ -44,6 +45,7 @@ input[type=text], input[type=password], select {
     border: none;
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     border-radius: 5px;
 }
 /* Add a hover effect for buttons */
