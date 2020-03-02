@@ -135,6 +135,6 @@ section.class-card:hover {
     flex-direction: row;
 }
 #calendar-section {
-    flex: 1;
+    flex: .6;
 }
 

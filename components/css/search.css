@@ -1,7 +1,6 @@
 /* Format the search section container */
 #search-section {
-    flex: 1;
-    border-right: 2px dashed gray;
+    flex: .4;
     height: 100%;
     display: flex;
     flex-direction: column;
