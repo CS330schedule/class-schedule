@@ -30,20 +30,20 @@ const populateSubjects = (dataFromServer) => {
 
 
 ////// Handles the filter by days functionality /////
-const showDayFilter = () => {
-    var checkboxes = document.getElementById('days-checkboxes');
-    if (document.getElementById('dayFilter').checked) {
-        checkboxes.style.display = "inline-block";
-    }
-    else {
-        checkboxes.style.display = "none";
-    }
-}
 const dayOfWeekString = () => {
     let dayString = "";
-    for (day of document.getElementsByClassName('dayOfWeek')) {
-        if (day.classList.contains('DOW-selected')) {
-            dayString += day.id.substring(0,2);
+    
+    if (!document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
+        // If day filter not active, return no days selected
+        dayString = 'noDaysSelected';
+    } else if (document.getElementsByClassName('DOW-selected').length == 0) {
+        // Filter active but no days were selected, so act as if filter is inactive
+        dayString = 'noDaysSelected';
+    } else {
+        for (day of document.getElementsByClassName('dayOfWeek')) {
+            if (day.classList.contains('DOW-selected')) {
+                dayString += day.id.substring(0,2);
+            }
         }
     }
     return dayString;
@@ -80,8 +80,9 @@ const getCourses = () => {
     // Handle case where user hasn't selected a subject
     if (searchParams.subject == 'default') {alert('Please select a subject to search'); return;}
     for (var key in searchParams) {
-        // Check if key is meeting_days, in which case we only want to add if the DOW filter is active
-        if (key != 'meeting_days' || document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
+        // Check if key is meeting_days, in which case we only want to add if the DOW filter is active and meeting string is not none
+        console.log(searchParams.meeting_days);
+        if (key != 'meeting_days' || searchParams.meeting_days != 'noDaysSelected') {
             endpoints += `&${key}=${searchParams[key]}`
         }
     }
