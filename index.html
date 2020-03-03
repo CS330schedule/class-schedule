@@ -13,47 +13,51 @@
   <link rel="stylesheet" href="components/css/search.css">  
   <link rel="stylesheet" href="components/css/calendar.css">
 
-  <title>Course Planner</title>  
-  <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
+  <title>Brutus.nu</title>  
+  <link rel="icon" href="./BrutusLogo.png" type="image/x-icon">
 </head>
 
 
 
 
 <body onload="loadSubjects()">
+  
 
-  <h1 id="title-section">
-    Brutus.nu
-  </h1>
-
-  <!-- Page header -->
-  <header id="index-header">
-    <a href="#" class="header-button" id="login" onclick="displayLogin()">
-      <p>Log In</p>
-    </a>
-    <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
-      <p>Sign up</p>
-    </a>
-    <div id="account-dropdown">
-      <a href="#" class="header-button account-button account_button" id="account">
-        <p>Welcome, account_username   &#9660</p>
+  <!-- Page Header -->
+  <header id="page-header">
+    <container id="title-container">
+      <img id="title-logo" src="BrutusLogo.png">
+      <h1 id="title-text">
+        Brutus.nu
+      </h1>
+    </container>
+    
+    <container id="index-header">
+      <a href="#" class="header-button" id="login" onclick="displayLogin()">
+        <p>Log In</p>
       </a>
-      <div id="dropdown-content-container" class="dropdown-content">
-        <a href="#" onclick="logout()">Log Out</a>
+      <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
+        <p>Sign up</p>
+      </a>
+      <div id="account-dropdown">
+        <a href="#" class="header-button account-button account_button" id="account">
+          <p>Welcome, account_username   &#9660</p>
+        </a>
+        <div id="dropdown-content-container" class="dropdown-content">
+          <a href="#" onclick="logout()">Log Out</a>
+        </div>
       </div>
-
-    </div>
-
+    </container>
   </header>
   <!-- End of page header -->
 
 
   <!-- Class selection sidebar-->
   <aside id="sidebar">
-    <h2> Major: </h2>
     <h2 id='major-header'>
       Undecided
     </h2>
+    <p>Log in to view your major requirements</p>
     <div id="class-container"></div>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
@@ -71,8 +75,8 @@
         <div id="subjects">
           <label for="subject-dropdown">Subject:</label>
           <select id="subject-dropdown">
-            <option value="default">Select a subject</option>
-            <!--Subjec options dynamically loaded in now-->
+            <option value="default" disabled selected>Select a subject</option>
+            <!--Subject options dynamically loaded in now-->
           </select>
         </div>
         <section id="daysOfWeek-section">
@@ -114,7 +118,7 @@
         <container id="time-19:00">7pm</container>
         <container id="time-20:00">8pm</container>
         <container id="time-21:00">9pm</container>
-        <container id="time-22:00">10pm</container>
+        <container id="time-22:00"class="cal-bottom">10pm</container>
       </section>
       <section id="cal-Monday" class="cal-DOW">
         <container id="Mo-title" class="cal-DOW-title">Monday</container>
@@ -132,7 +136,7 @@
         <container id="Mo-19:00"></container>
         <container id="Mo-20:00"></container>
         <container id="Mo-21:00"></container>
-        <container id="Mo-22:00"></container>
+        <container id="Mo-22:00" class="cal-bottom"></container>
       </section>
       <section id="cal-Tuesday" class="cal-DOW">
         <container id="Tu-title" class="cal-DOW-title">Tuesday</container>
@@ -150,7 +154,7 @@
         <container id="Tu-19:00"></container>
         <container id="Tu-20:00"></container>
         <container id="Tu-21:00"></container>
-        <container id="Tu-22:00"></container>
+        <container id="Tu-22:00" class="cal-bottom"></container>
       </section>
       <section id="cal-Wednesday" class="cal-DOW">
         <container id="We-title" class="cal-DOW-title">Wednesday</container>
@@ -168,7 +172,7 @@
         <container id="We-19:00"></container>
         <container id="We-20:00"></container>
         <container id="We-21:00"></container>
-        <container id="We-22:00"></container>
+        <container id="We-22:00" class="cal-bottom"></container>
       </section>
       <section id="cal-Thursday" class="cal-DOW">
         <container id="Th-title" class="cal-DOW-title">Thursday</container>
@@ -186,7 +190,7 @@
         <container id="Th-19:00"></container>
         <container id="Th-20:00"></container>
         <container id="Th-21:00"></container>
-        <container id="Th-22:00"></container>
+        <container id="Th-22:00" class="cal-bottom"></container>
       </section>
       <section id="cal-Friday" class="cal-DOW">
         <container id="Fr-title" class="cal-DOW-title">Friday</container>
@@ -204,7 +208,7 @@
         <container id="Fr-19:00"></container>
         <container id="Fr-20:00"></container>
         <container id="Fr-21:00"></container>
-        <container id="Fr-22:00"></container>
+        <container id="Fr-22:00" class="cal-bottom"></container>
       </section>
     </section>
 
@@ -219,9 +223,9 @@
 
       <header id="login-header">
         <div class="imgcontainer">
-          <img src="https://common.northwestern.edu/v8/icons/favicon-228.png" alt="Avatar" class="avatar" class="avatar">
+          <img src="BrutusLogo.png" alt="Avatar" class="avatar" class="avatar">
         </div>
-        <h1 id="login-header-text">Course Planner</h1>
+        <h1 id="login-header-text">Brutus.nu</h1>
       </header>
 
       <div class="container" id="login-body">
@@ -235,7 +239,7 @@
     
         <label for="major-selection" id="majors-selection-tag"><b>Major </b></label>
         <select id="majors-selection">
-          <option value="default">Select a Major</option>
+          <option value="default" disabled selected>Select a Major</option>
           <option value="Undecided">Undecided</option>
           <option value="Applied Mathematics">Applied Mathematics</option>
           <option value="Computer Science">Computer Science</option>

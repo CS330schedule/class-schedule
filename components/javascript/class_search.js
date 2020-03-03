@@ -14,12 +14,13 @@ let currentSearchData = [];
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
-    
-    fetch(corsAnywhereURL + baseSubjectURL+currentTerm)
+    console.log(baseSubjectURL+currentTerm)
+    fetch(baseSubjectURL+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
 }
 const populateSubjects = (dataFromServer) => {
+    console.log(dataFromServer);
     subjectDropdown = document.getElementById('subject-dropdown');
     for (subject of dataFromServer) {
         let optionTemplate = `<option value=${subject.symbol}>${subject.symbol} - ${subject.name}</option>`;
@@ -87,7 +88,7 @@ const getCourses = () => {
         }
     }
     console.log(endpoints);
-    fetch(corsAnywhereURL + baseCourseURL+endpoints)
+    fetch(baseCourseURL+endpoints)
         .then(response => response.json())
         .then(showCourses)
         .then(attachSearchReultsClickHandler);
@@ -147,6 +148,7 @@ const showCourses = (dataFromServer) => {
         }
 
         document.getElementById('search-results').innerHTML += course_card_template;
+        document.getElementById('search-results-container').style.display = 'flex';
     }
 }
 // Attach the onclick action for each of the search result cards
@@ -164,7 +166,7 @@ const attachSearchReultsClickHandler = () => {
 ///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
 const getSearchDetails = (course_id) => {
-    fetch(corsAnywhereURL + baseDetailsURL+course_id)
+    fetch(baseDetailsURL+course_id)
         .then(response => response.json())
         .then(displaySearchDetails);
 }
