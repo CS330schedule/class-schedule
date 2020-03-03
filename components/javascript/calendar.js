@@ -8,7 +8,7 @@ const timeToNum = {
 
 const courses = {}; // id of course: description of course
 
-const addCourse = (desc) => {
+const addCourseToCal = (desc) => {
     courses.put(desc.id, desc);
     createCalCell(desc);
 }
