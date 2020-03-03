@@ -14,8 +14,8 @@ let currentSearchData = [];
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
-    console.log(baseSubjectURL+currentTerm)
-    fetch(baseSubjectURL+currentTerm)
+    console.log(corsAnywhereURL + baseSubjectURL+currentTerm)
+    fetch(corsAnywhereURL + baseSubjectURL+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
 }
@@ -88,7 +88,7 @@ const getCourses = () => {
         }
     }
     console.log(endpoints);
-    fetch(baseCourseURL+endpoints)
+    fetch(corsAnywhereURL + baseCourseURL+endpoints)
         .then(response => response.json())
         .then(showCourses)
         .then(attachSearchReultsClickHandler);
@@ -166,7 +166,7 @@ const attachSearchReultsClickHandler = () => {
 ///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
 const getSearchDetails = (course_id) => {
-    fetch(baseDetailsURL+course_id)
+    fetch(corsAnywhereURL + baseDetailsURL+course_id)
         .then(response => response.json())
         .then(displaySearchDetails);
 }
