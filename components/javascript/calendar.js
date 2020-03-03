@@ -39,7 +39,7 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
     // makes a class-cell
     // change background color
     let template = `
-    <div style='background-color:blue; height:calc(${end}px-${start}px); width:calc((((100% - 250px) * .6) - 64px) / 5); display:fixed; top:${start}px' class='class-cell' id=${desc.id}>
+    <div style='background-color:blue; height:calc(${end}px-${start}px); position:absolute; top:${start}px'; left:0; right:0; class='class-cell' id=${desc.id}>
         <p>${desc.start_time} - ${desc.end_time}</p>
         <p>${desc.subject} ${desc.catalog_num}</p>
     </div>

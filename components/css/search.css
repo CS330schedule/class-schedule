@@ -1,11 +1,13 @@
 /* Format the search section container */
 #search-section {
-    flex: 1;
-    border-right: 2px dashed gray;
-    height: 100%;
+    flex: .4;
+    height: calc(100%-20px);
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px;  
 }
 
 /* Formatting for search header and menu */
@@ -35,7 +37,7 @@
 #subject-dropdown{
     /*min-width used to prevent most instances of resizing after loading*/
     min-width: 420px;
-    width: auto;
+    width: auto
 }
 
 /* Formatting for days of week section */
@@ -121,17 +123,21 @@ a.DOW-selected {
     grid-area: searchresults-container;
     flex-grow: 1;
     margin: 0px 5px 5px 5px;
-    border: 2px solid gray;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     overflow:hidden;
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    display: none;
 }
 #search-results-container > h1 {
     height: 30px;
     line-height: 30px;
     margin: 0px;
     background-color: rgb(0, 0, 0, .2);
+    display: none;
 }
 #search-results {
     height: 100%;
@@ -149,6 +155,7 @@ a.DOW-selected {
     margin: 4px 4px 0px 4px;
     border: 1px solid gray;
     padding: 10px;
+    border-radius: 5px;
 }
 .search-card h1{
     grid-area: head;

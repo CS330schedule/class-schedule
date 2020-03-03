@@ -14,12 +14,13 @@ let currentSearchData = [];
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
-    
-    fetch(corsAnywhereURL + baseSubjectURL+currentTerm)
+    console.log(baseSubjectURL+currentTerm)
+    fetch(baseSubjectURL+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
 }
 const populateSubjects = (dataFromServer) => {
+    console.log(dataFromServer);
     subjectDropdown = document.getElementById('subject-dropdown');
     for (subject of dataFromServer) {
         let optionTemplate = `<option value=${subject.symbol}>${subject.symbol} - ${subject.name}</option>`;
@@ -30,20 +31,20 @@ const populateSubjects = (dataFromServer) => {
 
 
 ////// Handles the filter by days functionality /////
-const showDayFilter = () => {
-    var checkboxes = document.getElementById('days-checkboxes');
-    if (document.getElementById('dayFilter').checked) {
-        checkboxes.style.display = "inline-block";
-    }
-    else {
-        checkboxes.style.display = "none";
-    }
-}
 const dayOfWeekString = () => {
     let dayString = "";
-    for (day of document.getElementsByClassName('dayOfWeek')) {
-        if (day.classList.contains('DOW-selected')) {
-            dayString += day.id.substring(0,2);
+    
+    if (!document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
+        // If day filter not active, return no days selected
+        dayString = 'noDaysSelected';
+    } else if (document.getElementsByClassName('DOW-selected').length == 0) {
+        // Filter active but no days were selected, so act as if filter is inactive
+        dayString = 'noDaysSelected';
+    } else {
+        for (day of document.getElementsByClassName('dayOfWeek')) {
+            if (day.classList.contains('DOW-selected')) {
+                dayString += day.id.substring(0,2);
+            }
         }
     }
     return dayString;
@@ -80,13 +81,14 @@ const getCourses = () => {
     // Handle case where user hasn't selected a subject
     if (searchParams.subject == 'default') {alert('Please select a subject to search'); return;}
     for (var key in searchParams) {
-        // Check if key is meeting_days, in which case we only want to add if the DOW filter is active
-        if (key != 'meeting_days' || document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
+        // Check if key is meeting_days, in which case we only want to add if the DOW filter is active and meeting string is not none
+        console.log(searchParams.meeting_days);
+        if (key != 'meeting_days' || searchParams.meeting_days != 'noDaysSelected') {
             endpoints += `&${key}=${searchParams[key]}`
         }
     }
     console.log(endpoints);
-    fetch(corsAnywhereURL + baseCourseURL+endpoints)
+    fetch(baseCourseURL+endpoints)
         .then(response => response.json())
         .then(showCourses)
         .then(attachSearchReultsClickHandler);
@@ -146,6 +148,7 @@ const showCourses = (dataFromServer) => {
         }
 
         document.getElementById('search-results').innerHTML += course_card_template;
+        document.getElementById('search-results-container').style.display = 'flex';
     }
 }
 // Attach the onclick action for each of the search result cards
@@ -163,7 +166,7 @@ const attachSearchReultsClickHandler = () => {
 ///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
 const getSearchDetails = (course_id) => {
-    fetch(corsAnywhereURL + baseDetailsURL+course_id)
+    fetch(baseDetailsURL+course_id)
         .then(response => response.json())
         .then(displaySearchDetails);
 }

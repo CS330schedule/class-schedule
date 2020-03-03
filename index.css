@@ -2,51 +2,70 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 body {
     overflow: scroll;
     margin: 0px;
     display: grid;
     grid-template-columns: 250px calc(100% - 250px);
-    grid-template-rows: 50px calc(100% - 50px);
+    grid-template-rows: 60px calc(100% - 60px);
     grid-template-areas:
-        "greeting header"
+        "header header"
         "left main";
     height: 100vh;
     overflow: hidden;
+    background-color: rgba(0,0,0,0.0);
 }
 
 /* Remove the major information for small screens */
 @media screen and (max-width: 1000px) {
     body {
         grid-template-areas:
-            "greeting header"
+            "header header"
             "main main";
     }
 }
+#page-header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+}
 
 aside, #index-header{
-    font-family: 'Roboto', sans-serif;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
-#title-section{
-    background-color: #4E2A84;
-    margin: 0px;
+#title-logo{
     height: 50px;
-    padding: 10px 10px;
-    color: white;
+    border-radius: 5px;
+}
+
+#title-container {
+    margin: 0px;
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#title-text{
+    margin: 0px;
+    height: 60px;
+    padding: 10px;
+    color: #4E2A84;
+    font-size: 40px;
 }
 #index-header{
-    grid-area: header;
-    background-color: #4E2A84;
-    height: 50px;
+    height: 60px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: flex-end;
+    flex-grow: 1;
 }
 #index-header h1 {
     display: flex;
@@ -57,6 +76,8 @@ aside, #index-header{
     height: 50px;
     width: 100px;
     background-color: #4E2A84;
+    margin: 5px 10px 5px 0px;
+    border-radius: 5px;
     color: white;
     text-decoration: none;
 }
@@ -65,7 +86,7 @@ aside, #index-header{
     padding-left: 20px;
     padding-right: 20px;
 }
-header .header-button {
+#index-header .header-button {
     align-content: center;
     justify-content: center;
 }
@@ -78,35 +99,47 @@ header .header-button {
 #dropdown-content-container {
     display: none;
     position: absolute;
-    right: 10px;
-    background-color: #f0f0f0;
+    right: 15px;
+    margin-top: -5px;
+    background-color: #4E2A84;
+    border-radius: 0 0 5px 5px;
     width: 120px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+    box-shadow: 0 8px 16px 0 rgba(194,194,194,1);
     z-index: 1;
 }
 #account-dropdown:hover #dropdown-content-container{
     display: block;
 }
 .dropdown-content a{
-    color: black;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
+    border-radius: 0 0 5px 5px;
     text-align: center;
     display: block;
-    background-color:#eee;
 }
-#dropdown-content-container > a:hover{
-    background-color: #999;
+#dropdown-content-container:hover{
+    background-color: rgb(131, 110, 170);
+    border-radius: 5px;
 }
 
 
 aside {
     background-color: white;
     grid-area: left;
-    border-right: solid 1px black;
+    border-radius: 5px;
+    margin:15px;
+    margin-right: 0px;
+    -webkit-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+    box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+
 }
 aside h2{
-    padding-left: 10px;
+    padding: 5px;
+    margin: 0px;
+    text-align: center;
+    color: #4E2A84;
 }
 aside h3 {
     font-weight: lighter;
@@ -133,8 +166,11 @@ section.class-card:hover {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-}
-#calendar-section {
-    flex: 1;
+    margin: 15px;
+    margin-left: 20px;
+    -webkit-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+    box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
+    border-radius: 5px;
 }
 
