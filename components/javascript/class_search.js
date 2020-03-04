@@ -239,6 +239,8 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
                 detailsButton.style.display = 'none';
             } else {
                 // Attach onclick event to add class to calendar
+                
+                detailsButton.innerHTML = 'Add class to schedule'
                 detailsButton.onclick = function() {addCourse()};
             }
             break;
@@ -284,6 +286,19 @@ const addCourse = () => {
 
 // Adds the course to the calendar
 const addCourseToCal = (desc) => {
+
+    let newStartPos = getPositionCal(desc.end_time);
+    let newEndPos = getPositionCal(desc.end_time);
+
+    for (val of Object.values(courses)) {
+        console.log(val);
+        console.log(val['startPos']);
+        if (((newEndPos - val['startPos']) >= 0) && ((val['endPos'] - newStartPos) >= 0)) {
+            alert('This class cannot be added because it conflicts with a class already in the calendar');
+            return;
+        }
+    }
+
     // Creates the Calendar Cells
     let calTemplate = createCalCell(desc);
     
@@ -377,6 +392,7 @@ const displayCalDetails = (id) => {
 }
 
 const removeCourse = (courseID) => {
+    delete courses[courseID];
     removeCalCell(courseID);
     document.getElementById('search-details-modal').style.display = 'none';
 }
