@@ -46,7 +46,6 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
         <p>${desc.subject} ${desc.catalog_num}</p>
     </div>
     `;
-    `;
 
     // gets which days to put in
     let days = [];
