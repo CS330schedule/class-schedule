@@ -4,6 +4,12 @@ const timeToNum = {
     '18:30': 22,'19:00': 23,'19:30': 24,'20:00': 25,'20:30':26,'21:00':27,'21:30':28
 };
 
+const endTimeToNum = {
+    '08:50': 3,'09:20': 4,'09:50': 5,'10:20': 6,'10:50': 7,'11:20': 8,'11:50': 9,'12:20': 10,'12:50': 11,
+    '13:20': 12,'13:50': 13,'14:20': 14,'14:50': 15,'15:20': 16,'15:50': 17,'16:20': 18,'16:50': 19,'17:20': 20,'17:50': 21,
+    '18:20': 22,'18:20': 23,'19:20': 24,'19:50': 25,'20:20':26,'20:50':27,'21:20':28
+}
+
 
 
 const courses = {}; // id of course: description of course
@@ -26,11 +32,6 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
         return;
     }
 
-    console.log('1');
-    // also, there are apparently very few classes that start/end on :15
-    let start = '((100% - 30px)/28) * ${timeToNum[desc.start_time]}';
-    let end   = '((100% - 30px)/28) * ${timeToNum[desc.end_time]}';
-
     // if it was removed before
     document.getElementsByTagName('head')[0].innerHTML += `
     <style>
@@ -44,7 +45,7 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
     // makes a class-cell
     // change background color
     let template = `
-    <div style='background-color:blue; height:calc(${end}px-${start}px); position:absolute; top:${start}px'; left:0; right:0; class='class-cell' id=${desc.id}>
+    <div style='background-color:blue; height:calc(((100% - 30px) / 30) * (${endTimeToNum[desc.end_time]} - ${timeToNum[desc.start_time]})); position:absolute; top:calc((((100% - 25px) / 30) * ${timeToNum[desc.start_time]}) + 5px)'; left:0; right:0; class='class-cell' id=${desc.id}>
         <p>${desc.start_time} - ${desc.end_time}</p>
         <p>${desc.subject} ${desc.catalog_num}</p>
     </div>
