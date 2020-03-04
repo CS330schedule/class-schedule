@@ -10,8 +10,11 @@ const baseDetailsURL = "http://api.asg.northwestern.edu/courses/details/?key=eQS
 // Code for the current course term
 const currentTerm = 4760;  // Fall 2019 is most recent data in the API
 
+// Stores results of currrently returned search result data
 let currentSearchData = [];
+// Stores data of currently viewed course description
 let currentCourseData;
+
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
@@ -158,7 +161,7 @@ const attachSearchReultsClickHandler = () => {
     for (r of results) {
         // Pass course_id into the search details modal for querying the server and getting information
         let course_id = r.id;
-        r.onclick = function(){getSearchDetails(course_id);}
+        r.onclick = function(){getSearchDetails(course_id, 0);}
     }
 }
 ///////////////////////////
@@ -166,17 +169,24 @@ const attachSearchReultsClickHandler = () => {
 
 ///// Handles displaying the search details modal when click on search result /////
 // Retrieve search details from the server
-const getSearchDetails = (course_id) => {
-    fetch(corsAnywhereURL + baseDetailsURL+course_id)
-        .then(response => response.json())
-        .then(displaySearchDetails);
+const getSearchDetails = (course_id, formatCode) => {
+    // Check if we already have the data stored, otherwise make a fetch request
+    if (courses[course_id] != undefined) {
+        displaySearchDetails(courses[course_id]['details'], formatCode)
+    } else {
+        fetch(corsAnywhereURL + baseDetailsURL+course_id)
+            .then(response => response.json())
+            .then(function(response) {
+                displaySearchDetails(response[0], formatCode)});
+    }
 }
 
 // Populate and display the search details modal
-const displaySearchDetails = (dataFromServer) => {
+const displaySearchDetails = (dataFromServer, formatCode) => {
+    // formatCode indicates which way we should format the modal
     console.log(dataFromServer);
-    currentCourseData = dataFromServer[0];
-    let details = dataFromServer[0];
+    currentCourseData = dataFromServer;
+    let details = dataFromServer;
     document.getElementById('search-details-title').innerHTML = `${details.subject} ${details.catalog_num}`;
     details_content_template = `<h1>${details.title}</h1>
         <p>${details.subject} ${details.catalog_num} - Section ${details.section} <br> ${details.instructor.name}</p>`;
@@ -184,8 +194,13 @@ const displaySearchDetails = (dataFromServer) => {
     // Handle case of no meeting times given
     if ((details.meeting_days == null) || (details.start_time == null) || (details.end_time == null)){
         details_content_template += `<p>Meeting Times TBA<br>`;
+        // Meeting times unknown so can't add to calendar
+        document.getElementById('search-details-add-class').style.display = 'none';
     }else{
         details_content_template += `<p>${details.meeting_days} &ensp; ${toAMPM(details.start_time)}-${toAMPM(details.end_time)}<br>`;
+        // Meeting times known so can add to calendar
+        document.getElementById('search-details-add-class').onclick = function() {addCourse()};
+        document.getElementById('search-details-add-class').style.display = 'block';
     }
     
     // Handle case of no meeting location given
@@ -209,11 +224,32 @@ const displaySearchDetails = (dataFromServer) => {
         <p>${cd.desc}</p>`;
     }
 
+    // Format it as if we clicked from the search results
     console.log(details_content_template);
     // Insert information into the search-details-content section
     document.getElementById('search-details-content').innerHTML = details_content_template;
-    // Attach onclick event to add class to calendar
-    document.getElementById('search-details-add-class').onclick = function() {addCourse(details.id)};
+
+    let detailsButton = document.getElementById('search-details-add-class');
+
+    switch (formatCode) {
+        case 0:
+            // Format for click from search results
+            if (courses[details.id] != undefined) {
+                // Class already in calendar so don't display option to add again
+                detailsButton.style.display = 'none';
+            } else {
+                // Attach onclick event to add class to calendar
+                detailsButton.onclick = function() {addCourse()};
+            }
+            break;
+        case 1:
+            // Format for click from calendar view
+            detailsButton.innerHTML = 'Remove class from schedule'
+            detailsButton.onclick = function() {removeCourse(details.id)}
+            break;
+    }
+
+    
     // Display the modal
     document.getElementById('search-details-modal').style.display='block';
 }
@@ -228,97 +264,128 @@ window.onclick = function(event) {
 
 
 
-const addCourse = (courseID) => {
+///////////////////////////////////////////////
+///////////// Calendar Javascript /////////////
+///////////////////////////////////////////////
+
+// Stores the current courses displayed in the calendar
+const courses = {};
+
+// Array of possible display colors
+const colors = ['#66CDAA', '#DC143C', '#FF8C00', '#228B22', '#F0E68C', '#4169E1', '#8FBC8F'];
+
+// Adds a course from the search details modal
+const addCourse = () => {
+    // Add the course to the calendar
     addCourseToCal(currentCourseData);
-    console.log('Add course with ID: ' + courseID);
-    document.getElementById('search-details-modal').style.display='none';
+    // Hide the search details modal once class added to calendar
+    document.getElementById('search-details-modal').style.display = 'none';
 }
 
-
-const timeToNum = {
-    '08:00': 1,'08:30': 2,'09:00': 3,'09:30': 4,'10:00': 5,'10:30': 6,'11:00': 7,'11:30': 8,'12:00': 9,'12:30': 10,'13:00': 11,
-    '13:30': 12,'14:00': 13,'14:30': 14,'15:00': 15,'15:30': 16,'16:00': 17,'16:30': 18,'17:00': 19,'17:30': 20,'18:00': 21,
-    '18:30': 22,'19:00': 23,'19:30': 24,'20:00': 25,'20:30':26,'21:00':27,'21:30':28
-};
-
-
-
-const courses = {}; // id of course: description of course
-
+// Adds the course to the calendar
 const addCourseToCal = (desc) => {
-    courses[desc.id] = desc
-    //courses.push(desc.id, desc);
-    createCalCell(desc);
-}
-
-const removeCourse = (desc) => {
-    courses.delete(desc.id);
-    removeCalCell(desc.id);
-}
-
-const createCalCell = (desc) => { // need to add the document.whatever stuff
-    console.log(desc);
-    if (desc.start_time == null){ // should do something about this
-        console.log('yup')
-        return;
-    }
-
-    console.log('1');
-    // also, there are apparently very few classes that start/end on :15
-    let start = '((100% - 30px)/28) * ${timeToNum[desc.start_time]}';
-    let end   = '((100% - 30px)/28) * ${timeToNum[desc.end_time]}';
-
-    // if it was removed before
-    document.getElementsByTagName('head')[0].innerHTML += `
-    <style>
-    .${desc.id} {
-        display:block;
-    }
-    </style>
-    `;
-
-    console.log('2');
-    // makes a class-cell
-    // change background color
-    let template = `
-    <div style='background-color:blue; height:calc(${end}px-${start}px); position:absolute; top:${start}px'; left:0; right:0; class='class-cell' id=${desc.id}>
-        <p>${desc.start_time} - ${desc.end_time}</p>
-        <p>${desc.subject} ${desc.catalog_num}</p>
-    </div>
-    `;
-
-    // gets which days to put in
-    let days = [];
+    // Creates the Calendar Cells
+    let calTemplate = createCalCell(desc);
+    
+    // Add the template to each day that the class is on
     for (let i = 0; i < desc.meeting_days.length; i+=2){
+        // Add 
         if (desc.meeting_days.substring(i, i+2) == 'Mo'){
-            days.push('cal-Monday');
+            document.getElementById('cal-Monday').innerHTML += calTemplate;
         }
         if (desc.meeting_days.substring(i, i+2) == 'Tu'){
-            days.push('cal-Tuesday');
+            document.getElementById('cal-Tuesday').innerHTML += calTemplate;
         }
         if (desc.meeting_days.substring(i, i+2) == 'We'){
-            days.push('cal-Wednesday');
+            document.getElementById('cal-Wednesday').innerHTML += calTemplate;
         }
         if (desc.meeting_days.substring(i, i+2) == 'Th'){
-            days.push('cal-Thursday');
+            document.getElementById('cal-Thursday').innerHTML += calTemplate;
         }
         if (desc.meeting_days.substring(i, i+2) == 'Fr'){
-            days.push('cal-Friday');
+            document.getElementById('cal-Friday').innerHTML += calTemplate;
         }
     }
-    console.log('5');
-    for (let i = 0; i < days.length; i++){
-        document.getElementById(days[i]).innerHTML += template;
+
+    // Add this course to the array holding the courses currently displayed in the calendar
+    courses[desc.id] = {'details': desc, 
+                        'startPos': getPositionCal(desc.start_time), 
+                        'endPos': getPositionCal(desc.end_time)};
+
+    // Add onclick function to class in calendar
+    console.log(desc.id.toString());
+    console.log(document.getElementsByClassName(desc.id));
+    for (calClass of document.getElementsByClassName(desc.id)) {
+        calClass.onclick = function () {displayCalDetails(desc.id)};
     }
+    
+}
+
+// Creates a cell in the calendar
+const createCalCell = (desc) => {
+    // Template for class cell
+    let template = `
+    <a href='#'
+        style='
+            background-color:${getBackgroundColorCal()}; 
+            height:calc(((100% - 30px) / 15) * ${getHeightCal(desc.start_time, desc.end_time)}); 
+            position:absolute; 
+            top:calc(30px + ((100% - 30px) / 15) * ${getPositionCal(desc.start_time)}); 
+            left:1px; 
+            right:5px;' 
+        class='class-cell ${desc.id}'>
+        <p>${toAMPM(desc.start_time)} - ${toAMPM(desc.end_time)}</p>
+        <p class='cal-class-title'>${desc.subject} ${desc.catalog_num}</p>
+    </container>
+    `;
+
+    console.log(template);
+    return template;    
+}
+
+// Calculate the height/position units for placement on the calendar
+// Height units returned in terms of hours //
+    // IE: class of 50 minute length will return 0.8333...
+    //     class of 90 minute length will return 1.5
+const getPositionCal = (startTime) => {
+    let startSplit = startTime.split(':')
+    let startHours = (+startSplit[0]) + ((+startSplit[1])/60);
+    return (startHours - 8)
+}
+
+const getHeightCal = (startTime, endTime) => {
+    let startSplit = startTime.split(':')
+    let endSplit = endTime.split(':')
+    let startHours = (+startSplit[0]) + ((+startSplit[1])/60);
+    let endHours = (+endSplit[0]) + ((+endSplit[1])/60);
+    return (endHours - startHours);
+}
+///////////////////////////
+
+
+const getBackgroundColorCal = () => {
+    console.log(Object.keys(courses).length);
+    console.log(colors.length);
+    console.log((courses.length % colors.length));
+    return colors[(Object.keys(courses).length % colors.length)];
+}
+
+
+const displayCalDetails = (id) => {
+    console.log('Display class with id: ' + id);
+    getSearchDetails(id, 1);
+}
+
+const removeCourse = (courseID) => {
+    removeCalCell(courseID);
+    document.getElementById('search-details-modal').style.display = 'none';
 }
 
 const removeCalCell = (id) => {
-    // DOES NOT REMOVE THE HTML. it sets it to display:none
-    document.getElementsByTagName('head')[0].innerHTML += `
-    <style>
-    .${id} {
-        display:none;
+    // Removes the class from the calendar
+    console.log(document.getElementsByClassName(id));
+    calClasses = document.getElementsByClassName(id);
+    while (calClasses.length) {
+        calClasses[0].remove();
     }
-    </style>
-    `;
 }

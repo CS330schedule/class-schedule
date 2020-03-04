@@ -1,18 +1,15 @@
+/* Formatting of the whole calendar section */
 #calendar-section {
     flex: .6;
     display: flex;
     flex-direction: row;
     margin-left: 10px;
     border-radius: 5px;
-    background-color: white;
 }
-.cal-DOW {
-    width: 20%;
-    border-left: 2px solid rgb(0, 0, 0, .2);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+
+
+
+/* Formatting of the time column */
 #cal-Times {
     min-width: 50px;
     max-width: 50px;
@@ -22,8 +19,18 @@
     border-bottom: none;
 }
 
+
+
+/* Formatting of the days of week columns */
+.cal-DOW {
+    width: 20%;
+    border-left: 2px solid rgb(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
 .cal-DOW > container {
-    height: 7.14%;
+    height: calc((100% - 30px) / 15);
     border-bottom: 1px solid rgb(0, 0, 0, .2);
 }
 .cal-DOW > container.cal-bottom {
@@ -32,4 +39,27 @@
 container.cal-DOW-title {
     line-height: 30px;
     height: 30px;
+}
+
+
+
+/* Formatting of individual classes on calendar */
+a.class-cell {
+    border-radius: 5px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: white;
+}
+a.class-cell p {
+    margin: 0px;
+    padding: 2px 0 0 3px;
+    text-align: left;
+}
+.cal-class-title {
+    padding-top: 10px;
+    height: auto;
+    flex: 1;
+    font-weight: bold;
 }

@@ -173,6 +173,7 @@ p #instructor{ grid-area: inst; }
 p #days-times{ grid-area: date; }
 .search-card:hover{
     background-color: #eee;
+    cursor: pointer;
 }
 
 

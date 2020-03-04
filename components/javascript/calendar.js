@@ -9,7 +9,8 @@ const timeToNum = {
 const courses = {}; // id of course: description of course
 
 const addCourseToCal = (desc) => {
-    courses.put(desc.id, desc);
+    courses[desc.id] = desc
+    //courses.push(desc.id, desc);
     createCalCell(desc);
 }
 
@@ -19,10 +20,13 @@ const removeCourse = (desc) => {
 }
 
 const createCalCell = (desc) => { // need to add the document.whatever stuff
+    console.log(desc);
     if (desc.start_time == null){ // should do something about this
+        console.log('yup')
         return;
     }
 
+    console.log('1');
     // also, there are apparently very few classes that start/end on :15
     let start = '((100% - 30px)/28) * ${timeToNum[desc.start_time]}';
     let end   = '((100% - 30px)/28) * ${timeToNum[desc.end_time]}';
@@ -36,6 +40,7 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
     </style>
     `;
 
+    console.log('2');
     // makes a class-cell
     // change background color
     let template = `
@@ -64,6 +69,7 @@ const createCalCell = (desc) => { // need to add the document.whatever stuff
             days.push('cal-Friday');
         }
     }
+    console.log('5');
     for (let i = 0; i < days.length; i++){
         document.getElementById(days[i]).innerHTML += template;
     }
