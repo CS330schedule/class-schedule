@@ -50,6 +50,8 @@ function logout() {
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
     document.getElementById("account-dropdown").style.display="none";
+    document.getElementById('login-major').style.display = "block";
+
   }
   return;
 }
@@ -68,30 +70,26 @@ function readLoginFields() {
 
 function tryLogin(name, pass) {
   for (user of users) {
-    if (user.username == name) {
-      if (user.password != pass) {
-        // Incorrect password for this username
-        alert("Incorrect username or password.");
-        resetForm(1);
-        return; 
-      } else {
-        // Correct credentials ==> log in
-        activeUser = user;
-        //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
-        document.getElementById("signup").style.display = "none";
-        document.getElementById("login").style.display = "none";
-        document.getElementById("account-dropdown").style.display = "inline-block";
-        updateClasses();
-        document.getElementById('id01').style.display = "none";
-        resetForm(0);
-        return;
-      }
+    if (user.username != name || user.password != pass) {
+      // Incorrect username or password
+      // Not specific to username or password for security reasons
+      alert("Incorrect username or password");
+      resetForm(1);
+      return; 
+    } else {
+      // Correct credentials ==> log in
+      activeUser = user;
+      //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
+      document.getElementById("signup").style.display = "none";
+      document.getElementById("login").style.display = "none";
+      document.getElementById("account-dropdown").style.display = "inline-block";
+      updateClasses();
+      document.getElementById('id01').style.display = "none";
+      resetForm(0);
+      return;
+      
     }
   }
-  // Iterated over all users and no user with this username found
-  alert("Username not found. Please sign up and create an account to continue.");
-  resetForm(1);
-  return;
 }
 ////////////////////////////////
 
@@ -174,6 +172,7 @@ function resetForm(resetCode) {
 ///// Updates the classes displayed on the sidebar based on activeUser /////
 function updateClasses() {
   document.getElementById('account').innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`;
+  document.getElementById('login-major').style.display = "none";
   document.getElementById('major-header').innerHTML = activeUser.major;
   if (activeUser.major == "Undecided"){
     document.getElementById('class-container').innerHTML = ``;

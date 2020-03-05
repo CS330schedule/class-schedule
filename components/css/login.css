@@ -28,6 +28,7 @@ input[type=text], input[type=password], select {
     border: none;
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     border-radius: 5px;
 }
 /* Add a hover effect for buttons */
@@ -44,6 +45,7 @@ input[type=text], input[type=password], select {
     border: none;
     cursor: pointer;
     width: 100%;
+    white-space: nowrap;
     border-radius: 5px;
 }
 /* Add a hover effect for buttons */
@@ -124,13 +126,12 @@ span.psw {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
 }
 
 /* Modal Content/Box */
-.modal-content {
+form.modal-content {
     background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
+    margin: 20vh auto; /* 30% from the top and centered */
     border: 1px solid #888;
     width: 400px;
     display: grid;
@@ -141,7 +142,7 @@ span.psw {
 }
 
 /* The Close Button */
-.close {
+#login-modal-close {
 /* Position it in the top right corner outside of the modal */
     position: fixed;
     margin-top: -15px;
@@ -158,8 +159,8 @@ span.psw {
 }
 
 /* Close button on hover */
-.close:hover, 
-.close:focus {
+#login-modal-close:hover, 
+#login-modal-close:focus {
     color: red;
     cursor: pointer;
 }

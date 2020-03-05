@@ -1,23 +1,29 @@
-
+/* Format the search section container */
 #search-section {
-    flex: 1;
-    border-right: 2px dashed gray;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: .3fr .7fr;
-    grid-template-areas: 
-        "searchmenu"
-        "searchresults-container";
+    flex: .4;
+    height: calc(100%-20px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 5px;
+    background-color: white;
+    margin: 10px;  
 }
+
+/* Formatting for search header and menu */
 #search-title {
     color: #4E2A84;
     font-size: 25px;
     margin: 0px;
     margin-top: 5px;
 }
-
 #search-menu {
     grid-area: searchmenu;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 #search-inputs {
     display: flex;
@@ -29,58 +35,119 @@
     white-space: nowrap;
 }
 #subject-dropdown{
+    /*min-width used to prevent most instances of resizing after loading*/
+    min-width: 420px;
+    width: auto
+}
+
+/* Formatting for days of week section */
+#daysOfWeek-section {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#daysOfWeek-activate {
+    display: block;
+    height: 30px;
+    width: 200px;
+    line-height: 30px;
+    text-decoration: none;
+    border: 2px solid #4E2A84;
+    border-radius: 5px;
+    background-color: rgb(0, 0, 0, .1);
+    color: black;
+}
+#daysOfWeek-selector-container {
+    height: 65px;
+    width: 480px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid #4E2A84;
+}
+#daysOfWeek-selector-header {
+    width: 100%;
+    background-color: #4E2A84;
+    text-decoration: none;
+    color: white;
+}
+#daysOfWeek-options-container {
+    height: 100%;
     width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    border-radius: 0 0 5px 5px;
 }
-#days-of-week {
-    display: inline-block;
-    height: 55px;
-    vertical-align: middle;
+a.dayOfWeek{
+    padding: 0 10px 0 10px;
+    margin: 5px;
+    border-radius: 5px;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
+    text-decoration: none;
+    background-color: lightgray;
+    color: black;
 }
-#days-checkboxes {
-    display:none;
+a.DOW-selected {
+    background-color:#90EE90;
 }
-#days-checkboxes > label{
-    padding-right: 5px;
-}
+/* End of days of week formatting */
+
+/* Search button formatting */
 #search-button {
+    width: fit-content;
     background-color: #4E2A84;
     color: white;
     text-decoration: none;
     padding: 5px 100px;
+    margin: 10px 0 10px 0;
+
     border-radius: 5px;
 }
 #search-button:hover {
-    background-color: #5F3b95;
+    opacity: 0.8;
 }
+/* End of search button formatting */
 
 
 
+/* Formating for search results */
 #search-results-container {
     grid-area: searchresults-container;
+    flex-grow: 1;
     margin: 0px 5px 5px 5px;
-    border: 2px solid gray;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     overflow:hidden;
-    
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
+    display: none;
 }
 #search-results-container > h1 {
     height: 30px;
     line-height: 30px;
     margin: 0px;
     background-color: rgb(0, 0, 0, .2);
+    display: none;
 }
 #search-results {
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
-#search-card{
+.search-card{
     display: flex;
     display: -webkit-flexbox;
-    flex: 1;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-items: flex-start;
@@ -88,14 +155,15 @@
     margin: 4px 4px 0px 4px;
     border: 1px solid gray;
     padding: 10px;
+    border-radius: 5px;
 }
-#search-card h1{
+.search-card h1{
     grid-area: head;
     font-size: 20px;
     margin: 0px 0px 2px;
     color: #4E2A84;
 }
-#search-card p{
+.search-card p{
     text-align: left;
     margin: 0px;
     font-size: 15px;
@@ -103,6 +171,96 @@
 p #subject-num{ grid-area: subj; }
 p #instructor{ grid-area: inst; }
 p #days-times{ grid-area: date; }
-#search-card:hover{
+.search-card:hover{
     background-color: #eee;
+    cursor: pointer;
+}
+
+
+
+
+/* Formatting for search details modal */
+#search-details-container {
+    background-color: #fefefe;
+    margin: 100px 0 0 300px; /* 100x px from top, 300px from right*/
+    width: 500px;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    border-radius: 5px;
+    background-color: #4e2a84
+}
+@media screen and (max-width: 1000px) {
+    #search-details-container {
+        margin: 100px 0 0 50px;
+    }
+}
+#search-details-title {
+    color: white;
+    margin: 0;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+#search-details-content {
+    padding: 10px;
+    min-height: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    white-space: pre-line;
+    background-color: white;
+}
+#search-details-content h1{
+    padding: 0;
+    margin: 0;
+    color: #4E2A84;
+    font-size: 24px;
+}
+#search-details-content h2 {
+    display: inline;
+
+    padding-top: 200px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+#search-details-content p {
+    padding-top: 0;
+    margin-top: 0;
+    font-size: 15px;
+}
+#search-details-add-class {
+    height: 40px;
+    line-height: 40px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+#search-details-add-class:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* The Close Button */
+#search-details-modal-close {
+/* Position it in the top right corner outside of the modal */
+    position: fixed;
+    margin-top: -15px;
+    margin-left: 475px;
+    border-radius: 50%;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    background-color: white;
+    color: #4e2a84;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+#search-details-modal-close:hover, 
+#search-details-modal-close:focus {
+    color: red;
+    cursor: pointer;
 }

@@ -11,50 +11,53 @@
   <link rel="stylesheet" href="components/css/login.css">
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="components/css/search.css">  
+  <link rel="stylesheet" href="components/css/calendar.css">
 
-  <title>Course Planner</title>  
-  <link rel="icon" href="https://common.northwestern.edu/v8/icons/favicon-228.png" type="image/x-icon">
+  <title>Brutus.nu</title>  
+  <link rel="icon" href="./BrutusLogo.png" type="image/x-icon">
 </head>
 
 
 
 
 <body onload="loadSubjects()">
+  
 
-
-  <!--Need to change to name and logo-->
-  <h1 id="title-section">
-    Working Title
-  </h1>
-
-  <!-- Page header -->
-  <header id="index-header">
-    <a href="#" class="header-button" id="login" onclick="displayLogin()">
-      <p>Log In</p>
-    </a>
-    <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
-      <p>Sign up</p>
-    </a>
-    <div id="account-dropdown">
-      <a href="#" class="header-button account-button account_button" id="account">
-        <p>Welcome, account_username   &#9660</p>
+  <!-- Page Header -->
+  <header id="page-header">
+    <container id="title-container">
+      <img id="title-logo" src="BrutusLogo.png">
+      <h1 id="title-text">
+        Brutus.nu
+      </h1>
+    </container>
+    
+    <container id="index-header">
+      <a href="#" class="header-button" id="login" onclick="displayLogin()">
+        <p>Log In</p>
       </a>
-      <div id="dropdown-content-container" class="dropdown-content">
-        <a href="#" onclick="logout()">Log Out</a>
+      <a href="#" class="header-button" id="signup" onclick="displaySignUp()">
+        <p>Sign up</p>
+      </a>
+      <div id="account-dropdown">
+        <a href="#" class="header-button account-button account_button" id="account">
+          <p>Welcome, account_username   &#9660</p>
+        </a>
+        <div id="dropdown-content-container" class="dropdown-content">
+          <a href="#" onclick="logout()">Log Out</a>
+        </div>
       </div>
-
-    </div>
-
+    </container>
   </header>
   <!-- End of page header -->
 
 
   <!-- Class selection sidebar-->
   <aside id="sidebar">
-    <h2> Major: </h2>
     <h2 id='major-header'>
       Undecided
     </h2>
+    <p id="login-major">Log in to view your major requirements</p>
     <div id="class-container"></div>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
@@ -62,49 +65,35 @@
 
   <!-- Main page content section -->
   <section id="main">
+
     <!-- Section for searching classes -->
     <section id="search-section">
       <section id="search-menu">
         <h1 id="search-title">
           Search Classes
         </h1>
-        <section id="search-inputs">
-          <div id="subjects">
-            <label for="subject-dropdown">Subject:</label>
-            <select id="subject-dropdown">
-              <option value="default">Select a subject</option>
-              <option value="ACCT">ACCT - Accounting</option>
-              <option value="ANTHRO">ANTHRO - Antrhopology</option>
-              <option value="CHEM_ENG">CHEM_ENG - Chemical Engineering</option> 
-              <option value="COMP_SCI">COMP_SCI - Computer Science</option>
-              <option value="CIV_ENV">CIV_ENV - Civil and Environmental Engineering</option>
-              <option value="ECON">ECON - Economics</option>
-              <option value="ENGLISH">ENGLISH - English</option>
-              <option value="GEOG">GEOG - Geography</option>
-              <option value="GREEK">GREEK - Greek</option> 
-              <option value="JOUR">JOUR - Journalism</option>
-              <option value="PHIL">PHIL - Philosophy</option>
-            </select>
-          </div>
-          <div id="days-of-week">
-            <input type="checkbox" id="dayFilter" name="dayFilter" value="DayFilter" onclick="showDayFilter()">
-            <label for="dayFilter">Filter By Days</label><br>
-            <div id="days-checkboxes">
-              <input type="checkbox" id="monday" name="monday" value="Mo">
-              <label for="monday">Monday</label>
-              <input type="checkbox" id="tuesday" name="tuesday" value="Tu">
-              <label for="tuesday">Tuesday</label>
-              <input type="checkbox" id="wednesday" name="wednesday" value="We">
-              <label for="wednesday">Wednesday</label>
-              <input type="checkbox" id="thursday" name="thursday" value="Th">
-              <label for="thursday">Thursday</label>
-              <input type="checkbox" id="friday" name="friday" value="Fr">
-              <label for="friday">Friday</label>
-            </div>
-          </div>
+        <div id="subjects">
+          <label for="subject-dropdown">Subject:</label>
+          <select id="subject-dropdown">
+            <option value="default" disabled selected>Select a subject</option>
+            <!--Subject options dynamically loaded in now-->
+          </select>
+        </div>
+        <section id="daysOfWeek-section">
+          <a href="#" id="daysOfWeek-activate" onclick="displayDaysOfWeek('show');">Filter by Days</a>
+          <container id="daysOfWeek-selector-container">
+            <a href="#" id="daysOfWeek-selector-header" onclick="displayDaysOfWeek('hide')">Stop Filtering by Days</a>
+            <container id="daysOfWeek-options-container">
+              <a href="#" id="Monday" class="dayOfWeek" onclick="daysOfWeekClick('Monday');">Monday</a>
+              <a href="#" id="Tuesday" class="dayOfWeek" onclick="daysOfWeekClick('Tuesday');">Tuesday</a>
+              <a href="#" id="Wednesday" class="dayOfWeek" onclick="daysOfWeekClick('Wednesday');">Wednesday</a>
+              <a href="#" id="Thursday" class="dayOfWeek" onclick="daysOfWeekClick('Thursday');">Thursday</a>
+              <a href="#" id="Friday" class="dayOfWeek" onclick="daysOfWeekClick('Friday');">Friday</a>
+            </container>
+          </container>
         </section>
-          
-      <a href="#" type="button" id="search-button" onclick="getCourses({'term':4760, 'subject':document.getElementById('subject-dropdown').value, 'meeting_days':checksToDayString()})">Search</a>
+        
+        <a href="#" type="button" id="search-button" onclick="getCourses()">Search</a>
       
       </section>
       <container id="search-results-container">
@@ -113,21 +102,130 @@
       </container>
     </section>
     <section id="calendar-section">
-      Calendar Section
+      <section id="cal-Times" class="cal-DOW">
+        <container id="time-title" class="cal-DOW-title">&nbsp;</container>
+        <container id="time-8:00">8am</container>
+        <container id="time-9:00">9am</container>
+        <container id="time-10:00">10am</container>
+        <container id="time-11:00">11am</container>
+        <container id="time-12:00">12pm</container>
+        <container id="time-13:00">1pm</container>
+        <container id="time-14:00">2pm</container>
+        <container id="time-15:00">3pm</container>
+        <container id="time-16:00">4pm</container>
+        <container id="time-17:00">5pm</container>
+        <container id="time-18:00">6pm</container>
+        <container id="time-19:00">7pm</container>
+        <container id="time-20:00">8pm</container>
+        <container id="time-21:00">9pm</container>
+        <container id="time-22:00"class="cal-bottom">10pm</container>
+      </section>
+      <section id="cal-Monday" class="cal-DOW">
+        <container id="Mo-title" class="cal-DOW-title">Monday</container>
+        <container id="Mo-8:00"></container>
+        <container id="Mo-9:00"></container>
+        <container id="Mo-10:00"></container>
+        <container id="Mo-11:00"></container>
+        <container id="Mo-12:00"></container>
+        <container id="Mo-13:00"></container>
+        <container id="Mo-14:00"></container>
+        <container id="Mo-15:00"></container>
+        <container id="Mo-16:00"></container>
+        <container id="Mo-17:00"></container>
+        <container id="Mo-18:00"></container>
+        <container id="Mo-19:00"></container>
+        <container id="Mo-20:00"></container>
+        <container id="Mo-21:00"></container>
+        <container id="Mo-22:00" class="cal-bottom"></container>
+      </section>
+      <section id="cal-Tuesday" class="cal-DOW">
+        <container id="Tu-title" class="cal-DOW-title">Tuesday</container>
+        <container id="Tu-8:00"></container>
+        <container id="Tu-9:00"></container>
+        <container id="Tu-10:00"></container>
+        <container id="Tu-11:00"></container>
+        <container id="Tu-12:00"></container>
+        <container id="Tu-13:00"></container>
+        <container id="Tu-14:00"></container>
+        <container id="Tu-15:00"></container>
+        <container id="Tu-16:00"></container>
+        <container id="Tu-17:00"></container>
+        <container id="Tu-18:00"></container>
+        <container id="Tu-19:00"></container>
+        <container id="Tu-20:00"></container>
+        <container id="Tu-21:00"></container>
+        <container id="Tu-22:00" class="cal-bottom"></container>
+      </section>
+      <section id="cal-Wednesday" class="cal-DOW">
+        <container id="We-title" class="cal-DOW-title">Wednesday</container>
+        <container id="We-8:00"></container>
+        <container id="We-9:00"></container>
+        <container id="We-10:00"></container>
+        <container id="We-11:00"></container>
+        <container id="We-12:00"></container>
+        <container id="We-13:00"></container>
+        <container id="We-14:00"></container>
+        <container id="We-15:00"></container>
+        <container id="We-16:00"></container>
+        <container id="We-17:00"></container>
+        <container id="We-18:00"></container>
+        <container id="We-19:00"></container>
+        <container id="We-20:00"></container>
+        <container id="We-21:00"></container>
+        <container id="We-22:00" class="cal-bottom"></container>
+      </section>
+      <section id="cal-Thursday" class="cal-DOW">
+        <container id="Th-title" class="cal-DOW-title">Thursday</container>
+        <container id="Th-8:00"></container>
+        <container id="Th-9:00"></container>
+        <container id="Th-10:00"></container>
+        <container id="Th-11:00"></container>
+        <container id="Th-12:00"></container>
+        <container id="Th-13:00"></container>
+        <container id="Th-14:00"></container>
+        <container id="Th-15:00"></container>
+        <container id="Th-16:00"></container>
+        <container id="Th-17:00"></container>
+        <container id="Th-18:00"></container>
+        <container id="Th-19:00"></container>
+        <container id="Th-20:00"></container>
+        <container id="Th-21:00"></container>
+        <container id="Th-22:00" class="cal-bottom"></container>
+      </section>
+      <section id="cal-Friday" class="cal-DOW">
+        <container id="Fr-title" class="cal-DOW-title">Friday</container>
+        <container id="Fr-8:00"></container>
+        <container id="Fr-9:00"></container>
+        <container id="Fr-10:00"></container>
+        <container id="Fr-11:00"></container>
+        <container id="Fr-12:00"></container>
+        <container id="Fr-13:00"></container>
+        <container id="Fr-14:00"></container>
+        <container id="Fr-15:00"></container>
+        <container id="Fr-16:00"></container>
+        <container id="Fr-17:00"></container>
+        <container id="Fr-18:00"></container>
+        <container id="Fr-19:00"></container>
+        <container id="Fr-20:00"></container>
+        <container id="Fr-21:00"></container>
+        <container id="Fr-22:00" class="cal-bottom"></container>
+      </section>
     </section>
+
   </section>
   <!-- End of main page content section-->
+
 
   <!-- Modal for login page -->
   <div id="id01" class="modal">
     <form class="modal-content animate", method="POST", id="userlogin">
-      <span onclick="document.getElementById('id01').style.display='none'; resetForm(0);" class="close" title="Close Login Window">&times;</span>
+      <span id="login-modal-close" onclick="document.getElementById('id01').style.display='none'; resetForm(0);" class="close" title="Close Login Window">&times;</span>
 
       <header id="login-header">
         <div class="imgcontainer">
-          <img src="https://common.northwestern.edu/v8/icons/favicon-228.png" alt="Avatar" class="avatar" class="avatar">
+          <img src="BrutusLogo.png" alt="Avatar" class="avatar" class="avatar">
         </div>
-        <h1 id="login-header-text">Course Planner</h1>
+        <h1 id="login-header-text">Brutus.nu</h1>
       </header>
 
       <div class="container" id="login-body">
@@ -141,7 +239,7 @@
     
         <label for="major-selection" id="majors-selection-tag"><b>Major </b></label>
         <select id="majors-selection">
-          <option value="default">Select a Major</option>
+          <option value="default" disabled selected>Select a Major</option>
           <option value="Undecided">Undecided</option>
           <option value="Applied Mathematics">Applied Mathematics</option>
           <option value="Computer Science">Computer Science</option>
@@ -159,6 +257,21 @@
     </form>
   </div>
   <!-- End of Modal for Login Page -->
+
+
+
+  <!-- Modal for Search Result -->
+  <div id="search-details-modal" class="modal">
+    <div class="modal-content animate", id="search-details-container">
+      <span id="search-details-modal-close"onclick="document.getElementById('search-details-modal').style.display='none'; " class="close" title="Close search result window">&times;</span>
+      <h1 id="search-details-title">Course Details</h1>
+      <div id="search-details-content">
+        SEARCH RESULT DETAILS MODAL
+      </div>
+      <a href="#" id="search-details-add-class">Add class to schedule</a>
+    </div>
+  </div>
+  <!-- End of Modal for Search Result -->
   
 </body>
 
