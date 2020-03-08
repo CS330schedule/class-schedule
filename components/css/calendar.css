@@ -17,6 +17,9 @@
 }
 #cal-Times > container {
     border-bottom: none;
+    /* Used to align the time label on the line */
+    position: relative;
+    top: -10px;
 }
 
 
