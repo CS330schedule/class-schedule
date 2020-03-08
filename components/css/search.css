@@ -47,22 +47,12 @@
     flex-direction: column;
     align-items: center;
 }
-#daysOfWeek-activate {
-    display: block;
-    height: 30px;
-    width: 200px;
-    line-height: 30px;
-    text-decoration: none;
-    border: 2px solid #4E2A84;
-    border-radius: 5px;
-    background-color: rgb(0, 0, 0, .1);
-    color: black;
-}
 #daysOfWeek-selector-container {
     height: 65px;
-    width: 480px;
-    display: none;
+    width: fit-content;
+    display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     border-radius: 5px;
     border: 2px solid #4E2A84;
@@ -130,7 +120,6 @@ a.DOW-selected {
     -webkit-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
     -moz-box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
     box-shadow: 0px 0px 5px 2px rgba(194,194,194,1);
-    display: none;
 }
 #search-results-container > h1 {
     height: 30px;
@@ -181,28 +170,46 @@ p #days-times{ grid-area: date; }
 
 /* Formatting for search details modal */
 #search-details-container {
-    background-color: #fefefe;
-    margin: 100px 0 0 300px; /* 100x px from top, 300px from right*/
+    background-color: white;
+    margin: 100px 0 0 0; /* 100x px from top and centered horizontally*/
+    margin-left: auto;
+    margin-right: auto;
     width: 500px;
     height: auto;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
+    align-content: center;
     border-radius: 5px;
-    background-color: #4e2a84
 }
 @media screen and (max-width: 1000px) {
     #search-details-container {
         margin: 100px 0 0 50px;
     }
 }
+#search-details-title-container {
+    width: 100%;
+}
 #search-details-title {
-    color: white;
-    margin: 0;
+    color: #4e2a84;
+    margin: 0 auto 0 auto;
     height: 40px;
     line-height: 40px;
+    width: fit-content;
+    padding-left: 50px;
+    padding-right: 50px;
     text-align: center;
 }
+#search-details-content-container {
+    margin: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(194,194,194,1);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(194,194,194,1);
+    box-shadow: 0px 0px 5px 3px rgba(194,194,194,1);
+}
+
+
 #search-details-content {
     padding: 10px;
     min-height: auto;
@@ -235,6 +242,9 @@ p #days-times{ grid-area: date; }
     color: white;
     text-align: center;
     text-decoration: none;
+    width: 80%;
+    margin: 0 auto 10px auto;
+    border-radius: 5px;
 }
 #search-details-add-class:hover {
     opacity: 0.8;
@@ -252,8 +262,8 @@ p #days-times{ grid-area: date; }
     width: 35px;
     height: 35px;
     text-align: center;
-    background-color: white;
-    color: #4e2a84;
+    background-color: #4e2a84;
+    color: white;
     font-size: 35px;
     font-weight: bold;
 }

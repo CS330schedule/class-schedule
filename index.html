@@ -80,9 +80,8 @@
           </select>
         </div>
         <section id="daysOfWeek-section">
-          <a href="#" id="daysOfWeek-activate" onclick="displayDaysOfWeek('show');">Filter by Days</a>
           <container id="daysOfWeek-selector-container">
-            <a href="#" id="daysOfWeek-selector-header" onclick="displayDaysOfWeek('hide')">Stop Filtering by Days</a>
+            <a href="#" id="daysOfWeek-selector-header" onclick="clearDOWFilter()">Clear Filter</a>
             <container id="daysOfWeek-options-container">
               <a href="#" id="Monday" class="dayOfWeek" onclick="daysOfWeekClick('Monday');">Monday</a>
               <a href="#" id="Tuesday" class="dayOfWeek" onclick="daysOfWeekClick('Tuesday');">Tuesday</a>
@@ -264,9 +263,13 @@
   <div id="search-details-modal" class="modal">
     <div class="modal-content animate", id="search-details-container">
       <span id="search-details-modal-close"onclick="document.getElementById('search-details-modal').style.display='none'; " class="close" title="Close search result window">&times;</span>
-      <h1 id="search-details-title">Course Details</h1>
-      <div id="search-details-content">
-        SEARCH RESULT DETAILS MODAL
+      <div id="search-details-title-container">
+        <h1 id="search-details-title">Course Details</h1>
+      </div>
+      <div id='search-details-content-container'>
+        <div id="search-details-content">
+          SEARCH RESULT DETAILS MODAL
+        </div>
       </div>
       <a href="#" id="search-details-add-class">Add class to schedule</a>
     </div>
