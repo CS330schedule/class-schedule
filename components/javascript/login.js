@@ -2,7 +2,8 @@ const guest = {username: "guest", password: "", major: "Undecided", classes: []}
 
 /* Dictionary that holds all of the major requirements */
 const majorRequirements = {
-  'Bienen': {
+  'Undecided':{},
+  'Bienen School of Music': {
     'Brass':{},
     'Composition & Music Technology':{},
     'Conducting & Ensembles':{},
@@ -16,7 +17,7 @@ const majorRequirements = {
     'Voice & Opera':{},
     'Woodwinds':{}
   },
-  'MEAS': {
+  'McCormick School of Engineering and Applied Science': {
     'Applied Mathematics':{},
     'Biomedical Engineering':{},
     'Chemical Engineering':{},
@@ -40,10 +41,10 @@ const majorRequirements = {
     'Materials Science and Engineering':{},
     'Mechanical Engineering':{}
   },
-  'Medill': {
+  'Medill School of Journalism': {
     'Journalism': {}
   },
-  'SESP': {
+  'School of Education and Social Policy': {
     'Human Development in Context':{},
     'Learning & Organizational Change':{},
     'Learning Sciences':{},
@@ -57,7 +58,7 @@ const majorRequirements = {
     'Radio/Television/Film':{},
     'Theatre':{}
   },
-  'Weinberg': {
+  'Weinberg College of Arts and Sciences': {
     'African American Studies':{},
     'American Studies':{},
     'Anthropology':{},
@@ -101,6 +102,8 @@ function displayLogin() {
   resetForm(0);
   document.getElementById('conf-psw-tag').style.display='none';
   document.getElementById('conf-psw-field').style.display='none';
+  document.getElementById('school-selection-tag').style.display='none';
+  document.getElementById('school-selection').style.display='none';
   document.getElementById('majors-selection-tag').style.display='none';
   document.getElementById('majors-selection').style.display='none';
   document.getElementById('login-button').style.display='block';
@@ -113,8 +116,13 @@ function displayLogin() {
 
 function displaySignUp() {
   resetForm(0);
+
+  populateSchools();
+
   document.getElementById('conf-psw-tag').style.display='block';
   document.getElementById('conf-psw-field').style.display='block';
+  document.getElementById('school-selection-tag').style.display='block';
+  document.getElementById('school-selection').style.display='block';
   document.getElementById('majors-selection-tag').style.display='block';
   document.getElementById('majors-selection').style.display='block';
   document.getElementById('login-button').style.display='none';
@@ -123,6 +131,33 @@ function displaySignUp() {
   document.getElementById('switch_to_login').style.display='block';
   document.getElementById('id01').style.display='block';
   document.getElementById('username').focus();
+}
+
+// Populates the school-selection with the information in majorRequirements
+const populateSchools = () => {
+  let schoolSelect = document.getElementById('school-selection');
+  schoolSelect.innerHTML = `<option value="default" disabled selected>Select a School</option>`;
+  for (school of Object.keys(majorRequirements)) {
+    console.log(school);
+    schoolSelect.innerHTML += `
+    <option value=${school}>${school}</option>`;
+  }
+  schoolSelect.onchange = function(){
+    console.log(this.options[this.selectedIndex].text);
+    populateMajors(this.options[this.selectedIndex].text);
+  }
+}
+
+// Populates the major selection based on the school selected
+const populateMajors = (school) => {
+  console.log(school);
+  let majorSelect = document.getElementById('majors-selection');
+  majorSelect.innerHTML = `<option value="default" disabled selected>Select a Major</option>`;
+  for (major of Object.keys(majorRequirements[school])) {
+    majorSelect.innerHTML += `
+    <option value=${major}>${major}</option>`;
+  }
+  majorSelect.disabled = false;
 }
 
 function logout() {
