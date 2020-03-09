@@ -1,5 +1,90 @@
 const guest = {username: "guest", password: "", major: "Undecided", classes: []};
 
+/* Dictionary that holds all of the major requirements */
+const majorRequirements = {
+  'Bienen': {
+    'Brass':{},
+    'Composition & Music Technology':{},
+    'Conducting & Ensembles':{},
+    'Jazz Studies':{},
+    'Music Education':{},
+    'Music Theory & Cognition':{},
+    'Musicology':{},
+    'Percussion':{},
+    'Piano':{},
+    'Strings, Harp, & Guitar':{},
+    'Voice & Opera':{},
+    'Woodwinds':{}
+  },
+  'MEAS': {
+    'Applied Mathematics':{},
+    'Biomedical Engineering':{},
+    'Chemical Engineering':{},
+    'Civil Engineering':{},
+    'Computer Engineering':{},
+    'Computer Science': 
+          {'Core Major Requirements': {'COMP_SCI 211-0': false, 'COMP_SCI 213-0': false, 'COMP_SCI 214-0': false},
+          'Mathematics': {'MATH 220-1': false, 'MATH 220-2': false, 'MATH 228-1': false, 'Comp_Sci 212': false},
+          'Engineering Analysis': {'GEN_ENG 205-1': false, 'GEN_ENG 205-2': false, 'GEN_ENG 205-3': false, 'COMP_SCI 111-0': false},
+          'Basic Science':{'4 units of McCormick basic science': false},
+          'Design and Communication':{'DSGN 106-1': false, 'ENGLISH 106-1': false, 'DSGN 106-2': false, 'ENGLISH 106-2': false, '1 unit of a speaking course': false},
+          'Basic Engineering':{'5 units of McCormick basic engineering': false},
+          'Statistics (choose one)':{'IEMS 201-0': false, 'IEMS 303-0': false, 'ELEC_ENG 302-0': false},
+          'Theme':{'7 social sciences/humanities courses': false},
+          'Unrestricted Electives':{'5 units': false}
+          },
+    'Electrical Engineering':{},
+    'Environmental Engineering':{},
+    'Industrial Engineering':{},
+    'Manufacturing and Design Engineering':{},
+    'Materials Science and Engineering':{},
+    'Mechanical Engineering':{}
+  },
+  'Medill': {
+    'Journalism': {}
+  },
+  'SESP': {
+    'Human Development in Context':{},
+    'Learning & Organizational Change':{},
+    'Learning Sciences':{},
+    'Social Policy':{}
+  },
+  'School of Communication': {
+    'Communication Studies':{},
+    'Dance':{},
+    'Human Communication Services':{},
+    'Performance Studies':{},
+    'Radio/Television/Film':{},
+    'Theatre':{}
+  },
+  'Weinberg': {
+    'African American Studies':{},
+    'American Studies':{},
+    'Anthropology':{},
+    'Art History':{},
+    'Asian Studies':{},
+    'Biological Sciences':{},
+    'Chemistry':{},
+    'Classics':{},
+    'Cognitive Science':{},
+    'Computer Science':{},
+    'Economics':{},
+    'English':{},
+    'French':{},
+    'Global Health':{},
+    'History':{},
+    'Integrated Science':{},
+    'Linguistics':{},
+    'Mathematics':{},
+    'Neuroscience':{},
+    'Political Science':{},
+    'Psychology':{},
+    'Sociology':{},
+    'Spanish':{},
+    'Statistics':{}
+  }
+};
+
 
 // Default activeUser is guest on startup
 var activeUser = guest;
