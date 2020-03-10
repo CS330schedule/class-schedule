@@ -42,7 +42,7 @@ For the second component, we implemented the class search interactive data filte
 The final major component we implemented was the interactive calendar, which enables users to build out their schedule visually in conjunction with the textual information in the class search component. The calendar enables users to add, remove, and view classes in their schedule visually as they decide which classes they want to take for the next quarter.
 
 
-### Reflection
+## Reflection
 In the time we had, we created a course planning website that can search through and display information on courses offered at Northwestern, and then facilitate the creation of schedules through the interactive calendar. Additionally, the site displays the requirements of the users major so that they can more easily know which classes they need to take in order to fulfill their major.
 
 If we were given more time, we would try to implement the following:
