@@ -249,12 +249,12 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
 // Determines if this class has overlap with any class currently in the calendar
 const determineOverlap = (details) => {
     let detailsButton = document.getElementById('search-details-add-class');
-    let newStartPos = getPositionCal(details.end_time);
+    let newStartPos = getPositionCal(details.start_time);
     let newEndPos = getPositionCal(details.end_time);
 
     // Check if there is overlap
     for (course of Object.values(courses)) {
-        if (((newEndPos - course['startPos']) >= 0) && ((course['endPos'] - newStartPos) >= 0)) {
+        if ((newEndPos >= course['startPos']) && (course['endPos'] >= newStartPos)) {
             for (day of course['days']) {
                 for (let i = 0; i < details.meeting_days.length; i++) {
                     if (details.meeting_days.substring(i, i+2) == day) {
