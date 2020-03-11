@@ -30,38 +30,64 @@
     flex-direction: column;
 }
 #subjects {
-    display: inline-block;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     white-space: nowrap;
 }
 #subject-dropdown{
     /*min-width used to prevent most instances of resizing after loading*/
     min-width: 420px;
-    width: auto
+    width: auto;
 }
 
 /* Formatting for days of week section */
 #daysOfWeek-section {
     height: fit-content;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
 }
 #daysOfWeek-selector-container {
-    height: 65px;
+    height: fit-content;
     width: fit-content;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    border-radius: 5px;
-    border: 2px solid #4E2A84;
 }
 #daysOfWeek-selector-header {
     width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: none;
+    justify-content: flex-end;
     background-color: #4E2A84;
+    border-radius: 5px 5px 0 0;
+}
+#daysOfWeek-title {
     text-decoration: none;
     color: white;
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#daysOfWeek-clearFilter {
+    text-decoration: none;
+    color:white;
+    border-radius: 5px;
+    background-color: #4E2A84;
+    height: fit-content;
+    text-align: center;
+    margin: 3px;
+    padding: 2px;
+    font-size: 12px;
+    border: 1px solid white;
+    
+}
+#daysOfWeek-clearFilter:hover {
+    background-color: rgb(131, 110, 170);
 }
 #daysOfWeek-options-container {
     height: 100%;
@@ -73,12 +99,12 @@
     align-items: center;
     padding: 0 10px 0 10px;
     border-radius: 0 0 5px 5px;
+    border: 1px solid #4E2A84
 }
 a.dayOfWeek{
-    padding: 0 10px 0 10px;
     margin: 5px;
     border-radius: 5px;
-    width: auto;
+    width: 50px;
     height: 30px;
     line-height: 30px;
     text-decoration: none;

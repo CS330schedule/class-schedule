@@ -1,8 +1,18 @@
-const guest = {username: "guest", password: "", major: "Undecided", classes: []};
+const guest = {username: "guest", password: "", school: ['guest'], major: ['guest']};
 
-/* Dictionary that holds all of the major requirements */
+// Default activeUser is guest on startup
+var activeUser = guest;
+
+// Array for holding the users registered with the website
+let users = [
+  {username: "willie", password: "wildcat", school: ['McCormick School of Engineering and Applied Science'], major: ["Computer Science"]},
+  {username: "morty", password: "wildcat", school: ['Weinberg College of Arts and Sciences'], major: ["Economics"]}
+];
+
+
+// Dictionary that holds all of the major requirements //
 const majorRequirements = {
-  'Undecided':{},
+  'Undecided':{'Undecided':{}},
   'Bienen School of Music': {
     'Brass':{},
     'Composition & Music Technology':{},
@@ -23,15 +33,15 @@ const majorRequirements = {
     'Chemical Engineering':{},
     'Civil Engineering':{},
     'Computer Engineering':{},
-    'Computer Science': 
-          {'Core Major Requirements': {'COMP_SCI 211-0': false, 'COMP_SCI 213-0': false, 'COMP_SCI 214-0': false},
+    'Computer Science': {
+          'Core Major Requirements': {'COMP_SCI 211-0': false, 'COMP_SCI 213-0': false, 'COMP_SCI 214-0': false},
           'Mathematics': {'MATH 220-1': false, 'MATH 220-2': false, 'MATH 228-1': false, 'Comp_Sci 212': false},
           'Engineering Analysis': {'GEN_ENG 205-1': false, 'GEN_ENG 205-2': false, 'GEN_ENG 205-3': false, 'COMP_SCI 111-0': false},
           'Basic Science':{'4 units of McCormick basic science': false},
           'Design and Communication':{'DSGN 106-1': false, 'ENGLISH 106-1': false, 'DSGN 106-2': false, 'ENGLISH 106-2': false, '1 unit of a speaking course': false},
           'Basic Engineering':{'5 units of McCormick basic engineering': false},
           'Statistics (choose one)':{'IEMS 201-0': false, 'IEMS 303-0': false, 'ELEC_ENG 302-0': false},
-          'Theme':{'7 social sciences/humanities courses': false},
+          'Theme':{'7 units of social sciences and humanities': false},
           'Unrestricted Electives':{'5 units': false}
           },
     'Electrical Engineering':{},
@@ -69,7 +79,13 @@ const majorRequirements = {
     'Classics':{},
     'Cognitive Science':{},
     'Computer Science':{},
-    'Economics':{},
+    'Economics':{
+        'Core Major Requirements': {'ECON 201-0': false, 'ECON 202-0': false, 'ECON 281-0': false, 'ECON 310-1': false, 'ECON 310-2': false, 'ECON 311-0': false},
+        'Advanced Field Courses': {'6 units of 300 level Economics classes': false},
+        'Courses in Related Fields': {'MATH 220-1': false, 'STATS 210': false, '3 units in related fields': false},
+        'Distribution Courses<br/>(2 units of each)': {'Natural Sciences (Area I)': false, 'Formal Studies (Area II)': false,
+                                'Social and Behavioral Sciences (Area III)': false, 'Historical Studies (Area IV)': false, 'Ethics and Values (Area V)': false, 'Literature and Fine Arts (Area VI)': false}
+    },
     'English':{},
     'French':{},
     'Global Health':{},
@@ -86,15 +102,6 @@ const majorRequirements = {
   }
 };
 
-
-// Default activeUser is guest on startup
-var activeUser = guest;
-
-// Array for holding the users registered with the website
-let users = [
-  {username: "willie", password: "wildcat", major: "Computer Science", classes: ["Comp_Sci 111", "Comp_Sci 211", "Comp_Sci212", "Comp_Sci213", "Comp_Sci 214", "Comp_Sci 330"]},
-  {username: "morty", password: "wildcat", major: "Econonics", classes: ["Econ 201", "Econ 202", "Econ 281", "Econ 310-1", "Econ 310-2", "Econ 311"]}
-];
 
 
 ///// Onclick actions for the header buttons ///// 
@@ -138,15 +145,15 @@ const populateSchools = () => {
   let schoolSelect = document.getElementById('school-selection');
   schoolSelect.innerHTML = `<option value="default" disabled selected>Select a School</option>`;
   for (school of Object.keys(majorRequirements)) {
-    console.log(school);
     schoolSelect.innerHTML += `
     <option value=${school}>${school}</option>`;
   }
   schoolSelect.onchange = function(){
-    console.log(this.options[this.selectedIndex].text);
     populateMajors(this.options[this.selectedIndex].text);
   }
 }
+
+
 
 // Populates the major selection based on the school selected
 const populateMajors = (school) => {
@@ -154,24 +161,27 @@ const populateMajors = (school) => {
   let majorSelect = document.getElementById('majors-selection');
   majorSelect.innerHTML = `<option value="default" disabled selected>Select a Major</option>`;
   for (major of Object.keys(majorRequirements[school])) {
+    console.log(major);
     majorSelect.innerHTML += `
     <option value=${major}>${major}</option>`;
   }
   majorSelect.disabled = false;
 }
 
+
+
 function logout() {
   // Prompt user to confirm logout
   if (confirm("Are you sure you want to log out?")){
     // Reset active user to guest and reset the page
     activeUser = guest;
+
+    updateMajorRequirements();
+
     //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
-    updateClasses();
     document.getElementById("signup").style.display = "flex";
     document.getElementById("login").style.display = "flex";
     document.getElementById("account-dropdown").style.display="none";
-    document.getElementById('login-major').style.display = "block";
-
   }
   return;
 }
@@ -183,33 +193,30 @@ function logout() {
 function readLoginFields() {
   // Read information from login window fields
   var loginData = document.getElementById("userlogin");
-  console.log(loginData.elements[2].value);
   tryLogin(loginData.elements[0].value, loginData.elements[1].value);
   return;
 }
 
 function tryLogin(name, pass) {
   for (user of users) {
-    if (user.username != name || user.password != pass) {
-      // Incorrect username or password
-      // Not specific to username or password for security reasons
-      alert("Incorrect username or password");
-      resetForm(1);
-      return; 
-    } else {
+    if (user.username == name && user.password == pass) {
       // Correct credentials ==> log in
       activeUser = user;
       //document.getElementById("greeting").innerHTML = activeUser.username;   => Change to login greeting section
+      document.getElementById("account").innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`
       document.getElementById("signup").style.display = "none";
       document.getElementById("login").style.display = "none";
       document.getElementById("account-dropdown").style.display = "inline-block";
-      updateClasses();
+      updateMajorRequirements();
       document.getElementById('id01').style.display = "none";
       resetForm(0);
       return;
-      
     }
   }
+  // Iterated over all credentials and didn't find a suitable login
+  alert("Incorrect username or password");
+  resetForm(1);
+  return;
 }
 ////////////////////////////////
 
@@ -217,7 +224,10 @@ function tryLogin(name, pass) {
 ///// Handle making account ////
 function makeAccount() {
   var loginData = document.getElementById("userlogin");
-  newUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, major:loginData.elements[3].value, classes:[]};
+  newUser = {username: loginData.elements[0].value, password: loginData.elements[1].value, school:[], major:[]};
+
+  newUser.school.push(loginData.elements[3].options[loginData.elements[3].selectedIndex].text);
+  newUser.major.push(loginData.elements[4].options[loginData.elements[4].selectedIndex].text);
 
   if ((newUser.username == '') || (newUser.password == '') || (loginData.elements[2].value == '') || (newUser.major == 'default')) {
     // User has not filled out one of the fields
@@ -246,7 +256,10 @@ function makeAccount() {
   document.getElementById("signup").style.display = "none";
   document.getElementById("login").style.display = "none";
   document.getElementById("account-dropdown").style.display = "inline-block";
-  updateClasses();
+  document.getElementById('account').innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`;
+
+  updateMajorRequirements();
+
   document.getElementById('id01').style.display = "none";
 }
 ////////////////////////////////
@@ -290,18 +303,54 @@ function resetForm(resetCode) {
 
 
 ///// Updates the classes displayed on the sidebar based on activeUser /////
-function updateClasses() {
-  document.getElementById('account').innerHTML = `<p>Welcome, ${activeUser.username}   &#9660</p>`;
-  document.getElementById('login-major').style.display = "none";
-  document.getElementById('major-header').innerHTML = activeUser.major;
-  if (activeUser.major == "Undecided"){
-    document.getElementById('class-container').innerHTML = ``;
+function updateMajorRequirements() {
+  let clssContainer = document.getElementById('class-container');
+  clssContainer.innerHTML = ``;
+  console.log('Active major:' + activeUser.major);
+  
+  document.getElementById('requirementsPlaceholder').style.display = 'none';
+
+  if (activeUser.major == "Undecided") {
+    // Handle case where major is undecided with special formatting
+    document.getElementById('major-header').innerHTML = "Undecided Major";
+    clssContainer.innerHTML = ``;
+    document.getElementById('class-container-container').style.display = 'none';
+    return;
+  } else if (activeUser.major == "guest") {
+    document.getElementById('major-header').innerHTML = "Major Requirements"
+    document.getElementById('requirementsPlaceholder').style.display = 'block';
+    clssContainer.innerHTML = ``;
+    document.getElementById('class-container-container').style.display = 'none';
+    return;
   }
-  else{
-    for (clss of activeUser.classes) {
-      document.getElementById('class-container').innerHTML += `
-        <section class="class-card">${clss}</section>`;
+
+
+  for (let major of activeUser.major) {
+    // Iterate over all majors associated with the account
+    console.log("Major: " + major);
+    document.getElementById('major-header').innerHTML = major;
+    let majorTemplate = ``;
+
+    // Get the actual requirements for the major and iterate over them
+    let majorReq = majorRequirements[activeUser.school][major];
+    for (let req of Object.keys(majorReq)) {
+      console.log("Req: " + req);
+      let reqTemplate = `
+        <container class='major-section-container'>
+          <h2 class="major-section">${req}</h2>`;
+      for (let clss of Object.keys(majorReq[req])) {
+        console.log("clss: " + clss);
+        reqTemplate += `
+          <p class="major-course">${clss}</p>`;
+      }
+      reqTemplate += `
+    </container>`;
+    majorTemplate += reqTemplate;
     }
-  } 
+    clssContainer.innerHTML += majorTemplate
+    document.getElementById('class-container-container').style.display = 'flex';
+  }
+
+  return;
 }
 ////////////////////////////////

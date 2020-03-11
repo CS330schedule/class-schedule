@@ -36,6 +36,7 @@ aside, #index-header{
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    overflow: hidden;
 }
 
 #title-logo{
@@ -130,23 +131,54 @@ aside {
     border-radius: 5px;
     margin:15px;
     margin-right: 0px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     -webkit-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
     -moz-box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
     box-shadow: 0px 0px 5px 4px rgba(194,194,194,1);
-
 }
-aside h2{
-    padding: 5px;
+#major-header {
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
     margin: 0px;
     text-align: center;
     color: #4E2A84;
 }
-aside h3 {
-    font-weight: lighter;
+#requirementsPlaceholder {
+    padding-top: 30px;
+    text-align: center;
 }
-aside p {
-    padding-left: 10px;
+#class-container-container {
+    /* Used to curve edge of scroll bar */
+    display: none;
+    overflow: hidden;
+    border-radius: 5px;
 }
+#class-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+#class-container h2 {
+    font-size: 17px;
+    padding: 0px;
+    margin: 15px 0 0 0;
+}
+#class-container p {
+    font-size: 15px;
+    margin: 0 0 5px 0;
+    border-radius: 5px;
+    padding: 2px 0 2px 4px;
+    background-color: rgb(204, 196, 223);
+}
+
 
 section.class-card {
     margin: 1px 0px 0px;
