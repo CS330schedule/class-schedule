@@ -35,7 +35,7 @@ const majorRequirements = {
     'Computer Engineering':{},
     'Computer Science': {
           'Core Major Requirements': {'COMP_SCI 211-0': false, 'COMP_SCI 213-0': false, 'COMP_SCI 214-0': false},
-          'Mathematics': {'MATH 220-1': false, 'MATH 220-2': false, 'MATH 228-1': false, 'Comp_Sci 212': false},
+          'Mathematics': {'MATH 220-1': false, 'MATH 220-2': false, 'MATH 228-1': false, 'COMP_SCI 212': false},
           'Engineering Analysis': {'GEN_ENG 205-1': false, 'GEN_ENG 205-2': false, 'GEN_ENG 205-3': false, 'COMP_SCI 111-0': false},
           'Basic Science':{'4 units of McCormick basic science': false},
           'Design and Communication':{'DSGN 106-1': false, 'ENGLISH 106-1': false, 'DSGN 106-2': false, 'ENGLISH 106-2': false, '1 unit of a speaking course': false},

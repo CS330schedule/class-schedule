@@ -131,7 +131,7 @@ span.psw {
 /* Modal Content/Box */
 form.modal-content {
     background-color: #fefefe;
-    margin: 20vh auto; /* 30% from the top and centered */
+    margin: 10vh auto; /* 30% from the top and centered */
     border: 1px solid #888;
     width: 400px;
     display: grid;
