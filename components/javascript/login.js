@@ -228,8 +228,10 @@ function makeAccount() {
 
   newUser.school.push(loginData.elements[3].options[loginData.elements[3].selectedIndex].text);
   newUser.major.push(loginData.elements[4].options[loginData.elements[4].selectedIndex].text);
+  console.log('Major' + newUser.major);
+  console.log('Major 0' + newUser.major[0]);
 
-  if ((newUser.username == '') || (newUser.password == '') || (loginData.elements[2].value == '') || (newUser.major == 'default')) {
+  if ((newUser.username == '') || (newUser.password == '') || (loginData.elements[2].value == '') || (newUser.major[0] == 'Select a Major')) {
     // User has not filled out one of the fields
     alert('Please fill out all of the fields to sign up')
     return;

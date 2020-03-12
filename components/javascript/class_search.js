@@ -211,6 +211,9 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
     let detailsButton = document.getElementById('search-details-add-class');
     detailsButton.style.display = 'block';
 
+    
+    
+
     switch (formatCode) {
         case 0:
             // Format for click from search results
@@ -228,7 +231,7 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
                 detailsButton.innerHTML = 'Add class to schedule'
                 // Meeting times known so can add to calendar
                 detailsButton.onclick = function() {addCourse()};
-                
+                detailsButton.style.backgroundColor = '#4e2a84';
                 // Determine if class has overlap or could be added
                 determineOverlap(details);
             }
@@ -236,6 +239,7 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
         case 1:
             // Format for click from calendar view
             detailsButton.innerHTML = 'Remove class from schedule'
+            detailsButton.style.backgroundColor = '#4e2a84';
             detailsButton.onclick = function() {removeCourse(details.id)}
             break;
     }
