@@ -27,17 +27,17 @@ Based off of these observations, we believed that it was imperative that we desi
 
 ## High-Fidelity Prototyping
 ### Account Management
-![Login Screen]() ![Create Account Screen]()
+![Login Screen](ReportImages/login.PNG)     ![Create Account Screen](ReportImages/signup.PNG)
 
 For the first component, we implemented the login and signup functionality for the prototype. We chose to do this for two reasons. Firstly, we weren’t able to start on the key search feature of our platform yet, the class search interactive data filter because we had to wait for our API key request to be approved and distributed through the Northwestern ASG course data API that we chose to use. Secondly, we wanted to start working on the personalized account section early as we saw that as the key way to distinguish ourselves from serif.nu and other similar products. By implementing the account features early, we were able to get an early implementation of our major requirements section up and running to show it to our users in testing and get their feedback on the overall benefit this feature would provide. In all, this component served the purpose of facilitating the task of searching and managing the major requirements on the sidebar of the page.
 
 ### Class Search
-![Class Search Image]()
+![Class Search Image](ReportImages/classSearch.PNG)
 
 For the second component, we implemented the class search interactive data filter. As this feature is the core functionality of what our site must provide, we thought it would be crucial to have an implementation working as soon as possible so that we would have as much time as possible to get feedback and iterate on its design. To build the backend of this component we used Northwestern ASG’s course data API in order to get the class data for each quarter. Using this API, the component we implemented is able to search through this API and provide detailed and well-formatted information on every class offered in a given quarter. This component facilitates the task of searching through the classes offered in the coming quarter so that users can gather information about the possible classes they could take.
 
 ### Calendar
-![Calendar Image]()
+![Calendar Image](ReportImages/calendar.PNG)
 
 The final major component we implemented was the interactive calendar, which enables users to build out their schedule visually in conjunction with the textual information in the class search component. The calendar enables users to add, remove, and view classes in their schedule visually as they decide which classes they want to take for the next quarter.
 

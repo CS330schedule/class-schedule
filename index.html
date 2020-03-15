@@ -52,16 +52,18 @@
   <!-- End of page header -->
 
 
-  <!-- Class selection sidebar-->
+  <!-- Major Requirements sidebar-->
   <aside id="sidebar">
-    <h2 id='major-header'>
-      Undecided
-    </h2>
-    <p id="login-major">Log in to view your major requirements</p>
-    <div id="class-container"></div>
+    <h1 id='major-header'>Major Requirements</h1>
+    <p id="requirementsPlaceholder">Log in to view your major requirements</p>
+    <div id='class-container-container'>
+      <div id="class-container"></div>
+    </div>
   </aside>
   <script src="https://kit.fontawesome.com/62a7c74d0d.js" crossorigin="anonymous"></script>
-  <!-- End of Class selection sidebar-->
+  <!-- End of Major Requirements sidebar-->
+
+
 
   <!-- Main page content section -->
   <section id="main">
@@ -73,22 +75,23 @@
           Search Classes
         </h1>
         <div id="subjects">
-          <label for="subject-dropdown">Subject:</label>
           <select id="subject-dropdown">
             <option value="default" disabled selected>Select a subject</option>
             <!--Subject options dynamically loaded in now-->
           </select>
         </div>
         <section id="daysOfWeek-section">
-          <a href="#" id="daysOfWeek-activate" onclick="displayDaysOfWeek('show');">Filter by Days</a>
           <container id="daysOfWeek-selector-container">
-            <a href="#" id="daysOfWeek-selector-header" onclick="displayDaysOfWeek('hide')">Stop Filtering by Days</a>
+            <container href="#" id="daysOfWeek-selector-header">
+              <a id="daysOfWeek-title">Filter by day</a>
+              <a href="#" id="daysOfWeek-clearFilter" onclick="clearDOWFilter()">Clear</a>
+            </container>
             <container id="daysOfWeek-options-container">
-              <a href="#" id="Monday" class="dayOfWeek" onclick="daysOfWeekClick('Monday');">Monday</a>
-              <a href="#" id="Tuesday" class="dayOfWeek" onclick="daysOfWeekClick('Tuesday');">Tuesday</a>
-              <a href="#" id="Wednesday" class="dayOfWeek" onclick="daysOfWeekClick('Wednesday');">Wednesday</a>
-              <a href="#" id="Thursday" class="dayOfWeek" onclick="daysOfWeekClick('Thursday');">Thursday</a>
-              <a href="#" id="Friday" class="dayOfWeek" onclick="daysOfWeekClick('Friday');">Friday</a>
+              <a href="#" id="Monday" class="dayOfWeek" onclick="daysOfWeekClick('Monday');">Mon</a>
+              <a href="#" id="Tuesday" class="dayOfWeek" onclick="daysOfWeekClick('Tuesday');">Tue</a>
+              <a href="#" id="Wednesday" class="dayOfWeek" onclick="daysOfWeekClick('Wednesday');">Wed</a>
+              <a href="#" id="Thursday" class="dayOfWeek" onclick="daysOfWeekClick('Thursday');">Thu</a>
+              <a href="#" id="Friday" class="dayOfWeek" onclick="daysOfWeekClick('Friday');">Fri</a>
             </container>
           </container>
         </section>
@@ -237,15 +240,16 @@
         <label for="conf-psw" id="conf-psw-tag"><b>Confirm Password</b></label>
         <input type="password" placeholder="Confirm Password" name="conf-psw" required maxlength="30" id="conf-psw-field">
     
-        <label for="major-selection" id="majors-selection-tag"><b>Major </b></label>
-        <select id="majors-selection">
+        <label for="school-selection" id="school-selection-tag"><b>School </b></label>
+        <select id="school-selection">
+          <option value="default" disabled selected>Select a School</option>
+          <!--Loaded in dynamically in login.js-->
+        </select>
+
+        <label for="majors-selection" id="majors-selection-tag"><b>Major </b></label>
+        <select id="majors-selection" disabled>
           <option value="default" disabled selected>Select a Major</option>
-          <option value="Undecided">Undecided</option>
-          <option value="Applied Mathematics">Applied Mathematics</option>
-          <option value="Computer Science">Computer Science</option>
-          <option value="Economics">Economics</option>
-          <option value="Journalism">Journalism</option>
-          <optoin value="Neuroscience">Neuroscience</optoin>
+          <!--Loaded in dynamically in login.js-->
         </select>
 
         
@@ -264,9 +268,13 @@
   <div id="search-details-modal" class="modal">
     <div class="modal-content animate", id="search-details-container">
       <span id="search-details-modal-close"onclick="document.getElementById('search-details-modal').style.display='none'; " class="close" title="Close search result window">&times;</span>
-      <h1 id="search-details-title">Course Details</h1>
-      <div id="search-details-content">
-        SEARCH RESULT DETAILS MODAL
+      <div id="search-details-title-container">
+        <h1 id="search-details-title">Course Details</h1>
+      </div>
+      <div id='search-details-content-container'>
+        <div id="search-details-content">
+          SEARCH RESULT DETAILS MODAL
+        </div>
       </div>
       <a href="#" id="search-details-add-class">Add class to schedule</a>
     </div>

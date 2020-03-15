@@ -18,13 +18,11 @@ let currentCourseData;
 
 ///// Load in subjects for the quarter /////
 const loadSubjects = () => {
-    console.log(corsAnywhereURL + baseSubjectURL+currentTerm)
     fetch(corsAnywhereURL + baseSubjectURL+currentTerm)
         .then(response => response.json())
         .then(populateSubjects);
 }
 const populateSubjects = (dataFromServer) => {
-    console.log(dataFromServer);
     subjectDropdown = document.getElementById('subject-dropdown');
     for (subject of dataFromServer) {
         let optionTemplate = `<option value=${subject.symbol}>${subject.symbol} - ${subject.name}</option>`;
@@ -38,11 +36,8 @@ const populateSubjects = (dataFromServer) => {
 const dayOfWeekString = () => {
     let dayString = "";
     
-    if (!document.getElementById('daysOfWeek-activate').classList.contains('DOW-active')) {
-        // If day filter not active, return no days selected
-        dayString = 'noDaysSelected';
-    } else if (document.getElementsByClassName('DOW-selected').length == 0) {
-        // Filter active but no days were selected, so act as if filter is inactive
+    if (document.getElementsByClassName('DOW-selected').length == 0) {
+        // No days were selected
         dayString = 'noDaysSelected';
     } else {
         for (day of document.getElementsByClassName('dayOfWeek')) {
@@ -53,23 +48,17 @@ const dayOfWeekString = () => {
     }
     return dayString;
 }
-// Displays the day of the week filter
-displayDaysOfWeek = (displayString) => {
-    if (displayString == 'show') {
-        for (day of document.getElementsByClassName('daysOfWeek')) {
-            day.classList.remove('DOW-selected');
-        }
-        document.getElementById('daysOfWeek-activate').style.display='none';
-        document.getElementById('daysOfWeek-activate').classList.toggle('DOW-active');
-        document.getElementById('daysOfWeek-selector-container').style.display='flex';
-    } else {
-        document.getElementById('daysOfWeek-selector-container').style.display='none';
-        document.getElementById('daysOfWeek-activate').classList.toggle('DOW-active');
-        document.getElementById('daysOfWeek-activate').style.display='block';
+
+// Clear the Day of Week filter
+const clearDOWFilter = () => {
+    console.log(document.getElementsByClassName('dayOfWeek'));
+    for (day of document.getElementsByClassName('dayOfWeek')) {
+        day.classList.remove('DOW-selected');
     }
 }
+
 // Changes class of the day of week selector when clicked based on class
-daysOfWeekClick = (dayString) => {
+const daysOfWeekClick = (dayString) => {
     let day = document.getElementById(dayString);
     day.classList.toggle('DOW-selected');
 }
@@ -86,7 +75,6 @@ const getCourses = () => {
     if (searchParams.subject == 'default') {alert('Please select a subject to search'); return;}
     for (var key in searchParams) {
         // Check if key is meeting_days, in which case we only want to add if the DOW filter is active and meeting string is not none
-        console.log(searchParams.meeting_days);
         if (key != 'meeting_days' || searchParams.meeting_days != 'noDaysSelected') {
             endpoints += `&${key}=${searchParams[key]}`
         }
@@ -127,7 +115,6 @@ const toAMPM = (time) => {
 const showCourses = (dataFromServer) => {
     // Assign dataFromServer to currentSearchData for later filtering use 
     currentSearchData = dataFromServer;
-    console.log(currentSearchData);
 
     // Populate the search results section accordingly
     document.getElementById('search-results').innerHTML = ``;
@@ -152,7 +139,6 @@ const showCourses = (dataFromServer) => {
         }
 
         document.getElementById('search-results').innerHTML += course_card_template;
-        document.getElementById('search-results-container').style.display = 'flex';
     }
 }
 // Attach the onclick action for each of the search result cards
@@ -194,13 +180,8 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
     // Handle case of no meeting times given
     if ((details.meeting_days == null) || (details.start_time == null) || (details.end_time == null)){
         details_content_template += `<p>Meeting Times TBA<br>`;
-        // Meeting times unknown so can't add to calendar
-        document.getElementById('search-details-add-class').style.display = 'none';
     }else{
         details_content_template += `<p>${details.meeting_days} &ensp; ${toAMPM(details.start_time)}-${toAMPM(details.end_time)}<br>`;
-        // Meeting times known so can add to calendar
-        document.getElementById('search-details-add-class').onclick = function() {addCourse()};
-        document.getElementById('search-details-add-class').style.display = 'block';
     }
     
     // Handle case of no meeting location given
@@ -224,29 +205,41 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
         <p>${cd.desc}</p>`;
     }
 
-    // Format it as if we clicked from the search results
-    console.log(details_content_template);
     // Insert information into the search-details-content section
     document.getElementById('search-details-content').innerHTML = details_content_template;
 
     let detailsButton = document.getElementById('search-details-add-class');
+    detailsButton.style.display = 'block';
+
+    
+    
 
     switch (formatCode) {
         case 0:
             // Format for click from search results
             if (courses[details.id] != undefined) {
                 // Class already in calendar so don't display option to add again
-                detailsButton.style.display = 'none';
-            } else {
+                detailsButton.style.backgroundColor = 'gray';
+                detailsButton.onclick = function() {alert('Class is already in the calendar')};
+                        
+            } else if ((details.meeting_days == null) || (details.start_time == null) || (details.end_time == null)) { 
+                // Meeting times unknown so can't add to calendar
+                detailsButton.style.backgroundColor = 'gray';
+                detailsButton.onclick = function() {alert('Cannot add class because its meeting time is TBA')};
+            }else {
                 // Attach onclick event to add class to calendar
-                
                 detailsButton.innerHTML = 'Add class to schedule'
+                // Meeting times known so can add to calendar
                 detailsButton.onclick = function() {addCourse()};
+                detailsButton.style.backgroundColor = '#4e2a84';
+                // Determine if class has overlap or could be added
+                determineOverlap(details);
             }
             break;
         case 1:
             // Format for click from calendar view
             detailsButton.innerHTML = 'Remove class from schedule'
+            detailsButton.style.backgroundColor = '#4e2a84';
             detailsButton.onclick = function() {removeCourse(details.id)}
             break;
     }
@@ -254,6 +247,39 @@ const displaySearchDetails = (dataFromServer, formatCode) => {
     
     // Display the modal
     document.getElementById('search-details-modal').style.display='block';
+}
+
+
+// Determines if this class has overlap with any class currently in the calendar
+const determineOverlap = (details) => {
+    let detailsButton = document.getElementById('search-details-add-class');
+    let newStartPos = getPositionCal(details.start_time);
+    let newEndPos = getPositionCal(details.end_time);
+
+    // Check if there is overlap
+    for (course of Object.values(courses)) {
+        if ((newEndPos >= course['startPos']) && (course['endPos'] >= newStartPos)) {
+            for (day of course['days']) {
+                for (let i = 0; i < details.meeting_days.length; i++) {
+                    if (details.meeting_days.substring(i, i+2) == day) {
+                        console.log('COURSES: ');
+                        console.log(courses);
+                        console.log('CURRENT DAY: ' + day);
+                        console.log('DAYSTRING: ' + details.meeting_days);
+                        // Found overlap: change button functionality
+                        detailsButton.style.backgroundColor = 'gray';
+                        detailsButton.onclick = function() {alert('Cannot add class because it conflicts with a class already in the calendar')};
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    // Didn't find overlap so will have regular functionality
+    detailsButton.style.backgroundColor = '#4e2a84';
+    detailsButton.onclick = function() {addCourse()};
+    return;
 }
 
 // Close modal when user clicks outside of search details modal
@@ -274,7 +300,13 @@ window.onclick = function(event) {
 const courses = {};
 
 // Array of possible display colors
-const colors = ['#66CDAA', '#DC143C', '#FF8C00', '#228B22', '#F0E68C', '#4169E1', '#8FBC8F'];
+const colors = {'rgb(102, 205, 170)':false, 
+                'rgb(220, 20, 60)':false, 
+                'rgb(255, 140, 0)':false, 
+                'rgb(34, 139, 34)':false, 
+                'rgb(65, 105, 225)':false, 
+                'rgb(143, 188, 143)':false
+                };
 
 // Adds a course from the search details modal
 const addCourse = () => {
@@ -287,53 +319,43 @@ const addCourse = () => {
 // Adds the course to the calendar
 const addCourseToCal = (desc) => {
 
-    let newStartPos = getPositionCal(desc.end_time);
-    let newEndPos = getPositionCal(desc.end_time);
-
-    for (val of Object.values(courses)) {
-        console.log(val);
-        console.log(val['startPos']);
-        if (((newEndPos - val['startPos']) >= 0) && ((val['endPos'] - newStartPos) >= 0)) {
-            alert('This class cannot be added because it conflicts with a class already in the calendar');
-            return;
-        }
-    }
-
     // Creates the Calendar Cells
     let calTemplate = createCalCell(desc);
-    
+    let classDays = [];
+
     // Add the template to each day that the class is on
     for (let i = 0; i < desc.meeting_days.length; i+=2){
         // Add 
         if (desc.meeting_days.substring(i, i+2) == 'Mo'){
             document.getElementById('cal-Monday').innerHTML += calTemplate;
+            classDays.push('Mo');
         }
         if (desc.meeting_days.substring(i, i+2) == 'Tu'){
             document.getElementById('cal-Tuesday').innerHTML += calTemplate;
+            classDays.push('Tu');
         }
         if (desc.meeting_days.substring(i, i+2) == 'We'){
             document.getElementById('cal-Wednesday').innerHTML += calTemplate;
+            classDays.push('We');
         }
         if (desc.meeting_days.substring(i, i+2) == 'Th'){
             document.getElementById('cal-Thursday').innerHTML += calTemplate;
+            classDays.push('Th');
         }
         if (desc.meeting_days.substring(i, i+2) == 'Fr'){
             document.getElementById('cal-Friday').innerHTML += calTemplate;
+            classDays.push('Fr');
         }
     }
 
     // Add this course to the array holding the courses currently displayed in the calendar
     courses[desc.id] = {'details': desc, 
                         'startPos': getPositionCal(desc.start_time), 
-                        'endPos': getPositionCal(desc.end_time)};
+                        'endPos': getPositionCal(desc.end_time),
+                        'days': classDays};
 
-    // Add onclick function to class in calendar
-    console.log(desc.id.toString());
-    console.log(document.getElementsByClassName(desc.id));
-    for (calClass of document.getElementsByClassName(desc.id)) {
-        calClass.onclick = function () {displayCalDetails(desc.id)};
-    }
     
+    console.log('Add class with id:'+ desc.id.toString());   
 }
 
 // Creates a cell in the calendar
@@ -348,13 +370,13 @@ const createCalCell = (desc) => {
             top:calc(30px + ((100% - 30px) / 15) * ${getPositionCal(desc.start_time)}); 
             left:1px; 
             right:5px;' 
-        class='class-cell ${desc.id}'>
+        class='class-cell id${desc.id}'
+        onclick='displayCalDetails(${desc.id})'>
         <p>${toAMPM(desc.start_time)} - ${toAMPM(desc.end_time)}</p>
         <p class='cal-class-title'>${desc.subject} ${desc.catalog_num}</p>
     </container>
     `;
 
-    console.log(template);
     return template;    
 }
 
@@ -379,10 +401,14 @@ const getHeightCal = (startTime, endTime) => {
 
 
 const getBackgroundColorCal = () => {
-    console.log(Object.keys(courses).length);
-    console.log(colors.length);
-    console.log((courses.length % colors.length));
-    return colors[(Object.keys(courses).length % colors.length)];
+    for (color of Object.keys(colors)){
+        if (!colors[color]){
+            colors[color] = true;
+            return color;
+        }
+    }
+    // If all colors taken, pick a random one
+    return Object.keys(colors)[Math.floor(Math.random() * (Object.keys(colors).length - 1))]
 }
 
 
@@ -392,15 +418,24 @@ const displayCalDetails = (id) => {
 }
 
 const removeCourse = (courseID) => {
+    // Delete the class from the courses dictionary
     delete courses[courseID];
+    // Delete the class from the calendar
     removeCalCell(courseID);
+    // Hide the search details modal
     document.getElementById('search-details-modal').style.display = 'none';
 }
 
 const removeCalCell = (id) => {
     // Removes the class from the calendar
-    console.log(document.getElementsByClassName(id));
-    calClasses = document.getElementsByClassName(id);
+    let calClasses = document.getElementsByClassName('id'+id);
+    
+    // Free up color for calendar
+    let classColor = calClasses[0].style.backgroundColor;
+    console.log(classColor);
+    colors[classColor] = false;
+
+    // Remove all instances of the class from the calendar
     while (calClasses.length) {
         calClasses[0].remove();
     }
